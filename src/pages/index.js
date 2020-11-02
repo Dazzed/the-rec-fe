@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Modal, Button } from "react-bootstrap";
 
 import Link from "next/link";
+import Navbar from "../component/Header/Navbar";
 
 function MarketingLandingPage() {
   const [show, setShow] = useState(false);
@@ -11,13 +12,7 @@ function MarketingLandingPage() {
   return (
     <Container fluid className="marketing-Container">
       <Row>
-        <Col xl={12}>
-          <header className="header">
-            <div className="logo-section">
-              <img src="/imgs/svgs/rec-logo.svg" alt="logo-rec" />
-            </div>
-          </header>
-        </Col>
+       <Navbar />
         <Col xl={12}>
           <div className="bg-marketing">
             <div className="hero-text-section">
@@ -53,7 +48,7 @@ function MarketingLandingPage() {
               Cancel
             </Button>
             <Button variant="primary" onClick={handleClose}>
-              <Link href="/signin" className="text-white">
+              <Link href="/login" className="text-white">
                 Add extension
               </Link>
             </Button>
