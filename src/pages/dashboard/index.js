@@ -1,11 +1,20 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import styled from "styled-components";
 
 import SearchBarNav from "../../component/Header/SearchBarNav";
 import PeopleFollow from "../../component/PeopleFollow";
 
 import DashboardProducts from "../dashboard/component/dashboardProducts";
 
+const LatestTitle = styled.h5`
+  font-family: Roboto-Regular;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 30px;
+  color: #000;
+`;
 
 function Dashboard() {
   return (
@@ -15,7 +24,7 @@ function Dashboard() {
         <Col lg={9}>
           <Row>
             <Col className="mb-4 mt-4">
-              <h5>Latest</h5>
+              <LatestTitle>Latest</LatestTitle>
             </Col>
           </Row>
           <Row>

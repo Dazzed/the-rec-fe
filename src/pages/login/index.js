@@ -1,16 +1,51 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-
+import styled from "styled-components";
 import Link from "next/link";
 import Navbar from "../../component/Header/Navbar";
 
+
+const LoginPageStyle = styled.div`
+  text-align: center;
+  .righticon {
+    margin-top: 25px;
+  }
+  h6 {
+    font-family: Roboto-Regular;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 42px;
+    text-align: center;
+    color: #000008;
+  }
+  button {
+    background: #3b5998;
+    border-radius: 10px;
+    font-family: Roboto-Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #fff;
+    height: 54px;
+    width: 324px;
+    border: none;
+    a {
+      color: #fff;
+    }
+    img {
+      margin-right: 16px;
+    }
+`;
+
 function LoginPage() {
   return (
-    <Container fluid className="marketing-Container">
+    <Container fluid className="dashboard-Container">
       <Row>
-      <Navbar />
+        <Navbar />
         <Col xl={12} classsName="text-center">
-          <div className="login-section">
+          <LoginPageStyle>
             <img
               src="/imgs/svgs/righticon.svg"
               className="righticon"
@@ -26,7 +61,7 @@ function LoginPage() {
                 </>
               </Link>
             </button>
-          </div>
+          </LoginPageStyle>
         </Col>
       </Row>
     </Container>

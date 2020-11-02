@@ -52,284 +52,9 @@ $break-small: 600px;
 $break-tablet: 992px;
 $break-large: 1400px;
 $padding-responsive: 600px;
-// Header section
-.search-box input {
-  position: absolute;
-  font-family: Roboto-Regular;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 21px;
-  letter-spacing: 1px;
-  text-transform: lowercase;
-  z-index: 0;
-  width: 100%;
-  height: 60px;
-  color: #c7c7c7;
-  background: #fff;
-  padding-left: 57px;
-  background: rgba(241, 243, 244, 0.26);
-  border: 1px solid rgba(0, 0, 8, 0.26);
-  box-sizing: border-box;
-  border-radius: 10px;
-}
-.search-box {
-  height: 60px;
-}
-.search-box input::placeholder {
-  color: #c7c7c7;
-}
-.search-box input:focus {
-  outline: $CommoneNone;
-}
 
-.search-box input:focus + .search {
-  transform: perspective(400px) rotateY(89deg);
-  padding: 3px 0;
-  opacity: 0;
-}
-
-.search-box img.search {
-  height: auto;
-  width: auto;
-  border: $CommoneNone;
-  position: relative;
-  z-index: 1;
-  left: 3%;
-  top: 17px;
-  transition: 0.2s all;
-  transform-style: preserve-3d;
-  perspective: 400px;
-}
-
-.search-box img.search::after {
-  content: "";
-  display: block;
-  width: auto;
-  height: auto;
-  background: #fff;
-  position: absolute;
-  left: calc(50% - 2px);
-  border-radius: 10px;
-  top: 101%;
-}
-
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
-// nav-items
-.resposive-992 {
-  @media screen and (max-width: $break-tablet) {
-    position: absolute;
-    top: 8px;
-    right: 28px;
-  }
-  @media screen and (max-width: $break-small) {
-    right: 0;
-    top: 15px;
-  }
-  .nav-items-custom {
-    ul {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-end;
-      li {
-        padding: 0 15px 13px;
-        margin: 0 15px;
-        @media screen and (max-width: $break-small) {
-          padding: 0 7px 7px;
-          margin: 0 7px;
-        }
-        a {
-          font-family: Roboto-Regular;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 18px;
-          line-height: 21px;
-          color: #000;
-          @media screen and (max-width: $break-small) {
-            font-size: 14px;
-            line-height: 16px;
-          }
-        }
-        img {
-          width: 50px;
-          height: 50px;
-          border-radius: $border50;
-          @media screen and (max-width: $break-small) {
-            width: 30px;
-            height: 30px;
-          }
-        }
-      }
-      .activeNav {
-        border-bottom: 3px solid #f5bf42;
-      }
-      li:last-child {
-        margin: 0;
-      }
-    }
-  }
-}
-
-//marketing page
-.marketing-Container {
-  padding: 55px 55px 0;
-  height: 100%;
-  @media screen and (max-width: $break-small) {
-    padding: 15px;
-  }
-  .row {
-    height: 100%;
-  }
-  .bg-marketing {
-    background: url("../imgs/bg-landing-page-1.png");
-    height: 495px;
-    background-position: 70% 50%;
-    background-repeat: no-repeat;
-    background-clip: content-box;
-    background-size: contain;
-    content: "";
-    box-sizing: border-box;
-    position: relative;
-    @media screen and (min-width: $break-large) {
-      height: 745px;
-    }
-    @media screen and (max-width: $break-small) {
-      background: $CommoneNone !important;
-    }
-    .hero-text-section {
-      // padding-top: 10%;
-      // padding-left: 15%;
-      left: 34%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      position: absolute;
-      @media screen and (min-width: $break-large) {
-        left: 30%;
-      }
-      h1 {
-        font-family: Roboto-Regular;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 36px;
-        line-height: 42px;
-        color: #000008;
-        margin-bottom: 34px;
-      }
-      button {
-        font-family: Roboto-Regular;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 21px;
-        color: #000008;
-        height: 54px;
-        background: #bdf4bc;
-        border-radius: 10px;
-        border: $CommoneNone;
-        padding: 0 23px;
-      }
-      img {
-        margin-right: 15px;
-      }
-    }
-  }
-}
-// login page
-.login-section {
-  text-align: center;
-
-  .righticon {
-    margin-top: 25px;
-  }
-  h6 {
-    font-family: Roboto-Regular;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 36px;
-    line-height: 42px;
-    text-align: center;
-    color: #000008;
-  }
-  button {
-    background: #3b5998;
-    border-radius: 10px;
-    font-family: Roboto-Regular;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 21px;
-    color: #fff;
-    height: 54px;
-    width: 324px;
-    border: $CommoneNone;
-    a {
-      color: #fff;
-    }
-    img {
-      margin-right: 16px;
-    }
-  }
-}
-@mixin commmon-product-section {
-  text-align: center;
-  background: #ffffff;
-  border: 1px solid #f1f3f4;
-  box-sizing: border-box;
-  margin-bottom: 26px;
-  min-height: 280px;
-}
-@mixin products-img {
-  width: 100%;
-  height: 200;
-  object-fit: cover;
-}
-// products section
-.products-section {
-  @include commmon-product-section;
-  .productsimgs {
-    @include products-img;
-  }
-  .followerimgs {
-    width: 52px;
-    height: 52px;
-    border-radius: $border50;
-    margin-top: -25px;
-    margin-bottom: 9px;
-  }
-  h3 {
-    font-family: Roboto-Bold;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
-    color: #000;
-    margin-bottom: 3px;
-  }
-  h5 {
-    font-family: Roboto-Regular;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
-    text-align: center;
-    color: #000;
-    margin-bottom: 17px;
-  }
-}
 .dashboard-Container {
   padding: 37px 55px;
-  @media screen and (max-width: $break-tablet) {
-    padding-top: 20px;
-  }
-  @media screen and (max-width: $break-small) {
-    padding: 15px;
-  }
 }
 // modal
 .custom-modal-popup {
@@ -377,142 +102,14 @@ $padding-responsive: 600px;
     }
   }
 }
-$dealerWH: 60px;
-// Dealer section
-.dealer-section {
-  text-align: center;
-  margin-bottom: 46px;
-  margin-top: 36px;
-  img {
-    width: $dealerWH;
-    height: $dealerWH;
-    border-radius: $border50;
-    margin-bottom: 17px;
+
+@media screen and (min-width: $break-large) {
+  .bg-marketing {
+    height: 745px;
   }
-  h5 {
-    font-family: Roboto-Bold;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 26px;
-    line-height: 30px;
-    color: #000;
-    margin-bottom: 16px;
+  .hero-text-section {
+    left: 30%;
   }
-  button {
-    background: #f6d0e8;
-    border-radius: 5px;
-    font-family: Roboto-Regular;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-    color: #000008;
-    margin: 0;
-    height: 36px;
-    width: 90px;
-    border: $CommoneNone;
-  }
-}
-@mixin common-products-title {
-  font-family: Roboto-Regular;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 16px;
-  text-align: center;
-  color: #000;
-  margin: 0;
-}
-// dealer production
-.dealer-products-section {
-  @include commmon-product-section;
-  padding-bottom: 27px;
-  .productsimgs {
-    @include products-img;
-    margin-bottom: 24px;
-  }
-  p {
-    @include common-products-title;
-  }
-  h5 {
-    @include common-products-title;
-  }
-  h6 {
-    @include common-products-title;
-  }
-}
-// follow section
-$profileFollowImg: 40px;
-.profileImgName {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 30px;
-  img {
-    width: $profileFollowImg;
-    height: $profileFollowImg;
-    border-radius: $border50;
-    margin-right: 11px;
-  }
-  h3 {
-    font-family: Roboto-Bold;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 16px;
-    color: #000000;
-    margin: 0;
-    display: inline-block;
-    // width: 180px;
-    white-space: nowrap;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-  }
-}
-@mixin common-btn {
-  border-radius: 5px;
-  padding: 9px;
-  font-family: Roboto-Regular;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 19px;
-  height: 36px;
-  text-align: center;
-  color: #000008;
-  border: $CommoneNone;
-  width: 90px;
-}
-.btn-follow-green {
-  @media screen and (max-width: $break-tablet) {
-    text-align: right;
-  }
-  button {
-    background: #bdf4bc;
-    @include common-btn;
-  }
-}
-.btn-follow-pink {
-  @media screen and (max-width: $break-tablet) {
-    text-align: right;
-  }
-  button {
-    background: #f6d0e8;
-    @include common-btn;
-  }
-}
-.follow-title {
-  font-family: Roboto-Regular;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 26px;
-  line-height: 30px;
-  color: #000;
-}
-.logo {
-  width: 45px;
-  height: 45px;
 }
 @media screen and (max-width: $break-tablet) {
   .logo-section {
@@ -524,11 +121,23 @@ $profileFollowImg: 40px;
   .search-box img.search {
     top: -42px;
   }
+  .btn-follow-pink {
+    text-align: right;
+  }
+  .btn-follow-green {
+    text-align: right;
+  }
+  .dashboard-Container {
+    padding-top: 20px;
+  }
 }
 @media screen and (max-width: $break-small) {
   .logo-section {
     img {
       width: 75px;
     }
+  }
+  .dashboard-Container {
+    padding: 15px;
   }
 }

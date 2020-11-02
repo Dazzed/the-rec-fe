@@ -1,6 +1,14 @@
-import React from "react";
-import { Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import styled from 'styled-components';
+
+const FollowTitle = styled.h4`
+  font-family: Roboto-Regular;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 30px;
+  color: #000;
+`;
 
 const ProfileImageSection = styled.div`
   display: flex;
@@ -27,26 +35,26 @@ const ProfileImageSection = styled.div`
     text-overflow: ellipsis;
   }
 `;
-const ButtonPinkFollow = styled.div`
+const ButtonGreenFollow = styled.div`
   text-align: right;
     button {
-        background: #f6d0e8;
-        border-radius: 5px;
-        padding: 9px;
-        font-family: Roboto-Regular;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 19px;
-        height: 36px;
-        text-align: center;
-        color: #000008;
-        border: none;
-        width: 90px;
+      background: #bdf4bc;
+      border-radius: 5px;
+      padding: 9px;
+      font-family: Roboto-Regular;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      height: 36px;
+      text-align: center;
+      color: #000008;
+      border: none;
+      width: 90px;
     }
 `;
 
-function contactUser() {
+function PeopleFollowList() {
     return (
         <Row>
             <Col lg={8} md={8} sm={8} xs={8}>
@@ -55,13 +63,12 @@ function contactUser() {
                     <h3>Susan L.</h3>
                 </ProfileImageSection>
             </Col>
-            <Col lg={4} md={4} sm={4} xs={4}>
-                <ButtonPinkFollow>
-                    <button>Unfollow</button>
-                </ButtonPinkFollow>
+            <Col lg={4} md={4} sm={4} xs={4} md={4} sm={4} xs={4}>
+                <ButtonGreenFollow>
+                    <button>Follow</button>
+                </ButtonGreenFollow>
             </Col>
         </Row>
     );
 }
-
-export default contactUser;
+export default PeopleFollowList;

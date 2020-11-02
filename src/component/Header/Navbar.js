@@ -1,15 +1,24 @@
 import React from "react";
 import { Col } from "react-bootstrap";
 
+import styled from 'styled-components'
+
+const Header = styled.header`
+`
+
+const LogoSection = styled.div`
+
+`
+
 function Navbar() {
 
     return (
         <Col xl={12}>
-            <header className="header">
-                <div className="logo-section">
+            <Header className="header">
+                <LogoSection className="logo-section">
                     <img src="/imgs/svgs/rec-logo.svg" alt="logo-rec" />
-                </div>
-            </header>
+                </LogoSection>
+            </Header>
         </Col>
     );
 }
