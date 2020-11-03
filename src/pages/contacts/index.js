@@ -1,12 +1,17 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-
+import styled from "styled-components";
 import SearchBarNav from "../../component/Header/SearchBarNav";
 import ContactUser from "../contacts/component/contactUser";
 
+const CommonContainer = styled.div`
+  padding: 37px 55px;
+  position: relative;
+`;
+
 function MyContact() {
   return (
-    <Container fluid className="dashboard-Container">
+    <CommonContainer className="container-fluid">
       <SearchBarNav />
       <Row className="mt-5 mb-4">
         <Col lg={4} md={6} className="lg-pr-5 pr-3">
@@ -40,7 +45,7 @@ function MyContact() {
           <ContactUser />
         </Col>
       </Row>
-    </Container>
+    </CommonContainer>
   );
 }
 

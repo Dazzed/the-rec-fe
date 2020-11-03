@@ -7,6 +7,11 @@ import PeopleFollow from "../../component/PeopleFollow";
 
 import DashboardProducts from "../dashboard/component/dashboardProducts";
 
+const CommonContainer = styled.div`
+  padding: 37px 55px;
+  position: relative;
+`;
+
 const LatestTitle = styled.h5`
   font-family: Roboto-Regular;
   font-style: normal;
@@ -18,7 +23,7 @@ const LatestTitle = styled.h5`
 
 function Dashboard() {
   return (
-    <Container fluid className="dashboard-Container">
+    <CommonContainer className="container-fluid">
       <SearchBarNav />
       <Row>
         <Col lg={9}>
@@ -70,7 +75,7 @@ function Dashboard() {
           <PeopleFollow />
         </Col>
       </Row>
-    </Container>
+    </CommonContainer>
   );
 }
 export default Dashboard;

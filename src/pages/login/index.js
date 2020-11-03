@@ -5,6 +5,11 @@ import Link from "next/link";
 import Navbar from "../../component/Header/Navbar";
 
 
+const CommonContainer = styled.div`
+  padding: 37px 55px;
+  position: relative;
+`;
+
 const LoginPageStyle = styled.div`
   text-align: center;
   .righticon {
@@ -41,7 +46,7 @@ const LoginPageStyle = styled.div`
 
 function LoginPage() {
   return (
-    <Container fluid className="dashboard-Container">
+    <CommonContainer className="container-fluid">
       <Row>
         <Navbar />
         <Col xl={12} classsName="text-center">
@@ -64,7 +69,7 @@ function LoginPage() {
           </LoginPageStyle>
         </Col>
       </Row>
-    </Container>
+    </CommonContainer>
   );
 }
 
