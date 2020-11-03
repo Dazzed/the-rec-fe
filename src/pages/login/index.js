@@ -6,8 +6,8 @@ import Navbar from "../../component/Header/Navbar";
 
 
 const CommonContainer = styled(Container)`
-  padding: 37px 55px;
-  position: relative;
+  padding: 37px 55px !important;
+  max-width: 100% !important;
 `;
 
 const LoginPageStyle = styled.div`

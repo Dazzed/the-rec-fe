@@ -74,8 +74,6 @@ const NavItem = styled.div`
 	justify-content: flex-end;
 	li { padding: 0 15px 13px;
 	margin: 0 7px;
-	@media screen and (max-width: $break-small) { padding: 0 7px 7px;
-	margin: 0 7px;
 }
 a {
 	font-family: Roboto-Regular;
@@ -84,18 +82,12 @@ a {
 	font-size: 18px;
 	line-height: 21px;
 	color: #000;
-	@media screen and (max-width: $break-small) { font-size: 14px;
-	line-height: 16px;
 }
-} {
 	img {
 		width: 50px;
 		height: 50px;
 		border-radius: $border50;
-		@media screen and (max-width: $break-small) { width: 30px;
-		height: 30px;
 	}
-	} {
 		.activeNav {
 			border-bottom: 3px solid #f5bf42;
 		}

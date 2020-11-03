@@ -8,8 +8,8 @@ import PeopleFollow from "../../component/PeopleFollow";
 import DashboardProducts from "../dashboard/component/dashboardProducts";
 
 const CommonContainer = styled(Container)`
-  padding: 37px 55px;
-  position: relative;
+  padding: 37px 55px !important;
+  max-width: 100% !important;
 `;
 
 const LatestTitle = styled.h5`

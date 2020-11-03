@@ -7,8 +7,8 @@ import Navbar from "../component/Header/Navbar";
 
 
 const CommonContainer = styled(Container)`
-  padding: 37px 55px;
-  position: relative;
+  padding: 37px 55px !important;
+  max-width: 100% !important;
 `;
 const BgMarketingstyle = styled.div`
   background: url("/imgs/bg-landing-page-1.png");
