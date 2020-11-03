@@ -6,13 +6,11 @@ import Link from "next/link";
 import Navbar from "../component/Header/Navbar";
 
 
-const CommonContainer = styled.div`
+const CommonContainer = styled(Container)`
   padding: 37px 55px;
   position: relative;
 `;
-
 const BgMarketingstyle = styled.div`
-
   background: url("/imgs/bg-landing-page-1.png");
   height: 495px;
   background-position: 70% 50%;
@@ -60,12 +58,10 @@ const BgMarketingstyle = styled.div`
     }
   }
 `;
-
-const LogoModalImg =styled.img`
+const LogoModalImg = styled.img`
   width: 45px;
   height: 45px;
 `;
-
 function MarketingLandingPage() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
