@@ -49,7 +49,7 @@ function LoginPage() {
     <CommonContainer className="container-fluid">
       <Row>
         <Navbar />
-        <Col xl={12} classsName="text-center">
+        <Col xl={12} className="text-center">
           <LoginPageStyle>
             <img
               src="/imgs/svgs/righticon.svg"
@@ -58,14 +58,14 @@ function LoginPage() {
             />
             <h6 className="mt-4 mb-3">Extension installed.</h6>
             <h6 className="mt-5 mb-5">Sign in</h6>
-            <button>
-              <Link href="/dashboard">
+            <Link href="/dashboard">
+              <button>
                 <>
                   <img src="/imgs/svgs/facebookicon.svg" alt="Facebook Icon" />
                   Sign in with Facebook
                 </>
-              </Link>
             </button>
+            </Link>
           </LoginPageStyle>
         </Col>
       </Row>
