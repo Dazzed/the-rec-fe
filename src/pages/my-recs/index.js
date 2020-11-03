@@ -6,7 +6,7 @@ import SearchBarNav from "../../component/Header/SearchBarNav"
 import DealerProductsMyRecs from "../my-recs/component/dealerProductsMyRecs";
 
 
-const CommonContainer = styled.div`
+const CommonContainer = styled(Container)`
   padding: 37px 55px;
   position: relative;
 `;

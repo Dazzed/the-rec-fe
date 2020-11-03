@@ -4,7 +4,7 @@ import styled from "styled-components";
 import SearchBarNav from "../../component/Header/SearchBarNav";
 import ContactUser from "../contacts/component/contactUser";
 
-const CommonContainer = styled.div`
+const CommonContainer = styled(Container)`
   padding: 37px 55px;
   position: relative;
 `;

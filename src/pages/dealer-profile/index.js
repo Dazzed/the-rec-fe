@@ -7,7 +7,7 @@ import DealerProfileSection from "../dealer-profile/component/dealerProfileSecti
 import DealerProductSection from "../dealer-profile/component/dealerProductsSecion";
 
 
-const CommonContainer = styled.div`
+const CommonContainer = styled(Container)`
   padding: 37px 55px
   position: relative;
 `;

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Navbar from "../../component/Header/Navbar";
 
 
-const CommonContainer = styled.div`
+const CommonContainer = styled(Container)`
   padding: 37px 55px;
   position: relative;
 `;
