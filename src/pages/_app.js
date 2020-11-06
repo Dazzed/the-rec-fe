@@ -1,6 +1,9 @@
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../../public/styles/main.scss";
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { Provider } from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../public/styles/main.scss';
+import { useStore } from '../store';
+import Layout from '../component/Layout';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -11,18 +14,21 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const theme = {
-  colors: {
-  },
+  colors: {},
 };
 
 function MyApp({ Component, pageProps }) {
+  const store = useStore(pageProps.initialReduxState);
+
   return (
-    <>
+    <Provider store={store}>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
-    </>
+    </Provider>
   );
 }
 

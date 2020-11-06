@@ -1,23 +1,22 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Modal, Button } from "react-bootstrap";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
+import styled from 'styled-components';
 
-import Link from "next/link";
-import Navbar from "../component/Header/Navbar";
-
+import Link from 'next/link';
+import Navbar from '../component/Header/Navbar';
 
 const CommonContainer = styled(Container)`
   padding: 37px 55px !important;
   max-width: 100% !important;
 `;
 const BgMarketingstyle = styled.div`
-  background: url("/imgs/bg-landing-page-1.png");
+  background: url('/imgs/bg-landing-page-1.png');
   height: 495px;
   background-position: 70% 50%;
   background-repeat: no-repeat;
   background-clip: content-box;
   background-size: contain;
-  content: "";
+  content: '';
   box-sizing: border-box;
   position: relative;
   @media screen and (min-width: 1660px) {
@@ -92,8 +91,8 @@ function MarketingLandingPage() {
         >
           <Modal.Header closeButton>
             <Modal.Title>
-              <LogoModalImg src="/imgs/logo.png" alt="logo" className="logo" /> Add “The
-              Rec”?
+              <LogoModalImg src="/imgs/logo.png" alt="logo" className="logo" />{' '}
+              Add “The Rec”?
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
