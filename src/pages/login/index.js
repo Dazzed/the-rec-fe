@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import queryString from 'query-string';
+import Head from 'next/head';
 
 import { getPersistedUserToken } from '../../lib/utils';
 import { WEB_URL, FACEBOOK_CLIENT_ID } from '../../config/constants';
@@ -99,33 +100,39 @@ class LoginComponent extends Component {
 
   render() {
     return (
-      <CommonContainer className="container-fluid">
-        <Row>
-          <Navbar />
-          <Col xl={12} className="text-center">
-            <LoginPageStyle>
-              <img
-                src="/imgs/svgs/righticon.svg"
-                className="righticon"
-                alt="Right Icon"
-              />
-              <h6 className="mt-4 mb-3">Extension installed.</h6>
-              <h6 className="mt-5 mb-5">Sign in</h6>
-              <a href={this.state.facebookLoginUrl}>
-                <button>
-                  <>
-                    <img
-                      src="/imgs/svgs/facebookicon.svg"
-                      alt="Facebook Icon"
-                    />
-                    Sign in with Facebook
-                  </>
-                </button>
-              </a>
-            </LoginPageStyle>
-          </Col>
-        </Row>
-      </CommonContainer>
+      <>
+        <Head>
+          <title>Login | The Rec</title>
+          <meta property="og:title" content="Login | The Rec" key="title" />
+        </Head>
+        <CommonContainer className="container-fluid">
+          <Row>
+            <Navbar />
+            <Col xl={12} className="text-center">
+              <LoginPageStyle>
+                <img
+                  src="/imgs/svgs/righticon.svg"
+                  className="righticon"
+                  alt="Right Icon"
+                />
+                <h6 className="mt-4 mb-3">Extension installed.</h6>
+                <h6 className="mt-5 mb-5">Sign in</h6>
+                <a href={this.state.facebookLoginUrl}>
+                  <button>
+                    <>
+                      <img
+                        src="/imgs/svgs/facebookicon.svg"
+                        alt="Facebook Icon"
+                      />
+                      Sign in with Facebook
+                    </>
+                  </button>
+                </a>
+              </LoginPageStyle>
+            </Col>
+          </Row>
+        </CommonContainer>
+      </>
     );
   }
 }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-
 import Link from 'next/link';
+import Head from 'next/head';
 import Navbar from '../component/Header/Navbar';
 
 const CommonContainer = styled(Container)`
@@ -67,52 +67,65 @@ function MarketingLandingPage() {
   const handleShow = () => setShow(true);
 
   return (
-    <CommonContainer className="container-fluid">
-      <Row>
-        <Navbar />
-        <Col xl={12}>
-          <BgMarketingstyle>
-            <div className="hero-text-section">
-              <h1>
-                Whatever you need. <br />
-                Off the rack. On the record.
-              </h1>
-              <button onClick={handleShow}>
-                <img src="/imgs/svgs/downarrowicon.svg" alt="downarrow icon" />
-                Install Browser Extension
-              </button>
-            </div>
-          </BgMarketingstyle>
-        </Col>
-        <Modal
-          show={show}
-          onHide={handleClose}
-          className="custom-modal-popup justify-content-flex-end"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>
-              <LogoModalImg src="/imgs/logo.png" alt="logo" className="logo" />{' '}
-              Add “The Rec”?
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <b>It can:</b>
-            <br />
-            Read and change all your data on the websites you visit.
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Cancel
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              <Link href="/login" className="text-white">
-                Add extension
-              </Link>
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </Row>
-    </CommonContainer>
+    <>
+      <Head>
+        <title>The Rec</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
+      <CommonContainer className="container-fluid">
+        <Row>
+          <Navbar />
+          <Col xl={12}>
+            <BgMarketingstyle>
+              <div className="hero-text-section">
+                <h1>
+                  Whatever you need. <br />
+                  Off the rack. On the record.
+                </h1>
+                <button onClick={handleShow}>
+                  <img
+                    src="/imgs/svgs/downarrowicon.svg"
+                    alt="downarrow icon"
+                  />
+                  Install Browser Extension
+                </button>
+              </div>
+            </BgMarketingstyle>
+          </Col>
+          <Modal
+            show={show}
+            onHide={handleClose}
+            className="custom-modal-popup justify-content-flex-end"
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>
+                <LogoModalImg
+                  src="/imgs/logo.png"
+                  alt="logo"
+                  className="logo"
+                />{' '}
+                Add “The Rec”?
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <b>It can:</b>
+              <br />
+              Read and change all your data on the websites you visit.
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button variant="primary" onClick={handleClose}>
+                <Link href="/login" className="text-white">
+                  Add extension
+                </Link>
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </Row>
+      </CommonContainer>
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { connect } from 'react-redux';
+import Head from 'next/head';
 import { bindActionCreators } from 'redux';
 
 import * as logoutActions from './actions';
@@ -13,7 +14,15 @@ const Logout = ({ logout }) => {
     router.push('/');
   });
 
-  return <p>Redirecting...</p>;
+  return (
+    <>
+      <Head>
+        <title>Logout | The Rec</title>
+        <meta property="og:title" content="Login | The Rec" key="title" />
+      </Head>
+      <p>Redirecting...</p>
+    </>
+  );
 };
 
 const mapStateToProps = (state) => {
