@@ -10,4 +10,4 @@ export const API_URL = `${api[NODE_ENV]}/api`;
 export const WEB_URL = web[NODE_ENV];
 
 export const FACEBOOK_CLIENT_ID =
-  NODE_ENV === 'production' ? '3044517542305725' : '2827436817333770';
+  NODE_ENV === 'production' ? '2564398387105455' : '2564398387105455';

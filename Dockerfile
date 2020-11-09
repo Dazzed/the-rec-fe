@@ -1,5 +1,12 @@
 FROM node:14-alpine
 
+# App env
+ARG NODE_ENV=staging
+ENV NODE_ENV ${NODE_ENV}
+
+# Server port
+ARG PORT=4000
+ENV PORT ${PORT}
 # Create app directory
 WORKDIR /usr/src/app
 
