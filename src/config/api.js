@@ -1,5 +1,5 @@
 export default {
-  development: 'http://localhost:3000',
+  development: 'https://the-rec-be-staging.herokuapp.com',
   staging: 'https://the-rec-be-staging.herokuapp.com',
   production: 'https://the-rec-be-staging.herokuapp.com',
 };
