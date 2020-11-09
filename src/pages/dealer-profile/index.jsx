@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import Head from 'next/head';
 
 import SearchBarNav from '../../component/Header/SearchBarNav';
-import DealerProfileSection from '../dealer-profile/component/dealerProfileSection';
-import DealerProductSection from '../dealer-profile/component/dealerProductsSecion';
+import DealerProfileSection from './component/dealerProfileSection';
+import DealerProductSection from './component/dealerProductsSecion';
 
 const CommonContainer = styled(Container)`
   padding: 37px 55px !important;

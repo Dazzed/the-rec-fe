@@ -5,7 +5,7 @@ import Head from 'next/head';
 
 import SearchBarNav from '../../component/Header/SearchBarNav';
 import PeopleFollow from '../../component/PeopleFollow';
-import DashboardProducts from '../dashboard/component/dashboardProducts';
+import DashboardProducts from './component/dashboardProducts';
 
 const CommonContainer = styled(Container)`
   padding: 37px 55px !important;

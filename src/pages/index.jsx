@@ -9,6 +9,7 @@ const CommonContainer = styled(Container)`
   padding: 37px 55px !important;
   max-width: 100% !important;
 `;
+
 const BgMarketingstyle = styled.div`
   background: url('/imgs/bg-landing-page-1.png');
   height: 495px;
@@ -57,10 +58,12 @@ const BgMarketingstyle = styled.div`
     }
   }
 `;
+
 const LogoModalImg = styled.img`
   width: 45px;
   height: 45px;
 `;
+
 function MarketingLandingPage() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);

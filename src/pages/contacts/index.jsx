@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import Head from 'next/head';
 import SearchBarNav from '../../component/Header/SearchBarNav';
-import ContactUser from '../contacts/component/contactUser';
+import ContactUser from './component/contactUser';
 
 const CommonContainer = styled(Container)`
   padding: 37px 55px !important;
