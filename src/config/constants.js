@@ -3,11 +3,11 @@ import web from './web';
 
 export const NODE_ENV = process.env.NODE_ENV || 'development';
 
-// export const API_ENV = process.env.REACT_APP_API_ENV || 'development';
+export const API_ENV = process.env.REACT_APP_API_ENV || 'development';
 
-export const API_URL = `${api[NODE_ENV]}/api`;
+export const API_URL = `${api[API_ENV]}/api`;
 
-export const WEB_URL = web[NODE_ENV];
+export const WEB_URL = web[API_ENV];
 
 export const FACEBOOK_CLIENT_ID =
-  NODE_ENV === 'production' ? '2564398387105455' : '2564398387105455';
+  API_ENV === 'production' ? '2564398387105455' : '2564398387105455';
