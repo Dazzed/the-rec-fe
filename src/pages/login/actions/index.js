@@ -21,8 +21,10 @@ export const login = ({ code, redirectUri }) => {
       });
 
       const {
-        token,
-        profile: { id, email, name, profilePicUrl },
+        data: {
+          token,
+          profile: { id, email, name, profilePicUrl },
+        },
       } = response;
 
       dispatch(saveUserToken(token));

@@ -80,7 +80,7 @@ class LoginComponent extends Component {
       const stringifiedParams = queryString.stringify({
         client_id: FACEBOOK_CLIENT_ID,
         redirect_uri: redirectUri,
-        scope: ['email'].join(','),
+        scope: ['email', 'user_friends'].join(','),
         response_type: 'code',
         auth_type: 'rerequest',
         display: 'popup',
