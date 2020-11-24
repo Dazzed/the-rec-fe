@@ -85,7 +85,7 @@ function MarketingLandingPage() {
                   Whatever you need. <br />
                   Off the rack. On the record.
                 </h1>
-                <button onClick={handleShow}>
+                <button onClick={handleShow} className="btn_add">
                   <img
                     src="/imgs/svgs/downarrowicon.svg"
                     alt="downarrow icon"
@@ -120,7 +120,7 @@ function MarketingLandingPage() {
                 Cancel
               </Button>
               <Button variant="primary" onClick={handleClose}>
-                <Link href="/login" className="text-white">
+                <Link href="/login" id="install-extension-link" className="text-white">
                   Add extension
                 </Link>
               </Button>
