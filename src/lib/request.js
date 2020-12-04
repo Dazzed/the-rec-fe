@@ -49,3 +49,14 @@ export const post = (url, body) =>
         return reject(err.response);
       })
   );
+
+export const deleteReq = (url, body) =>
+  new Promise((resolve, reject) =>
+    http
+      .delete(url, body)
+      .then((response) => resolve(response.data))
+      .catch((err) => {
+        unauthorizedHandler(err);
+        return reject(err.response);
+      })
+  );

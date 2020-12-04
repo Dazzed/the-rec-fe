@@ -46,3 +46,14 @@ export const getPersistedUserProfile = () => {
   const profile = cacheClient.getItem('profile');
   return profile || null;
 };
+
+/**
+ * Returns first letter capitalized
+ * @param {String} name
+ */
+export const getInitials = (name) => {
+  let initials = name.match(/\b\w/g) || [];
+  initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+
+  return initials;
+};

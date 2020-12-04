@@ -2,7 +2,7 @@ import * as types from '../actions/actionTypes';
 import initialState from '../../initialState';
 import { persistUserProfile, persistUserToken } from '../../../lib/utils';
 
-export default (state = initialState.user, action) => {
+const reducers = (state = initialState.user, action) => {
   switch (action.type) {
     case types.SAVE_USER:
       const profile = action.profile
@@ -27,3 +27,5 @@ export default (state = initialState.user, action) => {
       return state;
   }
 };
+
+export default reducers;
