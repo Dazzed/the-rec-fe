@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import capitalize from 'lodash/capitalize';
 import ReactTable from '../../../component/ReactTable';
 import NavBar from '../components/navbar';
-import { post, get, deleteReq } from '../../../lib/request';
+import EditForm from './editForm';
+import { post, get, deleteReq, patch } from '../../../lib/request';
 import { API_URL, WEB_URL } from '../../../config/constants';
 
 const Styles = styled.div`
@@ -60,25 +61,51 @@ function App() {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [pageCount, setPageCount] = React.useState(0);
+  const [showEdit, setEditForm] = React.useState(false);
+  const [selectedProductId, selectProductId] = React.useState(false);
+
+  const toggleEditModal = (values) => {
+    selectProductId(values ? values.id : null);
+    setEditForm(!showEdit);
+  };
+  const editProduct = async (values) => {
+    try {
+      await patch(`${API_URL}/products/${selectedProductId}`, values);
+      toggleEditModal();
+      fetchData({ pageSize: 10, pageIndex: 1 });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const deleteProduct = async (productId) => {
+    try {
+      await deleteReq(`${API_URL}/products/${productId}`);
+      fetchData({ pageSize: 10, pageIndex: 1 });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const fetchData = React.useCallback(async ({ pageSize, pageIndex }) => {
     try {
       // Set the loading state
       setLoading(true);
       const result = await get(`${API_URL}/products`, {
-        params: {},
+        params: { page: pageIndex, pageSize },
       });
 
       const data = result.data.map((e) => ({
         ...e,
         category: e.category.name,
+        brand: e.brand.name,
+        retailer: e.retailer.name,
       }));
 
       setData(data);
 
       // Your server could send back total page count.
       // For now we'll just fake it, too
-      setPageCount(Math.ceil(data.length / pageSize));
+      setPageCount(result.totalPages);
 
       setLoading(false);
     } catch (error) {
@@ -89,7 +116,19 @@ function App() {
 
   // Create a function that will render our row sub components
   const renderRowSubComponent = React.useCallback(({ row }) => {
-    return <SubComponent>{JSON.stringify(row.values)}</SubComponent>;
+    return (
+      <SubComponent>
+        <pre>
+          <code>{JSON.stringify(row.values, null, 2)}</code>
+        </pre>
+        <Button variant="primary" onClick={() => toggleEditModal(row.values)}>
+          Edit
+        </Button>
+        <Button variant="danger" onClick={() => deleteProduct(row.values.id)}>
+          Delete
+        </Button>
+      </SubComponent>
+    );
   }, []);
 
   return (
@@ -105,6 +144,12 @@ function App() {
           renderRowSubComponent={renderRowSubComponent}
         />
       </Styles>
+      <EditForm
+        show={showEdit}
+        handleClose={toggleEditModal}
+        product={data.find((e) => e.id === selectedProductId)}
+        editProduct={editProduct}
+      />
     </>
   );
 }

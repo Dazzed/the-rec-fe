@@ -1,8 +1,12 @@
-import React from 'react';
-import Users from './users';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-function Admin() {
-  return <Users />;
+export default function Page() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/admin/users');
+  }, []);
+
+  return <p>Redirecting...</p>;
 }
-
-export default Admin;

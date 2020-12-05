@@ -60,3 +60,14 @@ export const deleteReq = (url, body) =>
         return reject(err.response);
       })
   );
+
+export const patch = (url, body) =>
+  new Promise((resolve, reject) =>
+    http
+      .patch(url, body)
+      .then((response) => resolve(response.data))
+      .catch((err) => {
+        unauthorizedHandler(err);
+        return reject(err.response);
+      })
+  );
