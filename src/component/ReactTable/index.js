@@ -7,12 +7,46 @@ const Styles = styled.div`
   button {
     margin: 3px;
   }
-
+  table td, table th{
+    padding: 16px;
+  }
   .pagination {
     padding: 0.5rem;
   }
+  .pagination button {
+    padding: .5rem .75rem;
+  }
+  .pagination.button-pagination {
+    float: left;
+  }
 `;
-
+const ButtonPagination = styled.div`
+    width: 50%;
+    text-align: left;
+`;
+const SelectNumber = styled.select`
+  padding: .5rem .75rem;
+  background: #6c757d;
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+`;
+const ShowNumber = styled.div`
+  width: 50% ;
+  text-align: right;
+`;
+const SpanDiv = styled.span`
+  margin-left: 12px;
+  margin-right: 12px;
+  font-size: 16px;
+  line-height: 18px;
+`;
+const InputFieldPage = styled.input`
+  padding: .5rem .75rem;
+  margin-left: 12px;
+  border-radius: 6px;
+  border: 2px solid #dee2e6;
+`;
 function ReactTable({
   columns,
   data,
@@ -116,74 +150,78 @@ function ReactTable({
             {loading ? (
               <td colSpan="10000">Loading...</td>
             ) : (
-              <td colSpan="10000">
-                Showing {page.length} of ~{controlledPageCount * pageSize}
+                <td colSpan="10000">
+                  Showing {page.length} of ~{controlledPageCount * pageSize}
                 results
-              </td>
-            )}
+                </td>
+              )}
           </tr>
         </tbody>
       </Table>
 
       <div className="pagination">
-        <button
-          className="btn btn-secondary btn-sm"
-          onClick={() => gotoPage(0)}
-          disabled={!canPreviousPage}
-        >
-          {'<<'}
-        </button>
-        <button
-          className="btn btn-secondary btn-sm"
-          onClick={() => previousPage()}
-          disabled={!canPreviousPage}
-        >
-          {'<'}
-        </button>
-        <button
-          className="btn btn-secondary btn-sm"
-          onClick={() => nextPage()}
-          disabled={!canNextPage}
-        >
-          {'>'}
-        </button>
-        <button
-          className="btn btn-secondary btn-sm"
-          onClick={() => gotoPage(pageCount - 1)}
-          disabled={!canNextPage}
-        >
-          {'>>'}
-        </button>
-        <span>
-          Page
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>
-        </span>
-        <span>
-          | Go to page:
-          <input
-            type="number"
-            defaultValue={pageIndex + 1}
+        <ButtonPagination>
+          <button
+            className="btn btn-secondary btn-sm"
+            onClick={() => gotoPage(0)}
+            disabled={!canPreviousPage}
+          >
+            {'<<'}
+          </button>
+          <button
+            className="btn btn-secondary btn-sm"
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+          >
+            {'<'}
+          </button>
+          <button
+            className="btn btn-secondary btn-sm"
+            onClick={() => nextPage()}
+            disabled={!canNextPage}
+          >
+            {'>'}
+          </button>
+          <button
+            className="btn btn-secondary btn-sm"
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+          >
+            {'>>'}
+          </button>
+          <SpanDiv>
+            Page
+            <strong>
+              {pageIndex + 1} of {pageOptions.length}
+            </strong>
+          </SpanDiv>
+          <SpanDiv>
+            | &nbsp;&nbsp;&nbsp;Go to page:
+          <InputFieldPage
+              type="number"
+              defaultValue={pageIndex + 1}
+              onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                gotoPage(page);
+              }}
+              style={{ width: '100px' }}
+            />
+          </SpanDiv>
+        </ButtonPagination>
+        <ShowNumber>
+          <SelectNumber
+            value={pageSize}
             onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              gotoPage(page);
+              setPageSize(Number(e.target.value));
             }}
-            style={{ width: '100px' }}
-          />
-        </span>
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
+          >
+            {[10, 20, 30, 40, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </SelectNumber>
+        </ShowNumber>
       </div>
     </Styles>
   );
