@@ -28,22 +28,7 @@ const validationSchema = Yup.object().shape({
 });
 
 function CreateForm(props) {
-  const {
-    product: {
-      title,
-      price,
-      currency,
-      description,
-      category,
-      brand,
-      retailer,
-      externalId,
-      externalLink,
-    } = {},
-    show,
-    handleClose,
-    editProduct,
-  } = props;
+  const { show, handleClose, createProduct } = props;
 
   return (
     <Modal show={show} onHide={handleClose}>
@@ -52,20 +37,20 @@ function CreateForm(props) {
       </Modal.Header>
       <Formik
         initialValues={{
-          title: title || '',
-          price: price || '',
-          currency: currency || 'USD',
-          description: description || '',
-          category: category || '',
-          brand: brand || '',
-          retailer: retailer || '',
-          externalId: externalId || nanoid(),
-          externalLink: externalLink || '',
+          title: '',
+          price: '',
+          currency: 'USD',
+          description: '',
+          category: '',
+          brand: '',
+          retailer: '',
+          externalId: nanoid(),
+          externalLink: '',
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values);
-          editProduct(values);
+          createProduct(values);
         }}
       >
         {({ handleSubmit, values, isSubmitting }) => (

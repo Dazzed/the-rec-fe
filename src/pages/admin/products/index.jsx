@@ -1,10 +1,15 @@
 import React from 'react';
 import { Button, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
-import capitalize from 'lodash/capitalize';
+import {
+  PlusCircleFill,
+  ChevronExpand,
+  ChevronContract,
+} from 'react-bootstrap-icons';
 import ReactTable from '../../../component/ReactTable';
 import NavBar from '../components/navbar';
 import EditForm from './editForm';
+import CreateForm from './createForm';
 import { post, get, deleteReq, patch } from '../../../lib/request';
 import { API_URL, WEB_URL } from '../../../config/constants';
 
@@ -17,18 +22,32 @@ const SubComponent = styled.div`
 `;
 
 function App() {
+  // We'll start our table without any data
+  const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [pageCount, setPageCount] = React.useState(0);
+  const [pageIndex, setPageIndex] = React.useState(0);
+  const [pageSize, setPageSize] = React.useState(10);
+  const [showEdit, setEditForm] = React.useState(false);
+  const [showCreate, setCreateForm] = React.useState(false);
+  const [selectedProductId, selectProductId] = React.useState(false);
+
   const columns = React.useMemo(
     () => [
       {
         // Make an expander cell
-        Header: () => null, // No header
+        Header: () => (
+          <Button variant="primary" onClick={() => toggleCreateModal()}>
+            Create <PlusCircleFill />
+          </Button>
+        ),
         id: 'expander', // It needs an ID
         Cell: ({ row }) => (
           // Use Cell to render an expander for each row.
           // We can use the getToggleRowExpandedProps prop-getter
           // to build the expander.
           <span {...row.getToggleRowExpandedProps()}>
-            {row.isExpanded ? '👇' : '👉'}
+            {row.isExpanded ? <ChevronContract /> : <ChevronExpand />}
           </span>
         ),
       },
@@ -51,28 +70,41 @@ function App() {
             Header: 'Category',
             accessor: 'category',
           },
+          {
+            Header: 'Brand',
+            accessor: 'brand',
+          },
+          {
+            Header: 'Retailer',
+            accessor: 'retailer',
+          },
         ],
       },
     ],
     []
   );
 
-  // We'll start our table without any data
-  const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [pageCount, setPageCount] = React.useState(0);
-  const [showEdit, setEditForm] = React.useState(false);
-  const [selectedProductId, selectProductId] = React.useState(false);
-
   const toggleEditModal = (values) => {
     selectProductId(values ? values.id : null);
     setEditForm(!showEdit);
+  };
+  const toggleCreateModal = (values) => {
+    setCreateForm(!showCreate);
+  };
+  const createProduct = async (values) => {
+    try {
+      await post(`${API_URL}/products`, values);
+      toggleCreateModal();
+      fetchData({ pageSize, pageIndex });
+    } catch (error) {
+      console.log(error);
+    }
   };
   const editProduct = async (values) => {
     try {
       await patch(`${API_URL}/products/${selectedProductId}`, values);
       toggleEditModal();
-      fetchData({ pageSize: 10, pageIndex: 1 });
+      fetchData({ pageSize, pageIndex });
     } catch (error) {
       console.log(error);
     }
@@ -80,7 +112,7 @@ function App() {
   const deleteProduct = async (productId) => {
     try {
       await deleteReq(`${API_URL}/products/${productId}`);
-      fetchData({ pageSize: 10, pageIndex: 1 });
+      fetchData({ pageSize, pageIndex });
     } catch (error) {
       console.log(error);
     }
@@ -91,7 +123,7 @@ function App() {
       // Set the loading state
       setLoading(true);
       const result = await get(`${API_URL}/products`, {
-        params: { page: pageIndex, pageSize },
+        params: { pageIndex: pageIndex + 1, pageSize },
       });
 
       const data = result.data.map((e) => ({
@@ -103,9 +135,9 @@ function App() {
 
       setData(data);
 
-      // Your server could send back total page count.
-      // For now we'll just fake it, too
       setPageCount(result.totalPages);
+      setPageIndex(result.pageIndex);
+      setPageSize(pageSize);
 
       setLoading(false);
     } catch (error) {
@@ -149,6 +181,11 @@ function App() {
         handleClose={toggleEditModal}
         product={data.find((e) => e.id === selectedProductId)}
         editProduct={editProduct}
+      />
+      <CreateForm
+        show={showCreate}
+        handleClose={toggleCreateModal}
+        createProduct={createProduct}
       />
     </>
   );

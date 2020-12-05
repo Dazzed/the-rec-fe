@@ -45,7 +45,7 @@ function NavBar() {
           <StyledNavLink href="/logout">Logout</StyledNavLink>
         </StyledNavItem>
       </Logout>
-    </NavigationContainer >
+    </NavigationContainer>
   );
 }
 
