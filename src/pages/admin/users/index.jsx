@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import capitalize from 'lodash/capitalize';
 import ReactTable from '../../../component/ReactTable';
+import NavBar from '../components/navbar';
 import { post, get, deleteReq } from '../../../lib/request';
 import { API_URL, WEB_URL } from '../../../config/constants';
 
@@ -146,16 +147,19 @@ function App() {
   }, []);
 
   return (
-    <Styles>
-      <ReactTable
-        columns={columns}
-        data={data}
-        fetchData={fetchData}
-        loading={loading}
-        pageCount={pageCount}
-        renderRowSubComponent={renderRowSubComponent}
-      />
-    </Styles>
+    <>
+      <NavBar />
+      <Styles>
+        <ReactTable
+          columns={columns}
+          data={data}
+          fetchData={fetchData}
+          loading={loading}
+          pageCount={pageCount}
+          renderRowSubComponent={renderRowSubComponent}
+        />
+      </Styles>
+    </>
   );
 }
 
