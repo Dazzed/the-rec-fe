@@ -1,5 +1,5 @@
 export default {
-  development: 'http://localhost:4000',
+  development: 'https://web.global-ved.com'
   staging: 'https://web.global-ved.com',
   production: 'https://web.global-ved.com',
 };
