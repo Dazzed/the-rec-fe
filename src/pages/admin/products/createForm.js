@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Modal, Button, Row, Col } from 'react-bootstrap';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
 import CURRENCY_CODES from '../../../config/currencyCodes';
@@ -40,6 +40,7 @@ function CreateForm(props) {
           title: '',
           price: '',
           currency: 'USD',
+          images: [],
           description: '',
           category: '',
           brand: '',
@@ -69,6 +70,7 @@ function CreateForm(props) {
                   <ErrorBlock>
                     <ErrorMessage name="title" />
                   </ErrorBlock>
+                  <br />
                 </Col>
 
                 <Col sm={12}>
@@ -104,6 +106,7 @@ function CreateForm(props) {
                       </ErrorBlock>
                     </Col>
                   </Row>
+                  <br />
                 </Col>
 
                 <Col sm={12}>
@@ -120,6 +123,62 @@ function CreateForm(props) {
                   <ErrorBlock>
                     <ErrorMessage name="description" />
                   </ErrorBlock>
+                  <br />
+                </Col>
+
+                <Col sm={12}>
+                  <label htmlFor="images" className="d-block">
+                    Images
+                  </label>
+                  <FieldArray
+                    name="images"
+                    render={(arrayHelpers) => (
+                      <div>
+                        {values.images && values.images.length > 0 ? (
+                          values.images.map((image, index) => (
+                            <div key={index}>
+                              <Field
+                                type="text"
+                                className="form-control"
+                                id={`images.${index}`}
+                                name={`images.${index}`}
+                                placeholder="Image URL"
+                              />
+                              <ErrorBlock>
+                                <ErrorMessage name={`images.${index}`} />
+                              </ErrorBlock>
+                              <Button
+                                type="button"
+                                variant="danger"
+                                size="sm"
+                                onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
+                              >
+                                -
+                              </Button>
+                              <Button
+                                type="button"
+                                variant="primary"
+                                size="sm"
+                                onClick={() => arrayHelpers.insert(index, '')} // insert an empty string at a position
+                              >
+                                +
+                              </Button>
+                            </div>
+                          ))
+                        ) : (
+                          <Button
+                            variant="primary"
+                            type="button"
+                            onClick={() => arrayHelpers.push('')}
+                          >
+                            Add an image
+                          </Button>
+                        )}
+                      </div>
+                    )}
+                  />
+
+                  <br />
                 </Col>
 
                 <Col sm={12}>
@@ -134,6 +193,7 @@ function CreateForm(props) {
                   <ErrorBlock>
                     <ErrorMessage name="category" />
                   </ErrorBlock>
+                  <br />
                 </Col>
 
                 <Col sm={12}>
@@ -148,6 +208,7 @@ function CreateForm(props) {
                   <ErrorBlock>
                     <ErrorMessage name="brand" />
                   </ErrorBlock>
+                  <br />
                 </Col>
 
                 <Col sm={12}>
@@ -162,6 +223,7 @@ function CreateForm(props) {
                   <ErrorBlock>
                     <ErrorMessage name="retailer" />
                   </ErrorBlock>
+                  <br />
                 </Col>
               </Row>
             </Modal.Body>

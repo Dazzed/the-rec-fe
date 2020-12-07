@@ -67,6 +67,14 @@ function App() {
             accessor: 'price',
           },
           {
+            Header: 'Description',
+            accessor: 'description',
+          },
+          {
+            Header: 'Images',
+            accessor: 'images',
+          },
+          {
             Header: 'Category',
             accessor: 'category',
           },
@@ -77,6 +85,14 @@ function App() {
           {
             Header: 'Retailer',
             accessor: 'retailer',
+          },
+          {
+            Header: 'External Id',
+            accessor: 'externalId',
+          },
+          {
+            Header: 'External Link',
+            accessor: 'externalLink',
           },
         ],
       },
@@ -169,6 +185,12 @@ function App() {
       <Styles>
         <ReactTable
           columns={columns}
+          hiddenColumns={[
+            'description',
+            'images',
+            'externalId',
+            'externalLink',
+          ]}
           data={data}
           fetchData={fetchData}
           loading={loading}

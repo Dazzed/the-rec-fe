@@ -7,32 +7,33 @@ const Styles = styled.div`
   button {
     margin: 3px;
   }
-  table td, table th{
+  table td,
+  table th {
     padding: 16px;
   }
   .pagination {
     padding: 0.5rem;
   }
   .pagination button {
-    padding: .5rem .75rem;
+    padding: 0.5rem 0.75rem;
   }
   .pagination.button-pagination {
     float: left;
   }
 `;
 const ButtonPagination = styled.div`
-    width: 50%;
-    text-align: left;
+  width: 50%;
+  text-align: left;
 `;
 const SelectNumber = styled.select`
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
   background: #6c757d;
   color: #fff;
   border-radius: 6px;
   border: none;
 `;
 const ShowNumber = styled.div`
-  width: 50% ;
+  width: 50%;
   text-align: right;
 `;
 const SpanDiv = styled.span`
@@ -42,13 +43,14 @@ const SpanDiv = styled.span`
   line-height: 18px;
 `;
 const InputFieldPage = styled.input`
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
   margin-left: 12px;
   border-radius: 6px;
   border: 2px solid #dee2e6;
 `;
 function ReactTable({
   columns,
+  hiddenColumns,
   data,
   fetchData,
   loading,
@@ -77,7 +79,7 @@ function ReactTable({
     {
       columns,
       data,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0, hiddenColumns },
       manualPagination: true,
       pageCount: controlledPageCount,
     },
@@ -150,11 +152,11 @@ function ReactTable({
             {loading ? (
               <td colSpan="10000">Loading...</td>
             ) : (
-                <td colSpan="10000">
-                  Showing {page.length} of ~{controlledPageCount * pageSize}
+              <td colSpan="10000">
+                Showing {page.length} of ~{controlledPageCount * pageSize}
                 results
-                </td>
-              )}
+              </td>
+            )}
           </tr>
         </tbody>
       </Table>
@@ -197,7 +199,7 @@ function ReactTable({
           </SpanDiv>
           <SpanDiv>
             | &nbsp;&nbsp;&nbsp;Go to page:
-          <InputFieldPage
+            <InputFieldPage
               type="number"
               defaultValue={pageIndex + 1}
               onChange={(e) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Modal, Button, Row, Col } from 'react-bootstrap';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
 import CURRENCY_CODES from '../../../config/currencyCodes';
@@ -34,6 +34,7 @@ function EditForm(props) {
       price,
       currency,
       description,
+      images,
       category,
       brand,
       retailer,
@@ -56,6 +57,7 @@ function EditForm(props) {
           price: price || '',
           currency: currency || 'USD',
           description: description || '',
+          images: images || [],
           category: category || '',
           brand: brand || '',
           retailer: retailer || '',
@@ -135,6 +137,63 @@ function EditForm(props) {
                   <ErrorBlock>
                     <ErrorMessage name="description" />
                   </ErrorBlock>
+                </Col>
+
+                <Col sm={12}>
+                  <label htmlFor="images" className="d-block">
+                    Images
+                  </label>
+                  <FieldArray
+                    name="images"
+                    render={(arrayHelpers) => (
+                      <>
+                        {values.images && values.images.length > 0 ? (
+                          <Row>
+                            {values.images.map((image, index) => (
+                              <Col sm={12} key={index}>
+                                <Field
+                                  type="text"
+                                  className="form-control"
+                                  id={`images.${index}`}
+                                  name={`images.${index}`}
+                                  placeholder="Image URL"
+                                />
+                                <ErrorBlock>
+                                  <ErrorMessage name={`images.${index}`} />
+                                </ErrorBlock>
+                                <Button
+                                  type="button"
+                                  variant="danger"
+                                  size="sm"
+                                  onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
+                                >
+                                  -
+                                </Button>
+                                <Button
+                                  type="button"
+                                  variant="primary"
+                                  size="sm"
+                                  onClick={() => arrayHelpers.insert(index, '')} // insert an empty string at a position
+                                >
+                                  +
+                                </Button>
+                              </Col>
+                            ))}
+                          </Row>
+                        ) : (
+                          <Button
+                            variant="primary"
+                            type="button"
+                            onClick={() => arrayHelpers.push('')}
+                          >
+                            Add an image
+                          </Button>
+                        )}
+                      </>
+                    )}
+                  />
+
+                  <br />
                 </Col>
 
                 <Col sm={12}>

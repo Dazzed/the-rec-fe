@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
+import { ChevronExpand, ChevronContract } from 'react-bootstrap-icons';
 import capitalize from 'lodash/capitalize';
 import ReactTable from '../../../component/ReactTable';
 import NavBar from '../components/navbar';
@@ -27,7 +28,7 @@ function App() {
           // We can use the getToggleRowExpandedProps prop-getter
           // to build the expander.
           <span {...row.getToggleRowExpandedProps()}>
-            {row.isExpanded ? '👇' : '👉'}
+            {row.isExpanded ? <ChevronContract /> : <ChevronExpand />}
           </span>
         ),
       },
@@ -132,14 +133,14 @@ function App() {
             variant="primary"
             onClick={() => addInfluencerAccess(row.values.id)}
           >
-            Add Influencer
+            Add Influencer Access
           </Button>
         ) : (
           <Button
             variant="warning"
             onClick={() => removeInfluencerAccess(row.values.id)}
           >
-            Remove Influencer
+            Remove Influencer Access
           </Button>
         )}
       </SubComponent>
