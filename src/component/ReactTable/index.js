@@ -50,7 +50,7 @@ const InputFieldPage = styled.input`
 `;
 function ReactTable({
   columns,
-  hiddenColumns,
+  hiddenColumns = [],
   data,
   fetchData,
   loading,

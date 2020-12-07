@@ -237,6 +237,21 @@ function EditForm(props) {
                     <ErrorMessage name="retailer" />
                   </ErrorBlock>
                 </Col>
+
+                <Col sm={12}>
+                  <label htmlFor="externalLink">External Link</label>
+                  <Field
+                    type="text"
+                    className="form-control"
+                    id="externalLink"
+                    name="externalLink"
+                    placeholder="External Link"
+                  />
+                  <ErrorBlock>
+                    <ErrorMessage name="externalLink" />
+                  </ErrorBlock>
+                  <br />
+                </Col>
               </Row>
             </Modal.Body>
             <Modal.Footer>
