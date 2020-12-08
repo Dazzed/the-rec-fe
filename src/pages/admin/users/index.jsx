@@ -100,7 +100,7 @@ function App() {
         // Set the loading state
         setLoading(true);
         const result = await get(`${API_URL}/admin/all-users`, {
-          params: { q: query },
+          params: { q: query, pageIndex: pageIndex + 1, pageSize },
         });
 
         const data = result.data.map((ele) => {
