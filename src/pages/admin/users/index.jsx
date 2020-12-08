@@ -15,6 +15,7 @@ const Styles = styled.div`
 
 const SubComponent = styled.div`
   padding: 1rem;
+  max-width: 1000px;
 `;
 
 function App() {
