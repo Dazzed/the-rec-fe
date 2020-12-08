@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
+import debounce from 'lodash/debounce';
 import { ChevronExpand, ChevronContract } from 'react-bootstrap-icons';
 import capitalize from 'lodash/capitalize';
 import ReactTable from '../../../component/ReactTable';
@@ -66,11 +67,14 @@ function App() {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [pageCount, setPageCount] = React.useState(0);
+  const [pageIndex, setPageIndex] = React.useState(0);
+  const [pageSize, setPageSize] = React.useState(10);
+  const [searchQuery, setSearchQuery] = React.useState('');
 
   const addInfluencerAccess = async (userId) => {
     try {
       await post(`${API_URL}/admin/influencers/${userId}`);
-      await fetchData({ pageSize: 10, pageIndex: 1 });
+      fetchData({ query: searchQuery, pageSize, pageIndex });
     } catch (err) {
       console.error(err);
       const errMsg = (err && err.data && err.data.message) || 'Request failed';
@@ -81,7 +85,7 @@ function App() {
   const removeInfluencerAccess = async (userId) => {
     try {
       await deleteReq(`${API_URL}/admin/influencers/${userId}`);
-      await fetchData({ pageSize: 10, pageIndex: 1 });
+      fetchData({ query: searchQuery, pageSize, pageIndex });
     } catch (err) {
       console.error(err);
       const errMsg = (err && err.data && err.data.message) || 'Request failed';
@@ -89,36 +93,39 @@ function App() {
     }
   };
 
-  const fetchData = React.useCallback(async ({ pageSize, pageIndex }) => {
-    try {
-      // Set the loading state
-      setLoading(true);
-      const result = await get(`${API_URL}/admin/all-users`, {
-        params: {},
-      });
+  const fetchData = React.useCallback(
+    async ({ query = searchQuery, pageSize, pageIndex }) => {
+      try {
+        // Set the loading state
+        setLoading(true);
+        const result = await get(`${API_URL}/admin/all-users`, {
+          params: { q: query },
+        });
 
-      const data = result.data.map((ele) => {
-        const roles = ele.roles || [];
-        const roleNames = roles.map((r) => capitalize(r.name));
+        const data = result.data.map((ele) => {
+          const roles = ele.roles || [];
+          const roleNames = roles.map((r) => capitalize(r.name));
 
-        return {
-          ...ele,
-          roles: roleNames,
-        };
-      });
+          return {
+            ...ele,
+            roles: roleNames.join(', '),
+          };
+        });
 
-      setData(data);
+        setData(data);
 
-      // Your server could send back total page count.
-      // For now we'll just fake it, too
-      setPageCount(Math.ceil(data.length / pageSize));
+        setPageCount(result.totalPages);
+        setPageIndex(result.pageIndex);
+        setPageSize(pageSize);
 
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
-  }, []);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    },
+    []
+  );
 
   // Create a function that will render our row sub components
   const renderRowSubComponent = React.useCallback(({ row }) => {
@@ -147,9 +154,17 @@ function App() {
     );
   }, []);
 
+  const handleQueryChange = (query) => {
+    setSearchQuery(query);
+    fetchData({ query, pageSize, pageIndex });
+  };
+
   return (
     <>
-      <NavBar />
+      <NavBar
+        showSearchQuery
+        handleQueryChange={debounce(handleQueryChange, 300)}
+      />
       <Styles>
         <ReactTable
           columns={columns}

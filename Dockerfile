@@ -3,6 +3,7 @@ FROM node:14-alpine
 # App env
 ARG NODE_ENV=staging
 ENV NODE_ENV ${NODE_ENV}
+ENV NEXT_PUBLIC_API_ENV ${NODE_ENV}
 
 # Server port
 ARG PORT=4000

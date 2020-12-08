@@ -1,6 +1,7 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 import styled from 'styled-components';
+import { Formik, Form, Field } from 'formik';
 
 const NavigationContainer = styled(Nav)`
   background: #4a4a4a;
@@ -26,7 +27,9 @@ const Logout = styled.div`
   width: 50%;
   text-align: right;
 `;
-function NavBar() {
+function NavBar(props) {
+  const { showSearchQuery, handleQueryChange } = props;
+
   return (
     <NavigationContainer
       activeKey="/admin/users"
@@ -39,6 +42,17 @@ function NavBar() {
         <StyledNavItem>
           <StyledNavLink href="/admin/products">Products</StyledNavLink>
         </StyledNavItem>
+        {showSearchQuery ? (
+          <StyledNavItem>
+            <input
+              type="text"
+              placeholder="Search"
+              className="search_bar search_bar1 mt-0"
+              name="q"
+              onChange={(e) => handleQueryChange(e.target.value)}
+            />
+          </StyledNavItem>
+        ) : null}
       </NavigationItem>
       <Logout>
         <StyledNavItem>

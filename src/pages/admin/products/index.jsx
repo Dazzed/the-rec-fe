@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
+import debounce from 'lodash/debounce';
 import {
   PlusCircleFill,
   ChevronExpand,
@@ -31,6 +32,7 @@ function App() {
   const [showEdit, setEditForm] = React.useState(false);
   const [showCreate, setCreateForm] = React.useState(false);
   const [selectedProductId, selectProductId] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState('');
 
   const columns = React.useMemo(
     () => [
@@ -111,7 +113,7 @@ function App() {
     try {
       await post(`${API_URL}/products`, values);
       toggleCreateModal();
-      fetchData({ pageSize, pageIndex });
+      fetchData({ query: searchQuery, pageSize, pageIndex });
     } catch (error) {
       console.log(error);
     }
@@ -120,7 +122,7 @@ function App() {
     try {
       await patch(`${API_URL}/products/${selectedProductId}`, values);
       toggleEditModal();
-      fetchData({ pageSize, pageIndex });
+      fetchData({ query: searchQuery, pageSize, pageIndex });
     } catch (error) {
       console.log(error);
     }
@@ -128,39 +130,47 @@ function App() {
   const deleteProduct = async (productId) => {
     try {
       await deleteReq(`${API_URL}/products/${productId}`);
-      fetchData({ pageSize, pageIndex });
+      fetchData({ query: searchQuery, pageSize, pageIndex });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const fetchData = React.useCallback(async ({ pageSize, pageIndex }) => {
-    try {
-      // Set the loading state
-      setLoading(true);
-      const result = await get(`${API_URL}/products`, {
-        params: { pageIndex: pageIndex + 1, pageSize },
-      });
+  const fetchData = React.useCallback(
+    async ({ query = searchQuery, pageSize, pageIndex }) => {
+      try {
+        // Set the loading state
+        setLoading(true);
+        const result = await get(`${API_URL}/products`, {
+          params: { q: query, pageIndex: pageIndex + 1, pageSize },
+        });
 
-      const data = result.data.map((e) => ({
-        ...e,
-        category: e.category.name,
-        brand: e.brand.name,
-        retailer: e.retailer.name,
-      }));
+        result.data.map((e) => {
+          console.log(e);
+          console.log(e.category.name);
+        });
 
-      setData(data);
+        const data = result.data.map((e) => ({
+          ...e,
+          category: e.category.name,
+          brand: e.brand.name,
+          retailer: e.retailer.name,
+        }));
 
-      setPageCount(result.totalPages);
-      setPageIndex(result.pageIndex);
-      setPageSize(pageSize);
+        setData(data);
 
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
-  }, []);
+        setPageCount(result.totalPages);
+        setPageIndex(result.pageIndex);
+        setPageSize(pageSize);
+
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
+    },
+    []
+  );
 
   // Create a function that will render our row sub components
   const renderRowSubComponent = React.useCallback(({ row }) => {
@@ -179,9 +189,17 @@ function App() {
     );
   }, []);
 
+  const handleQueryChange = (query) => {
+    setSearchQuery(query);
+    fetchData({ query, pageSize, pageIndex });
+  };
+
   return (
     <>
-      <NavBar />
+      <NavBar
+        showSearchQuery
+        handleQueryChange={debounce(handleQueryChange, 300)}
+      />
       <Styles>
         <ReactTable
           columns={columns}
