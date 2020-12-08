@@ -129,9 +129,9 @@ function App() {
 
   // Create a function that will render our row sub components
   const renderRowSubComponent = React.useCallback(({ row }) => {
-    const isInfluencer = row.values.roles.find(
-      (e) => e.toLowerCase() === 'influencer'
-    );
+    const isInfluencer =
+      row.values.roles.includes('influencer') ||
+      row.values.roles.includes('Influencer');
 
     return (
       <SubComponent>

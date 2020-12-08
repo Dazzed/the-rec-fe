@@ -19,7 +19,7 @@ const Styles = styled.div`
     color: #747e88;
   }
   .pagination {
-    padding: .5rem 0;
+    padding: 0.5rem 0;
     // position: absolute;
     // bottom: 10px;
     // width: 98%;
@@ -61,6 +61,7 @@ const InputFieldPage = styled.input`
   border-radius: 6px;
   border: 2px solid #dee2e6;
 `;
+
 function ReactTable({
   columns,
   hiddenColumns = [],
@@ -132,20 +133,16 @@ function ReactTable({
             prepareRow(row);
             return (
               // Use a React.Fragment here so the table markup is still valid
-              <React.Fragment {...row.getRowProps()}>
-                <tr>
+              <React.Fragment key={i}>
+                <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => {
                     return (
                       <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                     );
                   })}
                 </tr>
-                {/*
-                    If the row is in an expanded state, render a row with a
-                    column that fills the entire length of the table.
-                  */}
                 {row.isExpanded ? (
-                  <tr>
+                  <tr {...row.getRowProps()} key={`sub_${row.getRowProps()}`}>
                     <td colSpan={visibleColumns.length}>
                       {/*
                           Inside it, call our renderRowSubComponent function. In reality,
@@ -165,11 +162,11 @@ function ReactTable({
             {loading ? (
               <td colSpan="10000">Loading...</td>
             ) : (
-                <td colSpan="10000">
-                  Showing {page.length} of ~{controlledPageCount * pageSize}
+              <td colSpan="10000">
+                Showing {page.length} of ~{controlledPageCount * pageSize}
                 results
-                </td>
-              )}
+              </td>
+            )}
           </tr>
         </tbody>
       </Table>

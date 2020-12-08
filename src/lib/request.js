@@ -24,7 +24,7 @@ function unauthorizedHandler(err) {
   if (err.response && err.response.status && err.response.status === 401) {
     persistUserToken(null);
     persistUserProfile(null);
-    window.location.href = '/';
+    window.location.href = '/login';
   }
 }
 

@@ -23,7 +23,7 @@ export const login = ({ code, redirectUri }) => {
       const {
         data: {
           token,
-          profile: { id, email, name, profilePicUrl },
+          profile: { id, email, name, profilePicUrl, roles },
         },
       } = response;
 
@@ -34,6 +34,7 @@ export const login = ({ code, redirectUri }) => {
           email,
           name,
           profilePicUrl,
+          roles,
         })
       );
       return dispatch(loginMethods.setSuccess(true));

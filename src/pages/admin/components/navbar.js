@@ -39,10 +39,7 @@ function NavBar(props) {
   const { showSearchQuery, handleQueryChange } = props;
 
   return (
-    <NavigationContainer
-      activeKey="/admin/users"
-      onSelect={(selectedKey) => console.log(`selected ${selectedKey}`)}
-    >
+    <NavigationContainer activeKey="/admin/users">
       <NavigationItem>
         <StyledNavItem>
           <StyledNavLink href="/admin/users">Users</StyledNavLink>

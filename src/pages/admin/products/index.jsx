@@ -145,11 +145,6 @@ function App() {
           params: { q: query, pageIndex: pageIndex + 1, pageSize },
         });
 
-        result.data.map((e) => {
-          console.log(e);
-          console.log(e.category.name);
-        });
-
         const data = result.data.map((e) => ({
           ...e,
           category: e.category.name,
