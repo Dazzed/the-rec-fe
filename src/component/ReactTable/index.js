@@ -19,10 +19,10 @@ const Styles = styled.div`
     color: #747e88;
   }
   .pagination {
-    padding: 0;
-    position: absolute;
-    bottom: 10px;
-    width: 98%;
+    padding: .5rem 0;
+    // position: absolute;
+    // bottom: 10px;
+    // width: 98%;
   }
   .pagination button {
     padding: 0.5rem 0.75rem;
