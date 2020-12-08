@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { Formik, Form, Field } from 'formik';
 
 const NavigationContainer = styled(Nav)`
-  background: #4a4a4a;
+  background: #eb5468;
   width: 100%;
-  height: 90px;
+  height: 86px;
   line-height: 70px;
 `;
 const NavigationItem = styled.div`
@@ -22,6 +22,14 @@ const StyledNavLink = styled(Nav.Link)`
   &:hover {
     color: #fff;
   }
+`;
+const Searchbar = styled.input`
+  border-radius: 6px;
+  height: 45px;
+  width: 350px;
+  padding: 15px;
+  border: none;
+  margin-left: 15px;
 `;
 const Logout = styled.div`
   width: 50%;
@@ -44,7 +52,7 @@ function NavBar(props) {
         </StyledNavItem>
         {showSearchQuery ? (
           <StyledNavItem>
-            <input
+            <Searchbar
               type="text"
               placeholder="Search"
               className="search_bar search_bar1 mt-0"

@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table';
 import { useTable, useExpanded, usePagination } from 'react-table';
 
 const Styles = styled.div`
+  margin-top: 50px;
   button {
     margin: 3px;
   }
@@ -11,11 +12,23 @@ const Styles = styled.div`
   table th {
     padding: 16px;
   }
+  table td {
+    color: #000;
+  }
+  table th {
+    color: #747e88;
+  }
   .pagination {
-    padding: 0.5rem;
+    padding: 0;
+    position: absolute;
+    bottom: 10px;
+    width: 98%;
   }
   .pagination button {
     padding: 0.5rem 0.75rem;
+  }
+  .pagination button:nth-child(1) {
+    margin-left: 0;
   }
   .pagination.button-pagination {
     float: left;
@@ -152,11 +165,11 @@ function ReactTable({
             {loading ? (
               <td colSpan="10000">Loading...</td>
             ) : (
-              <td colSpan="10000">
-                Showing {page.length} of ~{controlledPageCount * pageSize}
+                <td colSpan="10000">
+                  Showing {page.length} of ~{controlledPageCount * pageSize}
                 results
-              </td>
-            )}
+                </td>
+              )}
           </tr>
         </tbody>
       </Table>
