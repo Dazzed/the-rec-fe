@@ -1,6 +1,6 @@
 import * as types from '../actions/actionTypes';
 import initialState from '../../initialState';
-import { persistUserProfile, persistUserToken } from '../../../lib/utils';
+import { persistUserProfile, persistUserToken } from 'lib/utils';
 
 const reducers = (state = initialState.user, action) => {
   switch (action.type) {

@@ -1,8 +1,8 @@
 import * as types from './actionTypes';
-import actionsFactory from '../../../lib/factory/actions';
-import { post } from '../../../lib/request';
-import { API_URL } from '../../../config/constants';
-import { saveUserToken, saveUser } from '../../../reducers/user/actions';
+import actionsFactory from 'lib/factory/actions';
+import { post } from 'lib/request';
+import { API_URL } from 'config/constants';
+import { saveUserToken, saveUser } from 'reducers/user/actions';
 
 const loginMethods = actionsFactory({
   error: types.LOGIN_ERROR,

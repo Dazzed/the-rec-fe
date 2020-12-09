@@ -1,5 +1,5 @@
 import queryString from 'query-string';
-import Storage from './storage';
+import Storage from 'lib/utils/storage';
 
 const cacheClient = new Storage();
 

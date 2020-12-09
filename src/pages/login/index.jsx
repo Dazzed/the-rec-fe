@@ -8,10 +8,10 @@ import { withRouter } from 'next/router';
 import queryString from 'query-string';
 import Head from 'next/head';
 
-import { getPersistedUserToken } from '../../lib/utils';
-import { WEB_URL, FACEBOOK_CLIENT_ID } from '../../config/constants';
-import * as loginActions from './actions';
-import Navbar from '../../component/Header/Navbar';
+import { getPersistedUserToken } from 'lib/utils';
+import { WEB_URL, FACEBOOK_CLIENT_ID } from 'config/constants';
+import * as loginActions from 'pages/login/actions';
+import Navbar from 'component/Header/Navbar';
 
 const CommonContainer = styled(Container)`
   padding: 37px 55px !important;

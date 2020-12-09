@@ -3,11 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import {
-  getPersistedUserToken,
-  getPersistedUserProfile,
-} from '../../lib/utils';
-import { saveUserToken, updateUser } from '../../reducers/user/actions';
+import { getPersistedUserToken, getPersistedUserProfile } from 'lib/utils';
+import { saveUserToken, updateUser } from 'reducers/user/actions';
 
 function Layout({ children }) {
   const dispatch = useDispatch();

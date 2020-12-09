@@ -7,12 +7,12 @@ import {
   ChevronExpand,
   ChevronContract,
 } from 'react-bootstrap-icons';
-import ReactTable from '../../../component/ReactTable';
-import NavBar from '../components/navbar';
-import EditForm from './editForm';
-import CreateForm from './createForm';
-import { post, get, deleteReq, patch } from '../../../lib/request';
-import { API_URL, WEB_URL } from '../../../config/constants';
+import ReactTable from 'component/ReactTable';
+import NavBar from 'pages/admin/components/navbar';
+import EditForm from 'pages/admin/products/editForm';
+import CreateForm from 'pages/admin/products/createForm';
+import { post, get, deleteReq, patch } from 'lib/request';
+import { API_URL, WEB_URL } from 'config/constants';
 
 const Styles = styled.div`
   padding: 1rem;

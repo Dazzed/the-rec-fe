@@ -3,7 +3,7 @@ import {
   getPersistedUserToken,
   persistUserToken,
   persistUserProfile,
-} from './utils';
+} from 'lib/utils';
 
 export const http = axios.create({});
 

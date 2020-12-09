@@ -1,5 +1,5 @@
-import api from './api';
-import web from './web';
+import api from 'config/api';
+import web from 'config/web';
 
 export const NODE_ENV = process.env.NODE_ENV || 'development';
 

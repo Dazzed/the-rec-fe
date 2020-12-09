@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import debounce from 'lodash/debounce';
 import { ChevronExpand, ChevronContract } from 'react-bootstrap-icons';
 import capitalize from 'lodash/capitalize';
-import ReactTable from '../../../component/ReactTable';
-import NavBar from '../components/navbar';
-import { post, get, deleteReq } from '../../../lib/request';
-import { API_URL, WEB_URL } from '../../../config/constants';
+import ReactTable from 'component/ReactTable';
+import NavBar from 'pages/admin/components/navbar';
+import { post, get, deleteReq } from 'lib/request';
+import { API_URL, WEB_URL } from 'config/constants';
 
 const Styles = styled.div`
   padding: 1rem;

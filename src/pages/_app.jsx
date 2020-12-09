@@ -2,8 +2,8 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../public/styles/main.scss';
-import { useStore } from '../store';
-import Layout from '../component/Layout';
+import { useStore } from 'store';
+import Layout from 'component/Layout';
 
 const GlobalStyle = createGlobalStyle`
   body {

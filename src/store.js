@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import reducers from './reducers';
+import reducers from 'reducers';
 
 let store;
 

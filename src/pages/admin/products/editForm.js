@@ -4,7 +4,7 @@ import { Modal, Button, Row, Col } from 'react-bootstrap';
 import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
-import CURRENCY_CODES from '../../../config/currencyCodes';
+import CURRENCY_CODES from 'config/currencyCodes';
 
 const ErrorBlock = styled.div`
   color: red;

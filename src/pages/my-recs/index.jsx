@@ -2,8 +2,8 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import Head from 'next/head';
-import SearchBarNav from '../../component/Header/SearchBarNav';
-import DealerProductsMyRecs from './component/dealerProductsMyRecs';
+import SearchBarNav from 'component/Header/SearchBarNav';
+import DealerProductsMyRecs from 'pages/my-recs/component/dealerProductsMyRecs';
 
 const CommonContainer = styled(Container)`
   padding: 37px 55px !important;

@@ -3,7 +3,7 @@ import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Head from 'next/head';
-import Navbar from '../component/Header/Navbar';
+import Navbar from 'component/Header/Navbar';
 
 const CommonContainer = styled(Container)`
   padding: 37px 55px !important;
@@ -120,7 +120,11 @@ function MarketingLandingPage() {
                 Cancel
               </Button>
               <Button variant="primary" onClick={handleClose}>
-                <Link href="/login" id="install-extension-link" className="text-white">
+                <Link
+                  href="/login"
+                  id="install-extension-link"
+                  className="text-white"
+                >
                   Add extension
                 </Link>
               </Button>
