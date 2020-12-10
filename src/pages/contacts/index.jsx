@@ -96,12 +96,9 @@ class MyContact extends React.Component {
   unfollowFriend = (friendId) => {
     this.props.unfollowFriend(friendId);
 
-    this.setState(
-      {
-        contacts: remove(this.state.contacts, (e) => e.id !== friendId),
-      },
-      () => console.log(this.state)
-    );
+    this.setState({
+      contacts: remove(this.state.contacts, (e) => e.id !== friendId),
+    });
   };
 
   handleQuery = (query) => {

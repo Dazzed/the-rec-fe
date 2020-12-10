@@ -42,27 +42,29 @@ const ProductSection = styled.div`
   }
 `;
 
-function DashboardProducts() {
+function DashboardProducts(props) {
+  const { suggestion } = props;
+  const { product, user } = suggestion;
+
   return (
     <ProductSection>
       <img
-        src="/imgs/products_img.png"
+        src={product.images[0]}
         alt="Products Image"
         className="productsimgs"
       />
       <img
-        src="/imgs/default_profile_pic.jpg"
+        src={user.profilePicUrl}
         alt="Follwer Image"
         className="followerimgs"
       />
-      <h3>Elsa M.</h3>
+      <h3>{user.name}</h3>
       <h5>
-        Mobile Juicer
+        {product.title}
         <br />
         <b>
-          Vitamer
-          <br />
-          $26.49
+          {product.brand.name}
+          <br />${product.price.toFixed(2)}
         </b>
       </h5>
     </ProductSection>

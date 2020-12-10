@@ -1,5 +1,8 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as dashboardActions from 'pages/dashboard/actions';
 
 const FollowTitle = styled.h4`
   font-family: Roboto-Regular;
@@ -54,21 +57,30 @@ const ButtonGreenFollow = styled.div`
   }
 `;
 
-function PeopleFollowList() {
+function People(props) {
+  const { user } = props;
+
   return (
     <Row>
       <Col lg={8} md={8} sm={8} xs={8}>
         <ProfileImageSection>
-          <img src="/imgs/default_profile_pic.jpg" alt="Profile Image" />
-          <h3>Susan L.</h3>
+          <img src={user.profilePicUrl} alt="Profile Image" />
+          <h3>{user.name}</h3>
         </ProfileImageSection>
       </Col>
       <Col lg={4} md={4} sm={4} xs={4} md={4} sm={4} xs={4}>
         <ButtonGreenFollow>
-          <button>Follow</button>
+          <button onClick={() => props.followFriend(user.id)}>Follow</button>
         </ButtonGreenFollow>
       </Col>
     </Row>
   );
 }
-export default PeopleFollowList;
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(dashboardActions, dispatch);
+};
+
+const PeopleContainer = connect(null, mapDispatchToProps)(People);
+
+export default PeopleContainer;
