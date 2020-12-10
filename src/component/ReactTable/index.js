@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Table from 'react-bootstrap/Table';
 import { useTable, useExpanded, usePagination } from 'react-table';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Styles = styled.div`
   margin-top: 50px;
@@ -160,7 +161,11 @@ function ReactTable({
           })}
           <tr>
             {loading ? (
-              <td colSpan="10000">Loading...</td>
+              <td colSpan="10000">
+                <Spinner animation="border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
+              </td>
             ) : (
               <td colSpan="10000">
                 Showing {page.length} of ~{controlledPageCount * pageSize}
