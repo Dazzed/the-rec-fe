@@ -158,7 +158,7 @@ function SearchBarNav(props) {
             <li>
               <a href="#">
                 <img
-                  src={profilePicUrl || '/imgs/user-profile.png'}
+                  src={profilePicUrl || '/imgs/default_profile_pic.jpg'}
                   alt="userImg"
                 />
               </a>

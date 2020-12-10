@@ -40,6 +40,7 @@ const ProductSection = styled.div`
     text-align: center;
     color: #000;
     margin-bottom: 17px;
+    padding: 0 15px;
   }
 `;
 
