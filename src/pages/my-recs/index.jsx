@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
 import Head from 'next/head';
 import { withRouter } from 'next/router';
@@ -34,6 +34,8 @@ class MyRecs extends React.Component {
   componentDidMount() {
     this.setState(
       {
+        hasMoreRecords: false,
+        currentPageIndex: 0,
         searchQuery: this.props.router.query.q || '',
       },
       () => this.listMyRecs()
@@ -118,7 +120,9 @@ class MyRecs extends React.Component {
             hasMore={hasMoreRecords}
             loader={
               <div className="loader text-center" key={0}>
-                Loading ...
+                <Spinner animation="border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
               </div>
             }
           >

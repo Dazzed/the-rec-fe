@@ -105,26 +105,27 @@ function SearchBarNav(props) {
   const profile = useSelector((state) => state.user.profile);
   const profilePicUrl = profile && profile.profilePicUrl;
 
-  const handleQueryChange = props.handleQuery
-    ? debounce(props.handleQuery, 300)
-    : () => {};
-
   const handleInput = (value) => {
-    handleQueryChange(value);
+    if (props.handleQuery && typeof props.handleQuery === 'function') {
+      props.handleQuery(value);
+    }
 
     const queryParams = queryString.stringify({
       ...router.query,
       q: value,
     });
+
     router.push(`${router.pathname}?${queryParams}`, undefined, {
       shallow: true,
     });
   };
 
+  const handleQueryChange = debounce(handleInput, 300);
+
   return (
     <Row className="align-items-center">
       <Col lg={2}>
-        <Link href="/">
+        <Link href="/dashboard">
           <div className="logo-section">
             <img src="/imgs/svgs/rec-logo.svg" alt="logo-rec" />
           </div>
@@ -135,7 +136,7 @@ function SearchBarNav(props) {
           <input
             type="text"
             placeholder="Search brands, categories or contacts"
-            onChange={(e) => handleInput(e.target.value)}
+            onChange={(e) => handleQueryChange(e.target.value)}
             defaultValue={router.query && router.query.q ? router.query.q : ''}
           />
           <img

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
 import Head from 'next/head';
 import { withRouter } from 'next/router';
@@ -45,6 +45,8 @@ class Dashboard extends React.Component {
   componentDidMount() {
     this.setState(
       {
+        hasMoreRecSuggestions: false,
+        currentPageIndex: 0,
         searchQuery: this.props.router.query.q || '',
       },
       () => this.listRecsSuggestions()
@@ -145,7 +147,7 @@ class Dashboard extends React.Component {
           <meta property="og:title" content="Dashboard | The Rec" key="title" />
         </Head>
         <CommonContainer className="container-fluid">
-          <SearchBarNav />
+          <SearchBarNav handleQuery={this.handleQuery} />
           <Row>
             <Col lg={9}>
               <Row>
@@ -159,7 +161,9 @@ class Dashboard extends React.Component {
                 hasMore={hasMoreRecSuggestions}
                 loader={
                   <div className="loader text-center" key={0}>
-                    Loading ...
+                    <Spinner animation="border" role="status">
+                      <span className="sr-only">Loading...</span>
+                    </Spinner>
                   </div>
                 }
               >

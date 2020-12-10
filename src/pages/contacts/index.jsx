@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
 import Head from 'next/head';
 import { withRouter } from 'next/router';
 import InfiniteScroll from 'react-infinite-scroller';
 import isEqual from 'lodash/isEqual';
-import chunk from 'lodash/chunk';
 import remove from 'lodash/remove';
 
 import SearchBarNav from 'component/Header/SearchBarNav';
@@ -36,6 +35,8 @@ class MyContact extends React.Component {
   componentDidMount() {
     this.setState(
       {
+        hasMoreContacts: false,
+        currentPageIndex: 0,
         searchQuery: this.props.router.query.q || '',
       },
       () => this.listContacts()
@@ -113,7 +114,6 @@ class MyContact extends React.Component {
 
   renderContacts() {
     const { contacts, hasMoreContacts } = this.state;
-    const groups = chunk(contacts, 8);
 
     return (
       <InfiniteScroll
@@ -121,21 +121,21 @@ class MyContact extends React.Component {
         loadMore={() => this.listContacts()}
         hasMore={hasMoreContacts}
         loader={
-          <div className="loader text-center" key={0}>
-            Loading ...
+          <div className="loader text-center">
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
           </div>
         }
       >
         <Row className="mt-5 mb-4">
-          {groups.map((group, i) => (
+          {contacts.map((contact, i) => (
             <Col lg={4} md={6} className="lg-pr-5 pr-3" key={i}>
-              {group.map((contact) => (
-                <ContactUser
-                  key={contact.id}
-                  contact={contact}
-                  unfollowFriend={this.unfollowFriend}
-                />
-              ))}
+              <ContactUser
+                key={contact.id}
+                contact={contact}
+                unfollowFriend={this.unfollowFriend}
+              />
             </Col>
           ))}
         </Row>
