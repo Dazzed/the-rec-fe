@@ -121,14 +121,6 @@ class Dashboard extends React.Component {
     );
   }
 
-  unfollowFriend = (friendId) => {
-    this.props.unfollowFriend(friendId);
-
-    this.setState({
-      contacts: remove(this.state.contacts, (e) => e.id !== friendId),
-    });
-  };
-
   handleQuery = (query) => {
     this.setState(
       {
@@ -163,7 +155,7 @@ class Dashboard extends React.Component {
               </Row>
               <InfiniteScroll
                 pageStart={0}
-                loadMore={() => this.listContacts()}
+                loadMore={() => this.listRecsSuggestions()}
                 hasMore={hasMoreRecSuggestions}
                 loader={
                   <div className="loader text-center" key={0}>

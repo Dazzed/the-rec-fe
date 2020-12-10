@@ -48,25 +48,27 @@ function DashboardProducts(props) {
 
   return (
     <ProductSection>
-      <img
-        src={product.images[0]}
-        alt="Products Image"
-        className="productsimgs"
-      />
-      <img
-        src={user.profilePicUrl}
-        alt="Follwer Image"
-        className="followerimgs"
-      />
-      <h3>{user.name}</h3>
-      <h5>
-        {product.title}
-        <br />
-        <b>
-          {product.brand.name}
-          <br />${product.price.toFixed(2)}
-        </b>
-      </h5>
+      <a href={product.externalLink} target="_blank">
+        <img
+          src={product.images[0]}
+          alt="Products Image"
+          className="productsimgs"
+        />
+        <img
+          src={user.profilePicUrl}
+          alt="Follwer Image"
+          className="followerimgs"
+        />
+        <h3>{user.name}</h3>
+        <h5>
+          {product.title}
+          <br />
+          <b>
+            {product.brand.name}
+            <br />${product.price.toFixed(2)}
+          </b>
+        </h5>
+      </a>
     </ProductSection>
   );
 }
