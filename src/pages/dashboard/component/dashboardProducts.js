@@ -6,12 +6,13 @@ const ProductSection = styled.div`
   background: #ffffff;
   border: 1px solid #f1f3f4;
   box-sizing: border-box;
-  margin-bottom: 26px;
+  // margin-bottom: 26px;
   min-height: 280px;
+  height: 100%;
   .productsimgs {
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
   }
   .followerimgs {
     width: 52px;

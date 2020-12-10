@@ -17,7 +17,7 @@ const DealerProductSectionStyle = styled.div`
     .productsimgs {
         width: 100%;
         height: 200px;
-        object-fit: cover;
+        object-fit: contain;
         margin-bottom: 24px;
     }
     p, h5, h6 {

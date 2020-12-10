@@ -12,11 +12,12 @@ const MyRecProductSectionStyle = styled.div`
   margin: 0;
   padding-bottom: 27px;
   border: 1px solid #f1f3f4;
-  margin-bottom: 17px;
+  // margin-bottom: 17px;
+  height: 100%;
   .productsimgs {
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
     margin-bottom: 24px;
   }
   p,
@@ -30,6 +31,11 @@ const MyRecProductSectionStyle = styled.div`
     text-align: center;
     color: #000;
     margin: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 `;
 

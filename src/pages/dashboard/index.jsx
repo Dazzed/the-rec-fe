@@ -89,8 +89,8 @@ class Dashboard extends React.Component {
             prevState.currentPageIndex === 0
               ? nextProps.recsSuggestionListData.data
               : prevState.recSuggestions.concat(
-                  nextProps.recsSuggestionListData.data
-                ),
+                nextProps.recsSuggestionListData.data
+              ),
         });
       }
     }
@@ -171,6 +171,7 @@ class Dashboard extends React.Component {
                       md={4}
                       sm={6}
                       xs={12}
+                      className="mb-3"
                     >
                       <DashboardProducts suggestion={suggestion} />
                     </Col>

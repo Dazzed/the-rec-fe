@@ -124,7 +124,7 @@ class MyRecs extends React.Component {
           >
             <Row className="mt-lg-5 mb-lg-5 mb-4 mt-4">
               {myRecsList.map((rec) => (
-                <Col key={rec.id} lg={2} md={4} sm={6} xs={12}>
+                <Col key={rec.id} lg={2} md={4} sm={6} xs={12} className="mb-3">
                   <MyRec rec={rec} />
                 </Col>
               ))}
