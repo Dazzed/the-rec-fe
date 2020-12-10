@@ -18,6 +18,12 @@ export default function actionsFactory(types, config) {
         data,
       };
     },
+    setLoading(loading) {
+      return {
+        type: types.loading,
+        loading,
+      };
+    },
   };
 
   return methods;

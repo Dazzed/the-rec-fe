@@ -37,7 +37,7 @@ function Layout({ children }) {
       <Head>
         <title>The Rec</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta property="og:title" content="My page title" key="title" />
+        <meta property="og:title" content="The Rec" key="title" />
       </Head>
       {children}
     </>

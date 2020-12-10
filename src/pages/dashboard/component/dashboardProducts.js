@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
 
 const ProductSection = styled.div`
-text-align: center;
+  text-align: center;
   background: #ffffff;
   border: 1px solid #f1f3f4;
   box-sizing: border-box;
@@ -43,19 +43,29 @@ text-align: center;
 `;
 
 function DashboardProducts() {
-    return (
-        <ProductSection>
-            <img src="/imgs/products_img.png" alt="Products Image" className="productsimgs" />
-            <img src="/imgs/follower_img.png" alt="Follwer Image" className="followerimgs" />
-            <h3>Elsa M.</h3>
-            <h5>Mobile Juicer
-                <br />
-                <b>Vitamer
-                <br />
-                $26.49
-                </b>
-            </h5>
-        </ProductSection>
-    );
+  return (
+    <ProductSection>
+      <img
+        src="/imgs/products_img.png"
+        alt="Products Image"
+        className="productsimgs"
+      />
+      <img
+        src="/imgs/default_profile_pic.jpg"
+        alt="Follwer Image"
+        className="followerimgs"
+      />
+      <h3>Elsa M.</h3>
+      <h5>
+        Mobile Juicer
+        <br />
+        <b>
+          Vitamer
+          <br />
+          $26.49
+        </b>
+      </h5>
+    </ProductSection>
+  );
 }
 export default DashboardProducts;

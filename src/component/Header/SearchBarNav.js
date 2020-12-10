@@ -2,7 +2,10 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import debounce from 'lodash/debounce';
+import queryString from 'query-string';
 
 const SearchBox = styled.div`
   input {
@@ -97,10 +100,26 @@ li {
 }
 `;
 
-function SearchBarNav() {
+function SearchBarNav(props) {
+  const router = useRouter();
   const profile = useSelector((state) => state.user.profile);
-
   const profilePicUrl = profile && profile.profilePicUrl;
+
+  const handleQueryChange = props.handleQuery
+    ? debounce(props.handleQuery, 300)
+    : () => {};
+
+  const handleInput = (value) => {
+    handleQueryChange(value);
+
+    const queryParams = queryString.stringify({
+      ...router.query,
+      q: value,
+    });
+    router.push(`${router.pathname}?${queryParams}`, undefined, {
+      shallow: true,
+    });
+  };
 
   return (
     <Row className="align-items-center">
@@ -116,6 +135,8 @@ function SearchBarNav() {
           <input
             type="text"
             placeholder="Search brands, categories or contacts"
+            onChange={(e) => handleInput(e.target.value)}
+            defaultValue={router.query && router.query.q ? router.query.q : ''}
           />
           <img
             src="/imgs/svgs/search_icon.svg"
