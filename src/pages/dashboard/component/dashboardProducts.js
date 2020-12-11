@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const ProductSection = styled.div`
   text-align: center;
@@ -55,12 +56,18 @@ function DashboardProducts(props) {
           alt="Products Image"
           className="productsimgs"
         />
-        <img
-          src={user.profilePicUrl}
-          alt="Follwer Image"
-          className="followerimgs"
-        />
-        <h3>{user.name}</h3>
+      </a>
+      <Link href={`/profile/${user.id}`}>
+        <a>
+          <img
+            src={user.profilePicUrl}
+            alt="Follwer Image"
+            className="followerimgs"
+          />
+          <h3>{user.name}</h3>
+        </a>
+      </Link>
+      <a href={product.externalLink} target="_blank">
         <h5>
           {product.title}
           <br />

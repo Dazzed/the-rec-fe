@@ -1,12 +1,14 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const ProfileImageSection = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 30px;
+  cursor: pointer;
   img {
     width: 40px;
     height: 40px;
@@ -53,10 +55,12 @@ function contactUser(props) {
   return (
     <Row>
       <Col lg={8} md={8} sm={8} xs={8}>
-        <ProfileImageSection>
-          <img src={contact.profilePicUrl} alt="Profile Image" />
-          <h3>{contact.name}</h3>
-        </ProfileImageSection>
+        <Link href={`/profile/${contact.id}`}>
+          <ProfileImageSection>
+            <img src={contact.profilePicUrl} alt="Profile Image" />
+            <h3>{contact.name}</h3>
+          </ProfileImageSection>
+        </Link>
       </Col>
       <Col lg={4} md={4} sm={4} xs={4}>
         <ButtonPinkFollow>

@@ -1,4 +1,4 @@
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
 
 const DealerSection = styled.div`
@@ -37,21 +37,38 @@ const DealerSection = styled.div`
   }
 `;
 
-function DealerProfileSection() {
+function ProfileSection(props) {
+  const { profile } = props;
+
+  if (!profile) {
+    return (
+      <div className="loader text-center">
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </div>
+    );
+  }
+
   return (
     <Row>
       <Col className="mt-4">
         <DealerSection>
           <img
-            src="/imgs/default_profile_pic.jpg"
+            src={profile.profilePicUrl}
             alt="Follwer Image"
             className="followerimgs"
           />
-          <h5>Lisa H.</h5>
-          <button>Unfollow</button>
+          <h5>{profile.name}</h5>
+          {profile.following ? (
+            <button onClick={() => props.unfollow(profile.id)}>Unfollow</button>
+          ) : (
+            <button onClick={() => props.follow(profile.id)}>Follow</button>
+          )}
         </DealerSection>
       </Col>
     </Row>
   );
 }
-export default DealerProfileSection;
+
+export default ProfileSection;

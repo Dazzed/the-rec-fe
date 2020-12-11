@@ -32,8 +32,8 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      recSuggestions: [],
-      friendsSuggestionList: [],
+      recSuggestions: null,
+      friendsSuggestionList: null,
       recsSuggestionListData: null,
       hasMoreRecSuggestions: false,
       currentPageIndex: 0,
@@ -91,8 +91,8 @@ class Dashboard extends React.Component {
             prevState.currentPageIndex === 0
               ? nextProps.recsSuggestionListData.data
               : prevState.recSuggestions.concat(
-                nextProps.recsSuggestionListData.data
-              ),
+                  nextProps.recsSuggestionListData.data
+                ),
         });
       }
     }
@@ -133,12 +133,66 @@ class Dashboard extends React.Component {
     );
   };
 
+  renderRecSuggestions() {
+    const { recSuggestions, hasMoreRecSuggestions } = this.state;
+
+    if (!recSuggestions) {
+      return (
+        <Row className="mt-5 mb-4">
+          <Col className="mb-3">
+            <div className="loader text-center" key={0}>
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            </div>
+          </Col>
+        </Row>
+      );
+    }
+
+    if (recSuggestions.length === 0) {
+      return (
+        <Row className="mt-5 mb-4">
+          <Col className="mb-3">
+            <div className="text-center">No suggestions found.</div>
+          </Col>
+        </Row>
+      );
+    }
+
+    return (
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={() => this.listRecsSuggestions()}
+        hasMore={hasMoreRecSuggestions}
+        loader={
+          <div className="loader text-center" key={0}>
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          </div>
+        }
+      >
+        <Row className="mt-5 mb-4">
+          {recSuggestions.map((suggestion, i) => (
+            <Col
+              key={`${suggestion.user.id}_${suggestion.product.id}_${i}`}
+              lg={3}
+              md={4}
+              sm={6}
+              xs={12}
+              className="mb-3"
+            >
+              <DashboardProducts suggestion={suggestion} />
+            </Col>
+          ))}
+        </Row>
+      </InfiniteScroll>
+    );
+  }
+
   render() {
-    const {
-      recSuggestions,
-      hasMoreRecSuggestions,
-      friendsSuggestionList,
-    } = this.state;
+    const { friendsSuggestionList } = this.state;
 
     return (
       <>
@@ -148,6 +202,7 @@ class Dashboard extends React.Component {
         </Head>
         <CommonContainer className="container-fluid">
           <SearchBarNav handleQuery={this.handleQuery} />
+
           <Row>
             <Col lg={9}>
               <Row>
@@ -155,33 +210,7 @@ class Dashboard extends React.Component {
                   <LatestTitle>Latest</LatestTitle>
                 </Col>
               </Row>
-              <InfiniteScroll
-                pageStart={0}
-                loadMore={() => this.listRecsSuggestions()}
-                hasMore={hasMoreRecSuggestions}
-                loader={
-                  <div className="loader text-center" key={0}>
-                    <Spinner animation="border" role="status">
-                      <span className="sr-only">Loading...</span>
-                    </Spinner>
-                  </div>
-                }
-              >
-                <Row className="mt-5 mb-4">
-                  {recSuggestions.map((suggestion, i) => (
-                    <Col
-                      key={`${suggestion.user.id}_${suggestion.product.id}_${i}`}
-                      lg={3}
-                      md={4}
-                      sm={6}
-                      xs={12}
-                      className="mb-3"
-                    >
-                      <DashboardProducts suggestion={suggestion} />
-                    </Col>
-                  ))}
-                </Row>
-              </InfiniteScroll>
+              {this.renderRecSuggestions()}
             </Col>
             <Col lg={3}>
               <PeopleToFollow suggestions={friendsSuggestionList} />

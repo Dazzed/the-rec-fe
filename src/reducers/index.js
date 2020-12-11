@@ -4,6 +4,7 @@ import login from 'pages/login/reducers';
 import contacts from 'pages/contacts/reducers';
 import myRecs from 'pages/my-recs/reducers';
 import dashboard from 'pages/dashboard/reducers';
+import userProfile from 'pages/profile/reducers';
 
 const applicationStore = combineReducers({
   user,
@@ -11,6 +12,7 @@ const applicationStore = combineReducers({
   contacts,
   myRecs,
   dashboard,
+  userProfile,
 });
 
 export default applicationStore;
