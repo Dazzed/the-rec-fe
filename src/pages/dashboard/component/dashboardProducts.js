@@ -17,7 +17,7 @@ const ProductSection = styled.div`
   .followerimgs {
     width: 52px;
     height: 52px;
-    border-radius: $border50;
+    border-radius: 50%;
     margin-top: -25px;
     margin-bottom: 9px;
   }
