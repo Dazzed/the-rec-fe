@@ -19,6 +19,9 @@ const DealerProductSectionStyle = styled.div`
     object-fit: contain;
     margin-bottom: 24px;
   }
+  p {
+    padding: 0 15px;
+  }
   p,
   h5,
   h6 {
