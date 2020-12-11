@@ -84,9 +84,9 @@ a {
 	color: #000;
 }
 	img {
-		width: 50px;
-		height: 50px;
-		border-radius: $border50;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
 	}
 		.activeNav {
 			border-bottom: 3px solid #f5bf42;
