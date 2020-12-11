@@ -26,15 +26,21 @@ const LatestTitle = styled.h5`
   line-height: 30px;
   color: #000;
 `;
-const Styled = styled.div`
-
-#loader-section {
+const LoaderSection = styled.div`
+.loader-section {
   position: fixed;
   top: 50%;
   left: 0;
   right: 0;
 }
 `;
+const Styled = styled.div`
+.loader-section {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+}`;
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -149,7 +155,7 @@ class Dashboard extends React.Component {
         <Styled>
           <Row className="mt-5 mb-4 h-100">
             <Col className="mb-3">
-              <div className="loader text-center" id="loader-section" key={0}>
+              <div className="loader text-center loader-section" key={0}>
                 <Spinner animation="border" role="status">
                   <span className="sr-only">Loading...</span>
                 </Spinner>
@@ -176,11 +182,13 @@ class Dashboard extends React.Component {
         loadMore={() => this.listRecsSuggestions()}
         hasMore={hasMoreRecSuggestions}
         loader={
-          <div className="loader text-center" key={0}>
-            <Spinner animation="border" role="status">
-              <span className="sr-only">Loading...</span>
-            </Spinner>
-          </div>
+          <LoaderSection>
+            <div className="loader text-center loader-section" key={0}>
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            </div>
+          </LoaderSection>
         }
       >
         <Row className="mt-5 mb-4">

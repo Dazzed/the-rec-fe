@@ -11,7 +11,13 @@ const FollowTitle = styled.h4`
   line-height: 30px;
   color: #000;
 `;
-
+const LoaderSection = styled.div`
+.loader-section {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+}`;
 function PeopleFollowSection(props) {
   const { suggestions } = props;
 
@@ -25,11 +31,13 @@ function PeopleFollowSection(props) {
             </div>
           </Col>
         </Row>
-        <div className="loader text-center" key={0}>
-          <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-        </div>
+        <LoaderSection>
+          <div className="loader text-center loader-section" key={0}>
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          </div>
+        </LoaderSection>
       </Container>
     );
   }
