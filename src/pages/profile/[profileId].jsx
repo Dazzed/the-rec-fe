@@ -18,12 +18,12 @@ const CommonContainer = styled(Container)`
   max-width: 100% !important;
 `;
 const LoaderSection = styled.div`
-.loader-section {
   position: fixed;
   top: 50%;
   left: 0;
   right: 0;
-}`;
+`;
+
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
@@ -34,7 +34,7 @@ class UserProfile extends React.Component {
       userProfileData: null,
       hasMoreRecords: false,
       currentPageIndex: 0,
-      pageSize: 10,
+      pageSize: 20,
       searchQuery: '',
     };
   }
@@ -160,7 +160,15 @@ class UserProfile extends React.Component {
     }
 
     if (userRecList.length === 0) {
-      return <div className="text-center">No Recs found for this user.</div>;
+      return (
+        <Row>
+          <Col>
+            <LoaderSection className="text-center">
+              No Recs found for this user.
+            </LoaderSection>
+          </Col>
+        </Row>
+      );
     }
 
     return (
@@ -169,13 +177,11 @@ class UserProfile extends React.Component {
         loadMore={() => this.listUsersRecs()}
         hasMore={hasMoreRecords}
         loader={
-          <LoaderSection>
-            <div className="loader text-center loader-section" key={0}>
-              <Spinner animation="border" role="status">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            </div>
-          </LoaderSection>
+          <div className="loader text-center loader-section" key={0}>
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          </div>
         }
       >
         <Row>

@@ -18,22 +18,22 @@ const CommonContainer = styled(Container)`
   max-width: 100% !important;
 `;
 const LoaderSection = styled.div`
-.loader-section {
   position: fixed;
   top: 50%;
   left: 0;
   right: 0;
-}`;
+`;
+
 class MyContact extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      contacts: [],
+      contacts: null,
       contactsListData: null,
       hasMoreContacts: false,
       currentPageIndex: 0,
-      pageSize: 10,
+      pageSize: 20,
       searchQuery: '',
     };
   }
@@ -121,19 +121,46 @@ class MyContact extends React.Component {
   renderContacts() {
     const { contacts, hasMoreContacts } = this.state;
 
+    if (!contacts) {
+      return (
+        <Row className="mt-5 mb-4 h-100">
+          <Col className="mb-3">
+            <LoaderSection
+              className="loader text-center loader-section"
+              key={0}
+            >
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            </LoaderSection>
+          </Col>
+        </Row>
+      );
+    }
+
+    if (contacts.length === 0) {
+      return (
+        <Row className="mt-5 mb-4">
+          <Col className="mb-3">
+            <LoaderSection className="text-center">
+              No results found.
+            </LoaderSection>
+          </Col>
+        </Row>
+      );
+    }
+
     return (
       <InfiniteScroll
         pageStart={0}
         loadMore={() => this.listContacts()}
         hasMore={hasMoreContacts}
         loader={
-          <LoaderSection>
-            <div className="loader text-center loader-section">
-              <Spinner animation="border" role="status">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            </div>
-          </LoaderSection>
+          <div className="loader text-center loader-section">
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          </div>
         }
       >
         <Row className="mt-5 mb-4">

@@ -17,22 +17,22 @@ const CommonContainer = styled(Container)`
   max-width: 100% !important;
 `;
 const LoaderSection = styled.div`
-.loader-section {
   position: fixed;
   top: 50%;
   left: 0;
   right: 0;
-}`;
+`;
+
 class MyRecs extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      myRecsList: [],
+      myRecsList: null,
       myRecsListData: null,
       hasMoreRecords: false,
       currentPageIndex: 0,
-      pageSize: 10,
+      pageSize: 20,
       searchQuery: '',
     };
   }
@@ -109,8 +109,63 @@ class MyRecs extends React.Component {
     );
   };
 
-  render() {
+  renderMyRecs() {
     const { myRecsList, hasMoreRecords } = this.state;
+
+    if (!myRecsList) {
+      return (
+        <Row className="mt-5 mb-4 h-100">
+          <Col className="mb-3">
+            <LoaderSection
+              className="loader text-center loader-section"
+              key={0}
+            >
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            </LoaderSection>
+          </Col>
+        </Row>
+      );
+    }
+
+    if (myRecsList.length === 0) {
+      return (
+        <Row className="mt-5 mb-4 h-100">
+          <Col className="mb-3">
+            <LoaderSection className="text-center">
+              No results found.
+            </LoaderSection>
+          </Col>
+        </Row>
+      );
+    }
+
+    return (
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={() => this.listMyRecs()}
+        hasMore={hasMoreRecords}
+        loader={
+          <div className="loader text-center" key={0}>
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          </div>
+        }
+      >
+        <Row className="mt-lg-5 mb-lg-5 mb-4 mt-4">
+          {myRecsList.map((rec) => (
+            <Col key={rec.id} lg={2} md={4} sm={6} xs={12} className="mb-3">
+              <MyRec rec={rec} />
+            </Col>
+          ))}
+        </Row>
+      </InfiniteScroll>
+    );
+  }
+
+  render() {
     return (
       <>
         <Head>
@@ -120,28 +175,7 @@ class MyRecs extends React.Component {
         <CommonContainer className="container-fluid">
           <SearchBarNav handleQuery={this.handleQuery} />
 
-          <InfiniteScroll
-            pageStart={0}
-            loadMore={() => this.listMyRecs()}
-            hasMore={hasMoreRecords}
-            loader={
-              <LoaderSection>
-                <div className="loader text-center loader-section" key={0}>
-                  <Spinner animation="border" role="status">
-                    <span className="sr-only">Loading...</span>
-                  </Spinner>
-                </div>
-              </LoaderSection>
-            }
-          >
-            <Row className="mt-lg-5 mb-lg-5 mb-4 mt-4">
-              {myRecsList.map((rec) => (
-                <Col key={rec.id} lg={2} md={4} sm={6} xs={12} className="mb-3">
-                  <MyRec rec={rec} />
-                </Col>
-              ))}
-            </Row>
-          </InfiniteScroll>
+          {this.renderMyRecs()}
         </CommonContainer>
       </>
     );

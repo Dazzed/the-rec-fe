@@ -17,7 +17,6 @@ const CommonContainer = styled(Container)`
   padding: 37px 55px !important;
   max-width: 100% !important;
 `;
-
 const LatestTitle = styled.h5`
   font-family: Roboto-Regular;
   font-style: normal;
@@ -27,20 +26,12 @@ const LatestTitle = styled.h5`
   color: #000;
 `;
 const LoaderSection = styled.div`
-.loader-section {
   position: fixed;
   top: 50%;
   left: 0;
   right: 0;
-}
 `;
-const Styled = styled.div`
-.loader-section {
-  position: fixed;
-  top: 50%;
-  left: 0;
-  right: 0;
-}`;
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -51,7 +42,7 @@ class Dashboard extends React.Component {
       recsSuggestionListData: null,
       hasMoreRecSuggestions: false,
       currentPageIndex: 0,
-      pageSize: 10,
+      pageSize: 20,
       searchQuery: '',
     };
   }
@@ -105,8 +96,8 @@ class Dashboard extends React.Component {
             prevState.currentPageIndex === 0
               ? nextProps.recsSuggestionListData.data
               : prevState.recSuggestions.concat(
-                nextProps.recsSuggestionListData.data
-              ),
+                  nextProps.recsSuggestionListData.data
+                ),
         });
       }
     }
@@ -152,17 +143,18 @@ class Dashboard extends React.Component {
 
     if (!recSuggestions) {
       return (
-        <Styled>
-          <Row className="mt-5 mb-4 h-100">
-            <Col className="mb-3">
-              <div className="loader text-center loader-section" key={0}>
-                <Spinner animation="border" role="status">
-                  <span className="sr-only">Loading...</span>
-                </Spinner>
-              </div>
-            </Col>
-          </Row>
-        </Styled>
+        <Row className="mt-5 mb-4 h-100">
+          <Col className="mb-3">
+            <LoaderSection
+              className="loader text-center loader-section"
+              key={0}
+            >
+              <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            </LoaderSection>
+          </Col>
+        </Row>
       );
     }
 
@@ -170,7 +162,9 @@ class Dashboard extends React.Component {
       return (
         <Row className="mt-5 mb-4">
           <Col className="mb-3">
-            <div className="text-center">No suggestions found.</div>
+            <LoaderSection className="text-center">
+              No suggestions found.
+            </LoaderSection>
           </Col>
         </Row>
       );
@@ -182,13 +176,11 @@ class Dashboard extends React.Component {
         loadMore={() => this.listRecsSuggestions()}
         hasMore={hasMoreRecSuggestions}
         loader={
-          <LoaderSection>
-            <div className="loader text-center loader-section" key={0}>
-              <Spinner animation="border" role="status">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            </div>
-          </LoaderSection>
+          <div className="loader text-center loader-section" key={0}>
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          </div>
         }
       >
         <Row className="mt-5 mb-4">
