@@ -26,7 +26,15 @@ const LatestTitle = styled.h5`
   line-height: 30px;
   color: #000;
 `;
+const Styled = styled.div`
 
+#loader-section {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+}
+`;
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -91,8 +99,8 @@ class Dashboard extends React.Component {
             prevState.currentPageIndex === 0
               ? nextProps.recsSuggestionListData.data
               : prevState.recSuggestions.concat(
-                  nextProps.recsSuggestionListData.data
-                ),
+                nextProps.recsSuggestionListData.data
+              ),
         });
       }
     }
@@ -138,15 +146,17 @@ class Dashboard extends React.Component {
 
     if (!recSuggestions) {
       return (
-        <Row className="mt-5 mb-4">
-          <Col className="mb-3">
-            <div className="loader text-center" key={0}>
-              <Spinner animation="border" role="status">
-                <span className="sr-only">Loading...</span>
-              </Spinner>
-            </div>
-          </Col>
-        </Row>
+        <Styled>
+          <Row className="mt-5 mb-4 h-100">
+            <Col className="mb-3">
+              <div className="loader text-center" id="loader-section" key={0}>
+                <Spinner animation="border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
+              </div>
+            </Col>
+          </Row>
+        </Styled>
       );
     }
 
