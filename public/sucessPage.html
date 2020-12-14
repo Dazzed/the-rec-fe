@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="jquery.3.5.1.js"></script>
+  </head>
+  <style>
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    @font-face {
+      font-family: Nunito-Regular;
+      src: url(/assets/fonts/Nunito-Regular.ttf);
+    }
+
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      min-height: 80px;
+      background: #fff;
+      border: 1px solid #f2f2f2;
+      box-sizing: border-box;
+      box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.12);
+      border-radius: 10px;
+      width: 430px;
+    }
+
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+    }
+
+    button:hover {
+      cursor: pointer;
+    }
+
+    button:focus,
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border: none;
+    }
+
+    /* modal-addI */
+    .modal-content {
+      padding: 17px 18px 16px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+
+    .col-12 {
+      max-width: 100%;
+      flex: 0 0 100%;
+      position: relative;
+      padding: 0 16px;
+    }
+
+    .col-6 {
+      max-width: 50%;
+      flex: 0 0 50%;
+      position: relative;
+      padding: 0 16px;
+    }
+
+    .pl-8 {
+      padding-left: 8px;
+    }
+
+    .pr-8 {
+      padding-right: 8px;
+    }
+
+    .br-row {
+      padding-bottom: 9px;
+      padding-top: 0;
+    }
+    .titleh3 {
+      width: 50%;
+      padding-left: 15px;
+      position: relative;
+      top: 2px;
+    }
+
+    .titleh3 h3 {
+      margin: 0;
+      text-align: left;
+      font-size: 16px;
+      font-family: Nunito-Regular;
+      font-weight: bold;
+      font-style: normal;
+      color: #6fcf97;
+      line-height: 0;
+    }
+    .titleh3 img {
+      margin-right: 10px;
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
+    }
+    .close {
+      width: 50%;
+      padding-right: 15px;
+      text-align: right;
+    }
+
+    .close img {
+      vertical-align: middle;
+    }
+
+    .close img:hover {
+      cursor: pointer;
+    }
+    .content-msg {
+      margin: 0;
+    }
+    .content-msg p {
+      font-family: Nunito-Regular;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 13px;
+      line-height: 18px;
+      color: #333;
+      margin: 0;
+    }
+  </style>
+  <body>
+    <div class="successModal" id="successModal">
+      <div class="modal-content">
+        <div class="row br-row">
+          <div class="titleh3">
+            <h3><img src="/assets/images/success.svg" />Success!</h3>
+          </div>
+          <div class="close">
+            <img src="./assets/images/close-btn.png" />
+          </div>
+        </div>
+        <div class="content-msg">
+          <p>
+            <span id="productName">Baby Shark lorem ipsum</span> added
+            successfully on your Recs.
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="./sucessPage.js"></script>
+  </body>
+</html>

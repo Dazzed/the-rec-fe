@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <script type="text/javascript" src="jquery.3.5.1.js"></script>
+</head>
+<style>
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+        min-height: 250px;
+        background: #FFFFFF;
+        border: 1px solid #DDDBDA;
+        box-sizing: border-box;
+        box-shadow: 0px 26px 26px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        width: 522px;
+    }
+
+    *,
+    ::after,
+    ::before {
+        box-sizing: border-box;
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
+
+    button:focus,
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+        border: none;
+    }
+
+    /* modal-addI */
+    .modal-addI {
+        padding: 30px 20px 20px 63px;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .col-12 {
+        max-width: 100%;
+        flex: 0 0 100%;
+        position: relative;
+        padding: 0 15px;
+    }
+
+    .col-6 {
+        max-width: 50%;
+        flex: 0 0 50%;
+        position: relative;
+        padding: 0 15px;
+    }
+
+    .carousel-indicators .active {
+        background-color: #673662;
+    }
+
+    .carousel-indicators li {
+        width: 8px;
+        height: 8px;
+        background-color: #e5e5e5;
+        border-radius: 100%;
+    }
+
+    .carousel-indicators {
+        bottom: -50px;
+    }
+
+    .form {
+        display: block;
+        width: 100%;
+    }
+
+    .form input,
+    .form textarea,
+    .form-select select {
+        width: 100%;
+        background: #F1F3F4;
+        border-radius: 10px;
+        height: 40px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 21px;
+        color: #000;
+        border: none;
+        margin-bottom: 10px;
+        padding-left: 19px;
+    }
+
+    .form textarea {
+        min-height: 119px;
+        resize: none;
+        padding-top: 12px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .addI-btn {
+        background: #BDF4BC;
+        border-radius: 10px;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        width: 195px;
+        height: 40px;
+        line-height: 19px;
+        letter-spacing: 1px;
+        text-transform: capitalize;
+        border: none;
+        margin-top: 32px;
+    }
+
+    .addI-btn img {
+        margin-right: 10px;
+        vertical-align: bottom;
+    }
+
+    .mySlides {
+        display: none;
+        height: 200px;
+        width: auto;
+    }
+
+    .slideshow-container {
+        max-width: 100%;
+        position: relative;
+        margin: auto;
+    }
+
+    .mt-5 {
+        margin-top: 50px;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .active,
+    .dot:hover {
+        background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1s;
+        animation-name: fade;
+        animation-duration: 1s;
+    }
+
+    @-webkit-keyframes fade {
+        from {
+            opacity: .8
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @keyframes fade {
+        from {
+            opacity: .8
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+</style>
+
+<body>
+    <div class="modal-addI" id="modal2">
+        <div class="modal-content-addI">
+            <div class="row">
+                <div class="col-6">
+                    <div class="slideshow-container">
+                        <div class="mySlides fade">
+                            <img src="./images/carousel_img-addI.png" style="width:100%">
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img src="./images/products-1.png" style="width:100%">
+                        </div>
+
+                        <div class="mySlides fade">
+                            <img src="./images/products-2.png" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="mt-5" style="text-align:center">
+                        <span class="dot" id="currentSlideOneCart" onclick="currentSlide(1)"></span>
+                        <span class="dot" id="currentSlideTwoCart" onclick="currentSlide(2)"></span>
+                        <span class="dot" id="currentSlideThreeCart" onclick="currentSlide(3)"></span>
+                    </div>
+
+                </div>
+                <div class="col-6">
+                    <div class="form">
+                        <input type="text" placeholder="Title" id="product_title" />
+                    </div>
+                    <div class="form">
+                        <input type="text" placeholder="Price" />
+                    </div>
+                    <div class="form">
+                        <input type="text" placeholder="Brand" />
+                    </div>
+                    <div class="form-select">
+                        <select>
+                            <option>Category</option>
+                            <option>Category 1</option>
+                            <option>Category 2</option>
+                            <option>Category 3</option>
+                        </select>
+                    </div>
+                    <div class="form">
+                        <textarea placeholder="Description / Notes"></textarea>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <button class="addI-btn addToRecBtn"><img src="./images/close_addI.png" />Add To My Recs</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./cartPage.js"></script>
+</body>
+
+</html>

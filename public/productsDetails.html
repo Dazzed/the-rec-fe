@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="jquery.3.5.1.js"></script>
+  </head>
+  <style>
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    @font-face {
+      font-family: Nunito-Regular;
+      src: url(/assets/fonts/Nunito-Regular.ttf);
+    }
+
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      min-height: 250px;
+      background: #ffffff;
+      border: 1px solid #dddbda;
+      box-sizing: border-box;
+      box-shadow: 0px 26px 26px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      width: 581px;
+    }
+
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+    }
+
+    button:hover {
+      cursor: pointer;
+    }
+
+    button:focus,
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border: none;
+    }
+
+    /* modal-addI */
+    .modal-addI {
+      padding: 16px;
+      padding-bottom: 0;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+
+    .col-12 {
+      max-width: 100%;
+      flex: 0 0 100%;
+      position: relative;
+      padding: 0 16px;
+    }
+
+    .col-6 {
+      max-width: 50%;
+      flex: 0 0 50%;
+      position: relative;
+      padding: 0 16px;
+    }
+
+    .pl-8 {
+      padding-left: 8px;
+    }
+
+    .pr-8 {
+      padding-right: 8px;
+    }
+
+    .br-row {
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 16px;
+      padding-top: 0;
+    }
+
+    .titleh3 {
+      width: 50%;
+      padding-left: 15px;
+      position: relative;
+      top: 2px;
+    }
+
+    .titleh3 h3 {
+      margin: 0;
+      text-align: left;
+      font-size: 16px;
+      font-family: Nunito-Regular;
+      font-weight: 700;
+      font-style: normal;
+      color: #000;
+      line-height: 0;
+    }
+    .titleh3 img {
+      width: 30px;
+      margin-right: 6px;
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
+    }
+    .close {
+      width: 50%;
+      padding-right: 15px;
+      text-align: right;
+    }
+
+    .close img {
+      vertical-align: middle;
+    }
+
+    .close img:hover {
+      cursor: pointer;
+    }
+
+    .carousel-indicators .active {
+      background-color: #673662;
+    }
+
+    .carousel-indicators li {
+      width: 8px;
+      height: 8px;
+      background-color: #e5e5e5;
+      border-radius: 100%;
+    }
+
+    .carousel-indicators {
+      bottom: -50px;
+    }
+
+    .form {
+      display: block;
+      width: 100%;
+      position: relative;
+    }
+
+    .form input,
+    .form textarea,
+    .form-select select {
+      width: 100%;
+      background: #fff;
+      border-radius: 10px;
+      height: 45px;
+      color: #000;
+      font-family: Nunito-Regular;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 13px;
+      line-height: 18px;
+      border: none;
+      margin-bottom: 16px;
+      padding-left: 16px;
+      padding-right: 16px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .form textarea {
+      min-height: 100px;
+      resize: none;
+      padding-top: 14px;
+    }
+
+    .position-absolute {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .position-absolute select {
+      border-top-left-radius: unset;
+      border-bottom-left-radius: unset;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    .addI-btn {
+      background: #eb5468;
+      border-radius: 10px;
+      font-family: Nunito-Regular;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 16px;
+      width: 195px;
+      color: #fff;
+      height: 35px;
+      line-height: 17px;
+      letter-spacing: 1px;
+      text-transform: capitalize;
+      border: none;
+      margin-top: 2px;
+      margin-bottom: 16px;
+    }
+
+    .cancel-btn {
+      background: #f2f2f2;
+      color: #333;
+      border-radius: 10px;
+      font-family: Nunito-Regular;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 16px;
+      border: none;
+      width: 98px;
+      height: 35px;
+      line-height: 22px;
+      letter-spacing: 1px;
+      text-transform: capitalize;
+      margin-top: 2px;
+      margin-right: 9px;
+      margin-bottom: 16px;
+    }
+
+    .addToRecRedBtn img {
+      margin-right: 10px;
+      vertical-align: bottom;
+      height: 17px;
+    }
+
+    .mySlides {
+      display: none;
+      height: 180px;
+      width: auto;
+      text-align: center;
+    }
+
+    .mySlides img {
+      height: 180px;
+      margin: 0 auto;
+    }
+
+    .slideshow-container {
+      max-width: 100%;
+      position: relative;
+      margin: auto;
+      margin-top: 10px;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 0;
+      margin-top: -22px;
+      color: #000;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      z-index: 1;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .mt-5 {
+      margin-top: 50px;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+      cursor: pointer;
+      height: 9px;
+      width: 9px;
+      margin: 0 2px;
+      background-color: #f2f2f2;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+      margin-bottom: 5px;
+    }
+
+    .active,
+    .dot:hover {
+      background-color: #2f80ed;
+    }
+
+    .btnslide-remove button {
+      background: rgba(235, 87, 87, 0.1);
+      border-radius: 10px;
+      font-style: normal;
+      font-family: Nunito-Regular;
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 18px;
+      color: #eb5757;
+      border: none;
+      width: 163px;
+      height: 28px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .btnslide-remove button img {
+      margin-right: 4px;
+      margin-left: 0;
+      vertical-align: middle;
+    }
+
+    /* Fading animation */
+    .fade {
+      -webkit-animation-name: fade;
+      -webkit-animation-duration: 1s;
+      animation-name: fade;
+      animation-duration: 1s;
+    }
+
+    @-webkit-keyframes fade {
+      from {
+        opacity: 0.8;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0.8;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .selectdiv {
+      position: relative;
+      /*Don't really need this just for demo styling*/
+    }
+
+    /*To remove button from IE11, thank you Matt */
+    select::-ms-expand {
+      display: none;
+    }
+
+    .selectdiv:after {
+      content: ">";
+      font: 17px "Consolas", monospace;
+      color: #000;
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      transform: rotate(90deg);
+      right: 11px;
+      /*Adjust for position however you want*/
+
+      top: 13px;
+      /*left line */
+
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .selectdiv select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      display: block;
+      font-family: Nunito-Regular;
+      width: 83px;
+      height: 45px;
+      float: right;
+      margin: 0px;
+      padding: 0px 16px;
+      font-size: 16px;
+      line-height: 1.75;
+      color: #000;
+      background-color: #fff;
+      background-image: none;
+      -ms-word-break: normal;
+      word-break: normal;
+    }
+  </style>
+
+  <body>
+    <div class="modal-addI" id="modal3">
+      <div class="modal-content-addI">
+        <div class="row br-row">
+          <div class="titleh3">
+            <h3><img src="/assets/images/logo-150x150.png" />Rec</h3>
+          </div>
+          <div class="close">
+            <img src="./assets/images/close-btn.png" />
+          </div>
+        </div>
+        <div class="row">
+          <form id="createRecForm">
+            <input
+              type="hidden"
+              id="productExternalLink"
+              name="productExternalLink"
+            />
+            <input
+              type="hidden"
+              id="productExternalId"
+              name="productExternalId"
+            />
+            <div class="col-12">
+              <div class="slideshow-container" id="productImages">
+                <a class="prev" onclick="plusSlides('-1')" id="prev"
+                  ><img src="./assets/images/leftbtn.png"
+                /></a>
+                <a class="next" onclick="plusSlides('1')" id="next"
+                  ><img src="./assets/images/rightbtn.png"
+                /></a>
+              </div>
+              <div class="btnslide-remove text-center">
+                <button id="remove-item" onclick="removeItem()">
+                  <img src="./assets/images/delete_icon.png" />Remove this Image
+                </button>
+              </div>
+              <div
+                class=""
+                style="text-align: center"
+                id="productImageDots"
+              ></div>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <div class="col-6 pr-8">
+                  <div class="form">
+                    <input
+                      type="text"
+                      placeholder="Title"
+                      id="productName"
+                      name="productName"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-6 pl-8">
+                  <div class="form selectdiv">
+                    <input
+                      type="number"
+                      placeholder="Price"
+                      id="productPrice"
+                      name="productPrice"
+                      required
+                    />
+                    <div class="form-select position-absolute">
+                      <select>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="JPY">JPY</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 pr-8">
+                  <div class="form">
+                    <input
+                      type="text"
+                      placeholder="Brand"
+                      id="brandName"
+                      name="brandName"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-6 pl-8">
+                  <div class="form">
+                    <input
+                      type="text"
+                      placeholder="Category"
+                      id="productCategory"
+                      name="productCategory"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form">
+                    <textarea
+                      placeholder="Description / Notes"
+                      id="productDescription"
+                      name="productDescription"
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 text-right">
+                  <button class="cancel-btn">Cancel</button>
+                  <button
+                    class="addI-btn addToRecRedBtn btn-rec-successfully"
+                    type="submit"
+                  >
+                    <img src="./assets/images/white-addbtn.png" />Add To My Recs
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="modules/utils.js"></script>
+    <script src="modules/request.js"></script>
+    <script src="./productsDetails.js"></script>
+  </body>
+</html>
