@@ -1,37 +1,37 @@
-chrome.runtime.sendMessage({ greeting: "hello" }, function (response) {
-  // alert(response.farewell.price);
-  $("#productName").val(response.farewell.title);
-  $("#brandName").val(response.farewell.brand);
+// chrome.runtime.sendMessage({ greeting: "hello" }, function (response) {
+//   // alert(response.farewell.price);
+//   $("#productName").val(response.farewell.title);
+//   $("#brandName").val(response.farewell.brand);
 
-  if (response.farewell.price) {
-    $("#productPrice").val(
-      Number.parseFloat(response.farewell.price.split("$")[1])
-    );
-  }
+//   if (response.farewell.price) {
+//     $("#productPrice").val(
+//       Number.parseFloat(response.farewell.price.split("$")[1])
+//     );
+//   }
 
-  if (response.farewell.category) {
-    $("#productCategory").val(response.farewell.category);
-  }
+//   if (response.farewell.category) {
+//     $("#productCategory").val(response.farewell.category);
+//   }
 
-  for (let i = 0; i < response.farewell.images.length; i++) {
-    // alert(response.farewell.images[i]);
-    $("#productImages").append(
-      '<div class="mySlides fade"><img src="' +
-        response.farewell.images[i] +
-        '"><input type="hidden" name="productImages" value="' +
-        response.farewell.images[i] +
-        '"></input></div>'
-    );
-    $("#productImageDots").append(
-      '<span class="dot" onclick="currentSlide(' + (i + 1) + ')"></span>'
-    );
-  }
+//   for (let i = 0; i < response.farewell.images.length; i++) {
+//     // alert(response.farewell.images[i]);
+//     $("#productImages").append(
+//       '<div class="mySlides fade"><img src="' +
+//         response.farewell.images[i] +
+//         '"><input type="hidden" name="productImages" value="' +
+//         response.farewell.images[i] +
+//         '"></input></div>'
+//     );
+//     $("#productImageDots").append(
+//       '<span class="dot" onclick="currentSlide(' + (i + 1) + ')"></span>'
+//     );
+//   }
 
-  $("#productDescription").val(response.farewell.description);
-  $("#productExternalLink").val(response.farewell.externalLink);
-  $("#productExternalId").val(response.farewell.externalId || undefined);
-  showSlides(slideIndex);
-});
+//   $("#productDescription").val(response.farewell.description);
+//   $("#productExternalLink").val(response.farewell.externalLink);
+//   $("#productExternalId").val(response.farewell.externalId || undefined);
+//   showSlides(slideIndex);
+// });
 
 var slideIndex = 1;
 
