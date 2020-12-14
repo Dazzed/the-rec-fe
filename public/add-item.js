@@ -437,12 +437,12 @@ function getProductDefaults() {
     iframe.setAttribute('id', 'rec_iframe')
     iframe.setAttribute('scrolling', 'no')
     iframe.style.border = 'none';
-    iframe.style.height = '100%';
-    iframe.style.width = '100%';
+    iframe.style.height = '600px';
+    iframe.style.width = '522px';
     iframe.style.position = (document.doctype == null && navigator.appName.match('Microsoft')) ? 'absolute' : 'fixed';
     iframe.style.zIndex = '99999999999';
     iframe.style.top = '0';
-    iframe.style.left = '0';
+    iframe.style.right = '0';
     iframe.style['background-color'] = 'transparent';
     iframe.style.clip = 'auto';
     iframe.style.overflow = 'hidden';

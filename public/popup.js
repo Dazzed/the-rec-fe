@@ -12,9 +12,6 @@ $(".close").click(function () {
 });
 
 $(function () {
-  // chrome.storage.sync.get(['dom'], function(result) {
-  //     console.log('Value currently is ' + result.key);
-  // });
   console.log("OPENED POPUP");
   // $(".addToRecBtn").click(function () {
   //     console.log("Add to Rec");
@@ -22,54 +19,32 @@ $(function () {
   //         "text": "4+"
   //     })
   // });
-  // chrome.runtime.sendMessage({ greeting: "hello" }, function (response) {
-  //   if (
-  //     Object.keys(response).length === 0 ||
-  //     Object.keys(response.farewell).length === 0
-  //   ) {
-  //     // alert("NOT A PRODUCT PAGE");
-  //   } else {
-  //     // alert("PRODUCT PAGE");
-  //     // alert(JSON.stringify(response))
-  //     console.log("product:", response.farewell);
+  let queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const title = urlParams.get('title')
+  const price = urlParams.get('price')
+  const category_string = urlParams.get('category_string')
+  const images = urlParams.get('imgs')
+  const search = null;
 
-  //     $("#productName").html(response.farewell.title);
-  //     $("#brandName").html(response.farewell.brand);
-  //     $("#productPrice").html(response.farewell.price);
-  //     $("#searchedText").val(
-  //       response.farewell.search || response.farewell.title
-  //     );
-  //     $("#productImage").attr("src", response.farewell.images[0]);
-  //     $(".modal").show();
+  $("#productName").html(title);
+  $("#brandName").html("BRAND NAME TO BE ADDED");
+  $("#productPrice").html(price);
+  $("#searchedText").val("SEARCH TEXT TO BE ADDED");
+  $("#productImage").attr("src", images[0]);
 
-  //     // check if product already in recs
-  //     if (response.farewell.externalId) {
-  //       checkProductInRecs(response.farewell.externalId);
-  //     }
-  //     if (response.farewell.search || response.farewell.title) {
-  //       UpdateSuggestionList(
-  //         response.farewell.search || response.farewell.title
-  //       );
-  //     }
-  //   }
-  // });
+  // check if product already in recs - CHECK WHAT THIS DOES
+  // if (response.farewell.externalId) {
+  //   checkProductInRecs(response.farewell.externalId);
+  // }
+  if (search || title) {
+    UpdateSuggestionList(
+      search || title
+    );
+  }
 
   productListActions();
 });
-
-// chrome.tabs.query({'active': true,'currentWindow':true},function(tab){
-//     console.log("TAB: ", tab)
-//   chrome.tabs.sendMessage(tab[0].id,"stuff", function(response){
-//     //assuming that info was html markup then you could do
-//     document.body.innerhtml = response;
-//     //I personally wouldn't do it like this but you get the idea
-//   });
-// });
-
-// chrome.runtime.sendMessage({'method':'getInfo'},function(response){
-//   //response is now the info collected by the content script.
-//   console.log(response);
-// });
 
 function productListActions() {
   $(".cartPage").click(function () {
