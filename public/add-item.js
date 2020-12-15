@@ -130,16 +130,17 @@ function getProductDefaults() {
   }
 
   function _default_price() {
-    let productPrice = jq('#priceblock_ourprice');
+    let priceblock_ourprice = jq('#priceblock_ourprice');
+    let priceblock_saleprice = jq('#priceblock_saleprice');
 
-    if (productPrice !== null) {
-      return productPrice.first().text();;
-    } else {
-      let productPrice = jq('#priceblock_saleprice');
-      if (productPrice !== null) {
-        return productPrice.first().text();;
-      }
+
+    if (priceblock_ourprice && priceblock_ourprice.first().text()) {
+      return priceblock_ourprice.first().text();
+    } else if(priceblock_saleprice && priceblock_saleprice.first().text()) {
+      return priceblock_saleprice.first().text();
     }
+
+
 
     // First, look for an og:price
     var ogPrice = jq('meta[property="og:price:amount"]').attr('content')
@@ -151,6 +152,12 @@ function getProductDefaults() {
     if (altOgPrice) {
       return altOgPrice;
     }
+
+    let a_color_price = jq('.a-color-price');
+    if(a_color_price && a_color_price.first().text()) {
+      return a_color_price.first().text();
+    }
+
 
     // Otherwise, scrape anything that looks like a price
     var patt = /[\d,]{1,5}\.\d{2}[^\d"']/g
@@ -246,8 +253,8 @@ function getProductDefaults() {
     return _scraped_datum("tcin", tcin_string)
   }
 
-  function _categories(category_string) {
-    return _scraped_datum("categories", category_string)
+  function _categories(category) {
+    return _scraped_datum("categories", category)
   }
 
   function _bbb_sku(sku_string) {

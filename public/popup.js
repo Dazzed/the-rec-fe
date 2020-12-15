@@ -8,6 +8,7 @@ $(".addToRecRedBtn").click(function () {
 });
 
 $(".close").click(function () {
+  $('body').empty();
   window.close();
 });
 
@@ -24,20 +25,22 @@ $(function () {
   const title = urlParams.get('title')
   const price = urlParams.get('price')
   const brand = urlParams.get('brand')
-  const category_string = urlParams.get('category_string')
+  const category = urlParams.get('category')
   const images = urlParams.getAll('imgs')
   const search = urlParams.get('search');
+  const externalId = urlParams.get('externalId');
+
   console.log(urlParams.getAll("imgs"));
   $("#productName").html(title);
   $("#brandName").html(brand);
-  $("#productPrice").html(`$${Number.parseFloat(price).toFixed(2)}`);
+  price && $("#productPrice").html(`$${Number.parseFloat(price).toFixed(2)}`);
   $("#searchedText").val(search || title);
   $("#productImage").attr("src", images[0]);
 
-  // check if product already in recs - CHECK WHAT THIS DOES
-  // if (response.farewell.externalId) {
-  //   checkProductInRecs(response.farewell.externalId);
-  // }
+  // check if product already added to recs list
+  if (externalId) {
+    checkProductInRecs(externalId);
+  }
   if (search || title) {
     UpdateSuggestionList(
       search || title
