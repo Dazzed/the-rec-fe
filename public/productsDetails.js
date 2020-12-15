@@ -4,9 +4,12 @@ const title = urlParams.get('title')
 const price = urlParams.get('price')
 const brand = urlParams.get('brand')
 const description = urlParams.get('description')
-const category_string = urlParams.get('category_string')
+const category = urlParams.get('category')
 const images = urlParams.getAll('imgs')
 const search = urlParams.get('search');
+const externalId = urlParams.get('externalId');
+const externalLink = urlParams.get('externalLink');
+
 
 
 
@@ -17,7 +20,7 @@ $("#productPrice").val(
 );
 
 console.log(images);
-$("#productCategory").val(category_string);
+$("#productCategory").val(category);
 
 for (let i = 0; i < images.length; i++) {
   // alert(response.farewell.images[i]);
@@ -34,8 +37,8 @@ for (let i = 0; i < images.length; i++) {
 }
 
 $("#productDescription").val(description);
-//   $("#productExternalLink").val(response.farewell.externalLink);
-//   $("#productExternalId").val(response.farewell.externalId || undefined);
+$("#productExternalLink").val(externalLink);
+$("#productExternalId").val(externalId || undefined);
 var slideIndex = 1;
 
 showSlides(slideIndex);

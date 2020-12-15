@@ -294,7 +294,18 @@ function getProductDefaults() {
 
   // Override to collect category information
   function _default_category_string() {
-    // noop by default
+    let category_container = jq('#wayfinding-breadcrumbs_feature_div a')
+    console.log('category_container', category_container)
+    if (category_container !== null) {
+      if (category_container.first().text().replace(/^\s+|\s+$/g, '') == "Back to results") {
+        // console.log("CATEGORY NOT FOUND")
+      } else {
+        // console.log("Category: ", category_container.innerText);
+        return category_container.first().text()
+      }
+    } else {
+      // console.log("CATEGORY NOT FOUND")
+    }
   }
 
   function _default_images() {
@@ -387,6 +398,18 @@ function getProductDefaults() {
     pSearch = searchBox.value;
   }
 
+  function _default_product_ASIN(){
+    let url = _default_url()
+    let product_asin_regexp = new RegExp("https://www.amazon.com/([\\w-]+/)?(dp|gp/product)/(\\w+/)?(\\w{10})");
+    const ASIN_CHUNK = url.match(product_asin_regexp)
+
+    if(ASIN_CHUNK && ASIN_CHUNK[4]){
+      return ASIN_CHUNK[4]
+    }
+
+    return undefined
+  }
+
 
   _object = {
     'url': _default_url(),
@@ -394,10 +417,13 @@ function getProductDefaults() {
     // fall back to no-image image if we don't have any scraped images
     'image_urls': _default_image_urls().length ? _clean_image_urls(_default_image_urls().slice(0, 10)) : ['https://web.global-ved.com/assets/images/default_image.png'],
     'title': _default_title(),
+    'category': _default_category_string(),
     'brand': pBrand,
     'search': pSearch,
     'description': pDescription,
-    'scraped_data': _clean_scraped_data(_default_scraped_data())
+    'scraped_data': _clean_scraped_data(_default_scraped_data()),
+    'externalId': _default_product_ASIN(),
+    'externalLink': _default_url()
   }
 
   function _safety_check(param_name) {
@@ -421,8 +447,10 @@ function getProductDefaults() {
   _safety_check('image_urls');
   _safety_check('title');
   _safety_check('brand');
+  _safety_check('category');
   _safety_check('search');
   _safety_check('description');
+  console.log({_object})
   return JSON.stringify(_object);
 }
 
@@ -504,13 +532,18 @@ function getProductDefaults() {
     var brand = encodeURIComponent(defaults.brand);
     var search = encodeURIComponent(defaults.search);
     var description = encodeURIComponent(defaults.description);
-    var category_string = encodeURIComponent(defaults.category_string);
+    var category = encodeURIComponent(defaults.category);
+    var externalId = encodeURIComponent(defaults.externalId);
+    var externalLink = encodeURIComponent(defaults.externalLink);
+
     // var source = encodeURIComponent('');
-    var query_string = "url=" + url + "&title=" + title + "&price=" + price + "&category_string=" + category_string + "&brand=" + brand + "&search=" + search;
+    var query_string = "url=" + url + "&title=" + title + "&price=" + price + "&category=" + category + "&brand=" + brand + "&search=" + search;
     for (i = 0; i < defaults.image_urls.length; i++) {
       query_string += '&imgs=' + encodeURIComponent(defaults.image_urls[i]);
     }
     query_string += "&description=" + description;
+    query_string += "&externalId=" + externalId;
+    query_string += "&externalLink=" + externalLink;
     for (i = 0; i < defaults.scraped_data.length; i++) {
       query_string += '&scraped_data[]=' + encodeURIComponent(JSON.stringify(defaults.scraped_data[i]));
     }
