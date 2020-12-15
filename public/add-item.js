@@ -429,6 +429,7 @@ function getProductDefaults() {
 
 (function () {
   var BL_URL = 'https://web.global-ved.com/popup.html';
+  // var BL_URL = 'http://localhost:4000/popup.html';
 
   // Gives us common iframe setup shared by this and add.js.erb
   /**
@@ -458,6 +459,7 @@ function getProductDefaults() {
 
   var _presentRecFrame = function (queryString) {
     var _hostname = 'https://web.global-ved.com';
+    // var _hostname = 'http://localhost:4000';
     var iframe = document.createElement('iframe')
     iframe.setAttribute('allowtransparency', 'true')
     iframe.setAttribute('src', _hostname + '/popup.html?' + queryString)
@@ -466,7 +468,7 @@ function getProductDefaults() {
     iframe.setAttribute('scrolling', 'no')
     iframe.style.border = 'none';
     iframe.style.height = '600px';
-    iframe.style.width = '522px';
+    iframe.style.width = '581px';
     iframe.style.position = (document.doctype == null && navigator.appName.match('Microsoft')) ? 'absolute' : 'fixed';
     iframe.style.zIndex = '99999999999';
     iframe.style.top = '0';
