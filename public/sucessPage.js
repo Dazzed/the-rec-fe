@@ -1,5 +1,5 @@
 $(".close").click(function () {
-  window.close();
+  $("body").empty();
 });
 
 $(function () {
