@@ -12,11 +12,12 @@ const externalLink = urlParams.get('externalLink');
 
 
 
+console.log('urlParams.price', urlParams.get('price'))
 
 $("#productName").val(title);
 $("#brandName").val(brand);
 $("#productPrice").val(
-  Number.parseFloat(price.split("$")[1])
+  Number.parseFloat(price)
 );
 
 console.log(images);

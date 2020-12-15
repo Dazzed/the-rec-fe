@@ -30,7 +30,7 @@ $(function () {
   console.log(urlParams.getAll("imgs"));
   $("#productName").html(title);
   $("#brandName").html(brand);
-  $("#productPrice").html(price);
+  $("#productPrice").html(`$${Number.parseFloat(price).toFixed(2)}`);
   $("#searchedText").val(search || title);
   $("#productImage").attr("src", images[0]);
 

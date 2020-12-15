@@ -36,6 +36,8 @@ function getProductDefaults() {
       if (!price.match(/^\$.*/)) {
         price = '$' + price;
       }
+
+      price = Number.parseFloat(price.toString().split("$")[1])
       return price;
     } else {
       return null;
@@ -128,6 +130,17 @@ function getProductDefaults() {
   }
 
   function _default_price() {
+    let productPrice = jq('#priceblock_ourprice');
+
+    if (productPrice !== null) {
+      return productPrice.first().text();;
+    } else {
+      let productPrice = jq('#priceblock_saleprice');
+      if (productPrice !== null) {
+        return productPrice.first().text();;
+      }
+    }
+
     // First, look for an og:price
     var ogPrice = jq('meta[property="og:price:amount"]').attr('content')
     if (ogPrice) {
@@ -450,6 +463,8 @@ function getProductDefaults() {
   _safety_check('category');
   _safety_check('search');
   _safety_check('description');
+  _safety_check('externalId');
+  _safety_check('externalLink');
   console.log({_object})
   return JSON.stringify(_object);
 }
