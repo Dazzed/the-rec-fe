@@ -45,7 +45,8 @@ var slideIndex = 1;
 showSlides(slideIndex);
 
 function plusSlides(n) {
-  showSlides((slideIndex += n));
+  slideIndex += Number.parseInt(n)
+  showSlides(slideIndex);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -60,7 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function currentSlide(n) {
-  showSlides((slideIndex = n));
+  slideIndex = Number.parseInt(n)
+  showSlides(slideIndex);
 }
 // document.addEventListener('DOMContentLoaded', function() {
 //   var currentSlideOne = document.getElementById('currentSlideOne');
