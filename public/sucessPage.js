@@ -1,5 +1,5 @@
 $(".close").click(function () {
-  $("body").empty();
+  parent.window.postMessage("removetheiframe", "*");
 });
 
 $(function () {
