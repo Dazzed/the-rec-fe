@@ -611,7 +611,7 @@ function receiveMessage(event){
     element.parentNode.removeChild(element);
   }
   if (event.data == "resizetheiframe") {
-    element.style.height = "100px";
+    element.style.height = "125px";
   }
 }
 window.addEventListener("message", receiveMessage, false);
