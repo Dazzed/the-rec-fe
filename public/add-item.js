@@ -506,7 +506,7 @@ function getProductDefaults() {
     // var source = encodeURIComponent('');
     var query_string = "url=" + url + "&title=" + title + "&price=" + price + "&category_string=" + category_string + "&brand=" + brand + "&search=" + search;
     for (i = 0; i < defaults.image_urls.length; i++) {
-      query_string += '&imgs[]=' + encodeURIComponent(defaults.image_urls[i]);
+      query_string += '&imgs=' + encodeURIComponent(defaults.image_urls[i]);
     }
     query_string += "&description=" + description;
     for (i = 0; i < defaults.scraped_data.length; i++) {

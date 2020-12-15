@@ -1,9 +1,9 @@
 $(".addToRecRedBtn").click(function () {
   $("#Modal1").hide();
-  chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
-    let tab = tabs[0];
-    // chrome.tabs.sendMessage(tab.id, { colour: "#ff0000" } )
-  });
+  // chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+  //   let tab = tabs[0];
+  //   // chrome.tabs.sendMessage(tab.id, { colour: "#ff0000" } )
+  // });
   window.location.replace("productsDetails.html");
 });
 
