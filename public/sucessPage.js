@@ -7,4 +7,6 @@ $(function () {
   const urlParams = new URLSearchParams(queryString);
   const title = urlParams.get('title')
   $("#productName").html(title);
+  parent.window.postMessage("resizetheiframe", "*");
+
 });

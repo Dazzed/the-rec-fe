@@ -606,9 +606,12 @@ function getProductDefaults() {
 
 
 function receiveMessage(event){
+  var element = document.getElementById('rec_iframe');
   if (event.data=="removetheiframe"){
-     var element = document.getElementById('rec_iframe');
-     element.parentNode.removeChild(element);
+    element.parentNode.removeChild(element);
+  }
+  if (event.data == "resizetheiframe") {
+    element.style.height = "100px";
   }
 }
 window.addEventListener("message", receiveMessage, false);
