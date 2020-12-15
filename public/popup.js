@@ -63,7 +63,7 @@ function productListActions() {
         //   // chrome.tabs.sendMessage(tab.id, { colour: "#ff0000" } )
         // });
         // window.location.replace("productsDetails.html");
-        window.location.replace("sucessPage.html");
+        window.location.replace("sucessPage.html?" + window.location.search);
       });
   });
   $(".product_items").mouseover(function () {
