@@ -99,7 +99,11 @@ function showSlides(n) {
   dots[slideIndex - 1].className += " active";
 }
 $(".close").click(function () {
-  window.close();
+  parent.window.postMessage("removetheiframe", "*");
+});
+
+$(".cancel-btn").click(function () {
+  parent.window.postMessage("removetheiframe", "*");
 });
 
 $("#createRecForm").submit(function () {
