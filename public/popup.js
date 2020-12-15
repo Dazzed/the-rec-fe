@@ -10,7 +10,6 @@ $(".addToRecRedBtn").click(function () {
 $(".close").click(function () {
   try{
     window.close();
-    // open(location, '_self').close();
   }catch(error){
     console.error(error)
   }
