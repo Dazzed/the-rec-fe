@@ -24,10 +24,9 @@ $(function () {
   const title = urlParams.get('title')
   const price = urlParams.get('price')
   const category_string = urlParams.get('category_string')
-  const images = urlParams.get('imgs')
+  const images = urlParams.getAll('imgs')
   const search = null;
-  console.log(urlParams.get("imgs"));
-  console.log(urlParams.get("imgs[]"))
+  console.log(urlParams.getAll("imgs"));
   $("#productName").html(title);
   $("#brandName").html("BRAND NAME TO BE ADDED");
   $("#productPrice").html(price);
