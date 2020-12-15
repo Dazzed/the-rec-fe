@@ -314,9 +314,12 @@ function getProductDefaults() {
 
   // Override to collect category information
   function _default_category_string() {
+    let category_tree = jq('.a-link-normal a-color-tertiary')
     let category_container = jq('#wayfinding-breadcrumbs_feature_div a')
-    console.log('category_container', category_container)
-    if (category_container !== null) {
+
+    if(category_tree && category_tree.last().text()) {
+      return category_tree.last().text();
+    } else if (category_container !== null) {
       if (category_container.first().text().replace(/^\s+|\s+$/g, '') == "Back to results") {
         // console.log("CATEGORY NOT FOUND")
       } else {

@@ -8,8 +8,12 @@ $(".addToRecRedBtn").click(function () {
 });
 
 $(".close").click(function () {
-  $('body').empty();
-  window.close();
+  try{
+    window.close();
+    // open(location, '_self').close();
+  }catch(error){
+    console.error(error)
+  }
 });
 
 $(function () {
@@ -132,7 +136,7 @@ function checkProductInRecs(externalId) {
   checkRecExist(externalId)
     .then(({ data }) => {
       console.log("In rec status:", data);
-      if (data.productInRecs) {
+      if (data && data.productInRecs) {
         $("#in-recs-status").text("In Recs");
         $("#add-to-my-recs-btn").prop("disabled", true);
         $("#add-to-my-recs-btn").hide();
