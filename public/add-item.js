@@ -501,12 +501,15 @@ function getProductDefaults() {
     iframe.style.zIndex = '99999999999';
     iframe.style.top = '0';
     iframe.style.right = '0';
-    iframe.style['background-color'] = 'transparent';
+    iframe.style['background-color'] = '#fff';
     iframe.style.clip = 'auto';
     iframe.style.overflow = 'hidden';
     iframe.style.opacity = 1;
     iframe.style.setProperty('display', 'block', 'important');
     iframe.style.visibility = 'visible';
+    iframe.style.border = '1px solid #F2F2F2';
+    iframe.style['box-shadow'] = '5px 5px 30px rgba(0, 0, 0, 0.12)';
+    iframe.style['border-radius'] = '10px';
 
     // add it to the page
     document.body.appendChild(iframe)
