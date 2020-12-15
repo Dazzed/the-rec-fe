@@ -3,6 +3,7 @@ const urlParams = new URLSearchParams(queryString);
 const title = urlParams.get('title')
 const price = urlParams.get('price')
 const brand = urlParams.get('brand')
+const description = urlParams.get('description')
 const category_string = urlParams.get('category_string')
 const images = urlParams.getAll('imgs')
 const search = urlParams.get('search');
@@ -15,6 +16,7 @@ $("#productPrice").val(
   Number.parseFloat(price.split("$")[1])
 );
 
+console.log(images);
 $("#productCategory").val(category_string);
 
 for (let i = 0; i < images.length; i++) {
