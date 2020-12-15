@@ -366,12 +366,37 @@ function getProductDefaults() {
     return unique(largeImageUrls);
   }
 
+  let pBrand = '';
+  let pDescription = '';
+  let pSearch = '';
+  let brand = document.getElementById("bylineInfo");
+  if (brand !== null) {
+    console.log("Product Brand: ", brand.innerText.replaceAll("Brand:", "").replaceAll("Visit the", ""))
+    pBrand = brand.innerText.replaceAll("Brand:", "").replaceAll("Visit the", "");
+  } else {
+    console.log("COULD NOT FIND PRODUCT BRAND");
+  }
+  let description = document.querySelector("#featurebullets_feature_div");
+  if (description !== null) {
+    console.log("Product Description: ", description.innerText);
+    pDescription = description.innerText;
+  }
+  let searchBox = document.querySelector("#twotabsearchtextbox");
+  if (searchBox !== null) {
+    console.log("Search Text:", searchBox.value);
+    pSearch = searchBox.value;
+  }
+
+
   _object = {
     'url': _default_url(),
     'price': _clean_price(_default_price()),
     // fall back to no-image image if we don't have any scraped images
     'image_urls': _default_image_urls().length ? _clean_image_urls(_default_image_urls().slice(0, 10)) : ['https://web.global-ved.com/assets/images/default_image.png'],
     'title': _default_title(),
+    'brand': pBrand,
+    'search': pSearch,
+    'description': pDescription,
     'scraped_data': _clean_scraped_data(_default_scraped_data())
   }
 
@@ -395,6 +420,9 @@ function getProductDefaults() {
   _safety_check('price');
   _safety_check('image_urls');
   _safety_check('title');
+  _safety_check('brand');
+  _safety_check('search');
+  _safety_check('description');
   return JSON.stringify(_object);
 }
 
@@ -471,12 +499,16 @@ function getProductDefaults() {
     var title = encodeURIComponent(defaults.title);
     var price = encodeURIComponent(defaults.price);
     var upc = encodeURIComponent(defaults.upc);
+    var brand = encodeURIComponent(defaults.brand);
+    var search = encodeURIComponent(defaults.search);
+    var description = encodeURIComponent(defaults.description);
     var category_string = encodeURIComponent(defaults.category_string);
     var source = encodeURIComponent('');
-    var query_string = "url=" + url + "&title=" + title + "&price=" + price + "&upc=" + upc + "&source=" + source + "&category_string=" + category_string;
+    var query_string = "url=" + url + "&title=" + title + "&price=" + price + "&upc=" + upc + "&source=" + source + "&category_string=" + category_string + "&brand=" + brand + "&search=" + search;
     for (i = 0; i < defaults.image_urls.length; i++) {
       query_string += '&imgs[]=' + encodeURIComponent(defaults.image_urls[i]);
     }
+    query_string += "&description=" + description;
     for (i = 0; i < defaults.scraped_data.length; i++) {
       query_string += '&scraped_data[]=' + encodeURIComponent(JSON.stringify(defaults.scraped_data[i]));
     }

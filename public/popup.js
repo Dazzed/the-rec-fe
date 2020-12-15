@@ -26,7 +26,8 @@ $(function () {
   const category_string = urlParams.get('category_string')
   const images = urlParams.get('imgs')
   const search = null;
-
+  console.log(urlParams.get("imgs"));
+  console.log(urlParams.get("imgs[]"))
   $("#productName").html(title);
   $("#brandName").html("BRAND NAME TO BE ADDED");
   $("#productPrice").html(price);
