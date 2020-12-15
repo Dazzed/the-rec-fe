@@ -605,3 +605,10 @@ function getProductDefaults() {
 
 
 
+function receiveMessage(event){
+  if (event.data=="removetheiframe"){
+     var element = document.getElementById('rec_iframe');
+     element.parentNode.removeChild(element);
+  }
+}
+window.addEventListener("message", receiveMessage, false);
