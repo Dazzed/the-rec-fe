@@ -4,7 +4,7 @@ $(".addToRecRedBtn").click(function () {
   //   let tab = tabs[0];
   //   // chrome.tabs.sendMessage(tab.id, { colour: "#ff0000" } )
   // });
-  window.location.replace("productsDetails.html");
+  window.location.replace("productsDetails.html?" + window.location.search);
 });
 
 $(".close").click(function () {
@@ -23,14 +23,15 @@ $(function () {
   const urlParams = new URLSearchParams(queryString);
   const title = urlParams.get('title')
   const price = urlParams.get('price')
+  const brand = urlParams.get('brand')
   const category_string = urlParams.get('category_string')
   const images = urlParams.getAll('imgs')
-  const search = null;
+  const search = urlParams.get('search');
   console.log(urlParams.getAll("imgs"));
   $("#productName").html(title);
-  $("#brandName").html("BRAND NAME TO BE ADDED");
+  $("#brandName").html(brand);
   $("#productPrice").html(price);
-  $("#searchedText").val("SEARCH TEXT TO BE ADDED");
+  $("#searchedText").val(search || title);
   $("#productImage").attr("src", images[0]);
 
   // check if product already in recs - CHECK WHAT THIS DOES

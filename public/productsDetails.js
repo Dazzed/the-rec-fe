@@ -1,37 +1,40 @@
-// chrome.runtime.sendMessage({ greeting: "hello" }, function (response) {
-//   // alert(response.farewell.price);
-//   $("#productName").val(response.farewell.title);
-//   $("#brandName").val(response.farewell.brand);
+let queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const title = urlParams.get('title')
+const price = urlParams.get('price')
+const brand = urlParams.get('brand')
+const category_string = urlParams.get('category_string')
+const images = urlParams.getAll('imgs')
+const search = urlParams.get('search');
 
-//   if (response.farewell.price) {
-//     $("#productPrice").val(
-//       Number.parseFloat(response.farewell.price.split("$")[1])
-//     );
-//   }
 
-//   if (response.farewell.category) {
-//     $("#productCategory").val(response.farewell.category);
-//   }
 
-//   for (let i = 0; i < response.farewell.images.length; i++) {
-//     // alert(response.farewell.images[i]);
-//     $("#productImages").append(
-//       '<div class="mySlides fade"><img src="' +
-//         response.farewell.images[i] +
-//         '"><input type="hidden" name="productImages" value="' +
-//         response.farewell.images[i] +
-//         '"></input></div>'
-//     );
-//     $("#productImageDots").append(
-//       '<span class="dot" onclick="currentSlide(' + (i + 1) + ')"></span>'
-//     );
-//   }
+$("#productName").val(title);
+$("#brandName").val(brand);
+$("#productPrice").val(
+  Number.parseFloat(price.split("$")[1])
+);
 
-//   $("#productDescription").val(response.farewell.description);
+$("#productCategory").val(category_string);
+
+for (let i = 0; i < images.length; i++) {
+  // alert(response.farewell.images[i]);
+  $("#productImages").append(
+    '<div class="mySlides fade"><img src="' +
+    images[i] +
+    '"><input type="hidden" name="productImages" value="' +
+    images[i] +
+    '"></input></div>'
+  );
+  $("#productImageDots").append(
+    '<span class="dot" onclick="currentSlide(' + (i + 1) + ')"></span>'
+  );
+}
+
+$("#productDescription").val(description);
 //   $("#productExternalLink").val(response.farewell.externalLink);
 //   $("#productExternalId").val(response.farewell.externalId || undefined);
-//   showSlides(slideIndex);
-// });
+showSlides(slideIndex);
 
 var slideIndex = 1;
 
