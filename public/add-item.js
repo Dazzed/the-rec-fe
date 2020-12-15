@@ -498,13 +498,13 @@ function getProductDefaults() {
     var url = encodeURIComponent(defaults.url);
     var title = encodeURIComponent(defaults.title);
     var price = encodeURIComponent(defaults.price);
-    var upc = encodeURIComponent(defaults.upc);
+    // var upc = encodeURIComponent(defaults.upc);
     var brand = encodeURIComponent(defaults.brand);
     var search = encodeURIComponent(defaults.search);
     var description = encodeURIComponent(defaults.description);
     var category_string = encodeURIComponent(defaults.category_string);
-    var source = encodeURIComponent('');
-    var query_string = "url=" + url + "&title=" + title + "&price=" + price + "&upc=" + upc + "&source=" + source + "&category_string=" + category_string + "&brand=" + brand + "&search=" + search;
+    // var source = encodeURIComponent('');
+    var query_string = "url=" + url + "&title=" + title + "&price=" + price + "&category_string=" + category_string + "&brand=" + brand + "&search=" + search;
     for (i = 0; i < defaults.image_urls.length; i++) {
       query_string += '&imgs[]=' + encodeURIComponent(defaults.image_urls[i]);
     }
