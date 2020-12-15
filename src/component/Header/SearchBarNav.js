@@ -1,11 +1,12 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
+import { connect } from 'react-redux';
+import { withRouter } from 'next/router';
 import styled from 'styled-components';
 import debounce from 'lodash/debounce';
 import queryString from 'query-string';
+import { bindActionCreators } from 'redux';
 
 const SearchBox = styled.div`
   input {
@@ -100,74 +101,103 @@ li {
 }
 `;
 
-function SearchBarNav(props) {
-  const router = useRouter();
-  const profile = useSelector((state) => state.user.profile);
-  const profilePicUrl = profile && profile.profilePicUrl;
+class SearchBarNav extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const handleInput = (value) => {
-    if (props.handleQuery && typeof props.handleQuery === 'function') {
-      props.handleQuery(value);
+    this.state = {
+      value: '',
+      suggestions: [],
+    };
+
+    this.handleQueryChange = debounce(this.handleInput, 300);
+  }
+
+  handleInput = (value) => {
+    if (
+      this.props.handleQuery &&
+      typeof this.props.handleQuery === 'function'
+    ) {
+      this.props.handleQuery(value);
     }
 
     const queryParams = queryString.stringify({
-      ...router.query,
+      ...this.props.router.query,
       q: value,
     });
 
-    router.push(`${router.pathname}?${queryParams}`, undefined, {
-      shallow: true,
-    });
+    this.props.router.push(
+      `${this.props.router.pathname}?${queryParams}`,
+      undefined,
+      {
+        shallow: true,
+      }
+    );
   };
 
-  const handleQueryChange = debounce(handleInput, 300);
+  render() {
+    const { profile } = this.props;
+    const profilePicUrl = profile && profile.profilePicUrl;
 
-  return (
-    <Row className="align-items-center">
-      <Col lg={2}>
-        <Link href="/dashboard">
-          <div className="logo-section">
-            <img src="/imgs/svgs/rec-logo.svg" alt="logo-rec" />
-          </div>
-        </Link>
-      </Col>
-      <Col lg={6}>
-        <SearchBox>
-          <input
-            type="text"
-            placeholder="Search brands, categories or contacts"
-            onChange={(e) => handleQueryChange(e.target.value)}
-            defaultValue={router.query && router.query.q ? router.query.q : ''}
-          />
-          <img
-            src="/imgs/svgs/search_icon.svg"
-            id="icon"
-            className="search searchicon-support"
-          />
-        </SearchBox>
-      </Col>
-      <Col lg={4} className="resposive-992">
-        <NavItem>
-          <ul>
-            <li>
-              <Link href="/my-recs">My Recs</Link>
-            </li>
-            <li>
-              <Link href="/contacts">My Contacts</Link>
-            </li>
-            <li>
-              <a href="#">
-                <img
-                  src={profilePicUrl || '/imgs/default_profile_pic.jpg'}
-                  alt="userImg"
-                />
-              </a>
-            </li>
-          </ul>
-        </NavItem>
-      </Col>
-    </Row>
-  );
+    return (
+      <Row className="align-items-center">
+        <Col lg={2}>
+          <Link href="/dashboard">
+            <div className="logo-section">
+              <img src="/imgs/svgs/rec-logo.svg" alt="logo-rec" />
+            </div>
+          </Link>
+        </Col>
+        <Col lg={6}>
+          <SearchBox>
+            <input
+              type="text"
+              placeholder="Search brands, categories or contacts"
+              onChange={(e) => this.handleQueryChange(e.target.value)}
+              defaultValue={
+                this.props.router.query && this.props.router.query.q
+                  ? this.props.router.query.q
+                  : ''
+              }
+            />
+            <img
+              src="/imgs/svgs/search_icon.svg"
+              id="icon"
+              className="search searchicon-support"
+            />
+          </SearchBox>
+        </Col>
+        <Col lg={4} className="resposive-992">
+          <NavItem>
+            <ul>
+              <li>
+                <Link href="/my-recs">My Recs</Link>
+              </li>
+              <li>
+                <Link href="/contacts">My Contacts</Link>
+              </li>
+              <li>
+                <a href="#">
+                  <img
+                    src={profilePicUrl || '/imgs/default_profile_pic.jpg'}
+                    alt="userImg"
+                  />
+                </a>
+              </li>
+            </ul>
+          </NavItem>
+        </Col>
+      </Row>
+    );
+  }
 }
 
-export default SearchBarNav;
+const mapStateToProps = (state) => {
+  return {
+    profile: state.user.profile,
+  };
+};
+
+const SearchBarNavContainer = connect(mapStateToProps, null)(SearchBarNav);
+
+export default withRouter(SearchBarNavContainer);
