@@ -8,6 +8,7 @@ $(".addToRecRedBtn").click(function () {
 });
 
 $(".close").click(function () {
+  parent.window.postMessage("removetheiframe", "*");
   try{
     window.close();
   }catch(error){
