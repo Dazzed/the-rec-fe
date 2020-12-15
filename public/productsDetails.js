@@ -140,7 +140,7 @@ $("#createRecForm").submit(function () {
     .then(() => {
       console.log("rec created successfully");
       $("#modal3").hide();
-      window.location.replace("sucessPage.html");
+      window.location.replace("sucessPage.html?" + window.location.search);
     })
     .catch((error) => console.error(error));
 
