@@ -496,6 +496,7 @@ function getProductDefaults() {
         var queryString = buildQueryString();
         _presentRecFrame(queryString);
       } catch (e) {
+        console.log(e)
         // catches Chrome cross-origin errors
         if (e instanceof DOMException) {
           redirect()
