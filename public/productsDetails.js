@@ -36,9 +36,9 @@ for (let i = 0; i < images.length; i++) {
 $("#productDescription").val(description);
 //   $("#productExternalLink").val(response.farewell.externalLink);
 //   $("#productExternalId").val(response.farewell.externalId || undefined);
-showSlides(slideIndex);
-
 var slideIndex = 1;
+
+showSlides(slideIndex);
 
 function plusSlides(n) {
   showSlides((slideIndex += n));
