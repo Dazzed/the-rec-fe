@@ -6,6 +6,7 @@ const dashboardState = {
   loading: false,
   recsSuggestionListData: null,
   friendsSuggestionList: [],
+  followFriendSuccess: false,
 };
 
 const dashboardReducer = (state = dashboardState, action) => {
@@ -43,6 +44,7 @@ const dashboardReducer = (state = dashboardState, action) => {
     case types.FOLLOW_FRIEND_SUCCESS:
       return Object.assign({}, state, {
         success: action.message,
+        followFriendSuccess: action.message,
       });
 
     case types.FOLLOW_FRIEND_ERROR:

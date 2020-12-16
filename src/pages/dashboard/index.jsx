@@ -67,6 +67,20 @@ class Dashboard extends React.Component {
     if (this.props.success && this.props.success !== prevProps.success) {
       this.props.listFriendsSuggestions();
     }
+
+    if (
+      this.props.followFriendSuccess &&
+      this.props.followFriendSuccess !== prevProps.followFriendSuccess
+    ) {
+      this.setState(
+        {
+          hasMoreRecSuggestions: false,
+          currentPageIndex: 0,
+          searchQuery: this.props.router.query.q || '',
+        },
+        () => this.listRecsSuggestions()
+      );
+    }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -239,6 +253,7 @@ const mapStateToProps = (state) => {
     loading: state.dashboard.loading,
     recsSuggestionListData: state.dashboard.recsSuggestionListData,
     friendsSuggestionList: state.dashboard.friendsSuggestionList,
+    followFriendSuccess: state.dashboard.followFriendSuccess,
   };
 };
 
