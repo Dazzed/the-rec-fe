@@ -2,11 +2,14 @@ import React from 'react';
 import { Row, Col, Dropdown } from 'react-bootstrap';
 import Link from 'next/link';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { withRouter } from 'next/router';
 import styled from 'styled-components';
 import debounce from 'lodash/debounce';
+import isEqual from 'lodash/isEqual';
 import queryString from 'query-string';
-import { bindActionCreators } from 'redux';
+import Autosuggest from 'react-autosuggest';
+import * as dashboardActions from 'pages/dashboard/actions';
 
 const SearchBox = styled.div`
   input {
@@ -117,6 +120,7 @@ const LogInDropdown = styled(Dropdown)`
     }
   }
   .dropdown-menu {
+    width
     border: 1px solid #ccc;
     border-color: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
@@ -134,16 +138,44 @@ const LogInDropdown = styled(Dropdown)`
     }
   }
 `;
+
+function getSuggestionValue(suggestion) {
+  return suggestion.name;
+}
+
+function renderSuggestion(suggestion) {
+  return <span>{suggestion.name}</span>;
+}
+
 class SearchBarNav extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      value: '',
+      value:
+        this.props.router.query && this.props.router.query.q
+          ? this.props.router.query.q
+          : '',
       suggestions: [],
+      isLoading: false,
     };
 
     this.handleQueryChange = debounce(this.handleInput, 300);
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    let toReturn = null;
+
+    if (
+      nextProps.suggestions &&
+      !isEqual(nextProps.suggestions, prevState.suggestions)
+    ) {
+      toReturn = Object.assign(toReturn || {}, {
+        suggestions: nextProps.suggestions,
+      });
+    }
+
+    return toReturn;
   }
 
   handleInput = (value) => {
@@ -168,9 +200,47 @@ class SearchBarNav extends React.Component {
     );
   };
 
+  loadSuggestions(value) {
+    this.setState({
+      isLoading: true,
+    });
+    this.props.listRecsAutoSuggestions({ pageSize: 10, query: value });
+  }
+
+  onChange = (event, { newValue }) => {
+    this.setState({
+      value: newValue,
+    });
+    // this.handleQueryChange(newValue);
+  };
+
+  onSuggestionsFetchRequested = ({ value }) => {
+    this.loadSuggestions(value);
+  };
+
+  onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: [],
+    });
+  };
+
+  onSuggestionSelected = (event, { suggestion, suggestionValue }) => {
+    this.handleQueryChange(suggestionValue);
+  };
+
   render() {
     const { profile } = this.props;
+    const { value, suggestions, isLoading } = this.state;
+    const inputProps = {
+      type: 'text',
+      placeholder: 'Search brands, categories or contacts',
+      value,
+      onChange: this.onChange,
+    };
+
     const profilePicUrl = profile && profile.profilePicUrl;
+
+    console.log(this.state);
 
     return (
       <Row className="align-items-center">
@@ -183,7 +253,7 @@ class SearchBarNav extends React.Component {
         </Col>
         <Col lg={6}>
           <SearchBox>
-            <input
+            {/* <input
               type="text"
               placeholder="Search brands, categories or contacts"
               onChange={(e) => this.handleQueryChange(e.target.value)}
@@ -192,6 +262,15 @@ class SearchBarNav extends React.Component {
                   ? this.props.router.query.q
                   : ''
               }
+            /> */}
+            <Autosuggest
+              suggestions={suggestions}
+              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+              onSuggestionSelected={this.onSuggestionSelected}
+              getSuggestionValue={getSuggestionValue}
+              renderSuggestion={renderSuggestion}
+              inputProps={inputProps}
             />
             <img
               src="/imgs/svgs/search_icon.svg"
@@ -218,9 +297,7 @@ class SearchBarNav extends React.Component {
                     />
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <Dropdown.Item>
-                      <Link href="/logout">Logout</Link>
-                    </Dropdown.Item>
+                    <Dropdown.Item href="/logout">Logout</Dropdown.Item>
                   </Dropdown.Menu>
                 </LogInDropdown>
               </li>
@@ -235,9 +312,17 @@ class SearchBarNav extends React.Component {
 const mapStateToProps = (state) => {
   return {
     profile: state.user.profile,
+    suggestions: state.dashboard.recsAutoSuggestions,
   };
 };
 
-const SearchBarNavContainer = connect(mapStateToProps, null)(SearchBarNav);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(dashboardActions, dispatch);
+};
+
+const SearchBarNavContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchBarNav);
 
 export default withRouter(SearchBarNavContainer);

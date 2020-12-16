@@ -20,6 +20,11 @@ const followFriendMethods = actionsFactory({
   success: types.FOLLOW_FRIEND_SUCCESS,
 });
 
+const listRecsAutoSuggestionsMethods = actionsFactory({
+  error: types.LIST_RECS_AUTO_SUGGESTIONS_ERROR,
+  data: types.LIST_RECS_AUTO_SUGGESTIONS_DATA,
+});
+
 export const listRecsSuggestions = ({ pageIndex, pageSize, query }) => {
   return async (dispatch) => {
     try {
@@ -77,6 +82,28 @@ export const followFriend = (friendId) => {
       console.error(error);
       const errMsg = 'Failed follow user';
       return dispatch(followFriendMethods.setError(errMsg));
+    }
+  };
+};
+
+export const listRecsAutoSuggestions = ({ pageSize, query }) => {
+  return async (dispatch) => {
+    try {
+      dispatch(listRecsAutoSuggestionsMethods.setError(null));
+      dispatch(listRecsAutoSuggestionsMethods.setData(null));
+
+      const response = await get(`${API_URL}/recs/autosuggest`, {
+        params: {
+          pageSize,
+          q: query,
+        },
+      });
+
+      return dispatch(listRecsAutoSuggestionsMethods.setData(response.data));
+    } catch (error) {
+      console.error(error);
+      const errMsg = 'Failed get recs auto suggestion list';
+      return dispatch(listRecsAutoSuggestionsMethods.setError(errMsg));
     }
   };
 };
