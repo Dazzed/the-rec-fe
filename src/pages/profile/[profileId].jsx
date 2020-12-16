@@ -186,7 +186,7 @@ class UserProfile extends React.Component {
       >
         <Row>
           {userRecList.map((rec) => (
-            <Col lg={2} md={4} sm={6} xs={12} key={rec.id}>
+            <Col lg={2} md={4} sm={6} xs={12} key={rec.id} className="mb-3">
               <ProductSection product={rec} />
             </Col>
           ))}

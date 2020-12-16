@@ -13,6 +13,7 @@ const DealerProductSectionStyle = styled.div`
   padding-bottom: 27px;
   border: 1px solid #f1f3f4;
   margin-bottom: 17px;
+  height: 100%;
   .productsimgs {
     width: 100%;
     height: 200px;
