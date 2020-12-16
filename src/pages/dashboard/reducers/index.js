@@ -7,6 +7,7 @@ const dashboardState = {
   recsSuggestionListData: null,
   friendsSuggestionList: [],
   followFriendSuccess: false,
+  recsAutoSuggestions: [],
 };
 
 const dashboardReducer = (state = dashboardState, action) => {
@@ -48,6 +49,16 @@ const dashboardReducer = (state = dashboardState, action) => {
       });
 
     case types.FOLLOW_FRIEND_ERROR:
+      return Object.assign({}, state, {
+        error: action.error,
+      });
+
+    case types.LIST_RECS_AUTO_SUGGESTIONS_DATA:
+      return Object.assign({}, state, {
+        recsAutoSuggestions: action.data,
+      });
+
+    case types.LIST_RECS_AUTO_SUGGESTIONS_ERROR:
       return Object.assign({}, state, {
         error: action.error,
       });
