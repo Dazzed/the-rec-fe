@@ -130,18 +130,6 @@ function getProductDefaults() {
   }
 
   function _default_price() {
-    let priceblock_ourprice = jq('#priceblock_ourprice');
-    let priceblock_saleprice = jq('#priceblock_saleprice');
-
-
-    if (priceblock_ourprice && priceblock_ourprice.first().text()) {
-      return priceblock_ourprice.first().text();
-    } else if(priceblock_saleprice && priceblock_saleprice.first().text()) {
-      return priceblock_saleprice.first().text();
-    }
-
-
-
     // First, look for an og:price
     var ogPrice = jq('meta[property="og:price:amount"]').attr('content')
     if (ogPrice) {
@@ -151,6 +139,22 @@ function getProductDefaults() {
     var altOgPrice = jq('meta[property="product:price:amount"]').attr('content')
     if (altOgPrice) {
       return altOgPrice;
+    }
+
+
+    let priceblock_ourprice = jq('#priceblock_ourprice');
+    if (priceblock_ourprice && priceblock_ourprice.first().text()) {
+      return priceblock_ourprice.first().text();
+    }
+
+    let priceblock_saleprice = jq('#priceblock_saleprice');
+    if(priceblock_saleprice && priceblock_saleprice.first().text()) {
+      return priceblock_saleprice.first().text();
+    }
+
+    let price_characteristic = jq('.price-characteristic').attr('content')
+    if(price_characteristic){
+      return price_characteristic
     }
 
     let a_color_price = jq('.a-color-price');
@@ -322,12 +326,15 @@ function getProductDefaults() {
     } else if (category_container !== null) {
       if (category_container.first().text().replace(/^\s+|\s+$/g, '') == "Back to results") {
         // console.log("CATEGORY NOT FOUND")
-      } else {
-        // console.log("Category: ", category_container.innerText);
+      } else if(category_container.first().text()) {
         return category_container.first().text()
       }
-    } else {
-      // console.log("CATEGORY NOT FOUND")
+    }
+
+    let breadcrumb_list = jq('.breadcrumb-list').find('span');
+    console.log('breadcrumb_list', breadcrumb_list.first().text())
+    if(breadcrumb_list.first().text()) {
+      return breadcrumb_list.first().text()
     }
   }
 
@@ -410,24 +417,51 @@ function getProductDefaults() {
   } else {
     console.log("COULD NOT FIND PRODUCT BRAND");
   }
+
+  if(!pBrand) {
+    let product_brand = jq('.product-brand').find('span')
+    if(product_brand && product_brand.text()) {
+      pBrand = product_brand.text()
+    }
+  }
+
   let description = document.querySelector("#featurebullets_feature_div");
   if (description !== null) {
     console.log("Product Description: ", description.innerText);
     pDescription = description.innerText;
   }
+
+  if(!pDescription) {
+    let about_product_description = jq('.about-product-description')
+    if(about_product_description){
+      pDescription =about_product_description.first().text()
+    }
+  }
+
+
   let searchBox = document.querySelector("#twotabsearchtextbox");
   if (searchBox !== null) {
     console.log("Search Text:", searchBox.value);
     pSearch = searchBox.value;
   }
 
-  function _default_product_ASIN(){
-    let url = _default_url()
-    let product_asin_regexp = new RegExp("https://www.amazon.com/([\\w-]+/)?(dp|gp/product)/(\\w+/)?(\\w{10})");
-    const ASIN_CHUNK = url.match(product_asin_regexp)
+  function _default_product_Id(){
+    let url = _default_url();
+    let product_asin_regexp = new RegExp(
+      'https://www.amazon.com/([\\w-]+/)?(dp|gp/product)/(\\w+/)?(\\w{10})'
+    );
+    const ASIN_CHUNK = url.match(product_asin_regexp);
 
-    if(ASIN_CHUNK && ASIN_CHUNK[4]){
-      return ASIN_CHUNK[4]
+    if (ASIN_CHUNK && ASIN_CHUNK[4]) {
+      return ASIN_CHUNK[4];
+    }
+
+    // walmart
+    let wm_item_number = jq('.wm-item-number').text();
+
+    if (wm_item_number) {
+      let wm_item_number_chunk = wm_item_number.trim().split(' ');
+      return wm_item_number_chunk[wm_item_number_chunk.length - 1];
     }
 
     return undefined
@@ -440,12 +474,12 @@ function getProductDefaults() {
     // fall back to no-image image if we don't have any scraped images
     'image_urls': _default_image_urls().length ? _clean_image_urls(_default_image_urls().slice(0, 10)) : ['https://web.global-ved.com/assets/images/default_image.png'],
     'title': _default_title(),
-    'category': _default_category_string(),
+    'category': _default_category_string() || 'General',
     'brand': pBrand,
     'search': pSearch,
     'description': pDescription,
     'scraped_data': _clean_scraped_data(_default_scraped_data()),
-    'externalId': _default_product_ASIN(),
+    'externalId': _default_product_Id() || '',
     'externalLink': _default_url()
   }
 

@@ -108,20 +108,22 @@ const LogInDropdown = styled(Dropdown)`
     border-radius: 50%;
     border: none;
     padding: 0;
-      &:active, &:focus, &:hover {
-        background-color: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-      }
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
     }
-    .dropdown-menu {
-      border: 1px solid #ccc;
-      border-color: rgba(0,0,0,.2);
-      border-radius: 8px;
-      color: #000;
-      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.2);
-      box-shadow: 0 2px 10px rgba(0,0,0,.2);
-      transform : translate(-124px, 54.667px) !important;
+  }
+  .dropdown-menu {
+    border: 1px solid #ccc;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    color: #000;
+    -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transform: translate(-124px, 54.667px) !important;
     ul {
       font-family: Roboto-Regular;
       font-style: normal;
@@ -208,12 +210,6 @@ class SearchBarNav extends React.Component {
                 <Link href="/contacts">My Contacts</Link>
               </li>
               <li>
-                {/* <a href="#">
-                  <img
-                    src={profilePicUrl || '/imgs/default_profile_pic.jpg'}
-                    alt="userImg"
-                  />
-                </a> */}
                 <LogInDropdown>
                   <Dropdown.Toggle id="dropdown-basic">
                     <img
@@ -221,12 +217,12 @@ class SearchBarNav extends React.Component {
                       alt="userImg"
                     />
                   </Dropdown.Toggle>
-
                   <Dropdown.Menu>
-                    <Dropdown.Item>Logout</Dropdown.Item>
+                    <Dropdown.Item>
+                      <Link href="/logout">Logout</Link>
+                    </Dropdown.Item>
                   </Dropdown.Menu>
                 </LogInDropdown>
-
               </li>
             </ul>
           </NavItem>

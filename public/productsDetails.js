@@ -1,67 +1,80 @@
 let queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const title = urlParams.get('title')
-const price = urlParams.get('price')
-const brand = urlParams.get('brand')
-const description = urlParams.get('description')
-const category = urlParams.get('category')
-const images = urlParams.getAll('imgs')
+const title = urlParams.get('title');
+const price = urlParams.get('price');
+const brand = urlParams.get('brand');
+const description = urlParams.get('description');
+const category = urlParams.get('category');
+const images = urlParams.getAll('imgs');
 const search = urlParams.get('search');
 const externalId = urlParams.get('externalId');
 const externalLink = urlParams.get('externalLink');
+let hostname = 'Amazon.com';
 
+function getLocation(href) {
+  let l = document.createElement('a');
+  l.href = href;
+  return l;
+}
 
+let l = null;
 
-console.log('urlParams.price', urlParams.get('price'))
+if (externalLink) {
+  l = getLocation(externalLink);
+}
 
-$("#productName").val(title);
-$("#brandName").val(brand);
-$("#productPrice").val(
-  Number.parseFloat(price)
-);
+if (l && l.hostname) {
+  hostname = l.hostname;
+}
+
+console.log('urlParams.price', urlParams.get('price'));
+
+$('#productName').val(title);
+$('#brandName').val(brand);
+$('#productPrice').val(Number.parseFloat(price));
 
 console.log(images);
-$("#productCategory").val(category);
+$('#productCategory').val(category);
 
 for (let i = 0; i < images.length; i++) {
   // alert(response.farewell.images[i]);
-  $("#productImages").append(
+  $('#productImages').append(
     '<div class="mySlides fade"><img src="' +
-    images[i] +
-    '"><input type="hidden" name="productImages" value="' +
-    images[i] +
-    '"></input></div>'
+      images[i] +
+      '"><input type="hidden" name="productImages" value="' +
+      images[i] +
+      '"></input></div>'
   );
-  $("#productImageDots").append(
+  $('#productImageDots').append(
     '<span class="dot" onclick="currentSlide(' + (i + 1) + ')"></span>'
   );
 }
 
-$("#productDescription").val(description);
-$("#productExternalLink").val(externalLink);
-$("#productExternalId").val(externalId || undefined);
+$('#productDescription').val(description);
+$('#productExternalLink').val(externalLink);
+$('#productExternalId').val(externalId || undefined);
 var slideIndex = 1;
 
 showSlides(slideIndex);
 
 function plusSlides(n) {
-  slideIndex += Number.parseInt(n)
+  slideIndex += Number.parseInt(n);
   showSlides(slideIndex);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  var next = document.getElementById("next");
-  var prev = document.getElementById("prev");
-  next.addEventListener("click", function () {
+document.addEventListener('DOMContentLoaded', function () {
+  var next = document.getElementById('next');
+  var prev = document.getElementById('prev');
+  next.addEventListener('click', function () {
     plusSlides(1);
   });
-  prev.addEventListener("click", function () {
+  prev.addEventListener('click', function () {
     plusSlides(-1);
   });
 });
 
 function currentSlide(n) {
-  slideIndex = Number.parseInt(n)
+  slideIndex = Number.parseInt(n);
   showSlides(slideIndex);
 }
 // document.addEventListener('DOMContentLoaded', function() {
@@ -81,8 +94,8 @@ function currentSlide(n) {
 
 function showSlides(n) {
   var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
+  var slides = document.getElementsByClassName('mySlides');
+  var dots = document.getElementsByClassName('dot');
   if (n > slides.length) {
     slideIndex = 1;
   }
@@ -90,63 +103,69 @@ function showSlides(n) {
     slideIndex = slides.length;
   }
   for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+    slides[i].style.display = 'none';
   }
   for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
+    dots[i].className = dots[i].className.replace(' active', '');
   }
-  slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
+  slides[slideIndex - 1].style.display = 'block';
+  dots[slideIndex - 1].className += ' active';
 }
-$(".close").click(function () {
-  parent.window.postMessage("removetheiframe", "*");
+$('.close').click(function () {
+  parent.window.postMessage('removetheiframe', '*');
 });
 
-$(".cancel-btn").click(function () {
-  parent.window.postMessage("removetheiframe", "*");
+$('.cancel-btn').click(function () {
+  parent.window.postMessage('removetheiframe', '*');
 });
 
-$("#createRecForm").submit(function () {
+$('#createRecForm').submit(function () {
   const fields = $(this).serializeArray();
 
   const keys = {
-    productImages: "images",
-    productName: "title",
-    productPrice: "price",
-    brandName: "brand",
-    productCategory: "category",
-    productDescription: "description",
-    productExternalLink: "externalLink",
-    productExternalId: "externalId",
+    productImages: 'images',
+    productName: 'title',
+    productPrice: 'price',
+    brandName: 'brand',
+    productCategory: 'category',
+    productDescription: 'description',
+    productExternalLink: 'externalLink',
+    productExternalId: 'externalId',
   };
   let values = {
-    retailer: "Amazon.com",
-    currency: "USD",
-    category: "None",
+    retailer: hostname,
+    currency: 'USD',
+    category: 'General',
   };
 
-  console.log("product form values", fields);
+  console.log('product form values', fields);
 
   fields.forEach((val) => {
     const key = keys[val.name];
 
-    if (key === "images") {
+    if (!val.value) {
+      return;
+    }
+
+    if (key === 'images') {
       if (!values.images) values.images = [];
       values.images.push(val.value);
-    } else if (key === "price") {
+    } else if (key === 'price') {
       values.price = Number.parseFloat(val.value);
+    } else if (key === 'externalId' && !val.value) {
+      values.externalId = undefined;
     } else {
       values[key] = val.value;
     }
   });
 
-  console.log("form values", values);
+  console.log('form values', values);
 
   createAndAddToRec(values)
     .then(() => {
-      console.log("rec created successfully");
-      $("#modal3").hide();
-      window.location.replace("sucessPage.html?" + window.location.search);
+      console.log('rec created successfully');
+      $('#modal3').hide();
+      window.location.replace('sucessPage.html?' + window.location.search);
     })
     .catch((error) => console.error(error));
 
