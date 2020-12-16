@@ -53,7 +53,7 @@ const SearchBox = styled.div`
     position: relative;
     z-index: 1;
     left: 3%;
-    top: -40px;
+    top: -43px;
     transition: 0.2s all;
     transform-style: preserve-3d;
     perspective: 400px;
