@@ -12,13 +12,6 @@ $('.close').click(function () {
 });
 
 $(function () {
-  console.log('OPENED POPUP');
-  // $(".addToRecBtn").click(function () {
-  //     console.log("Add to Rec");
-  //     chrome.browserAction.setBadgeText({
-  //         "text": "4+"
-  //     })
-  // });
   let queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const title = urlParams.get('title');
@@ -69,7 +62,6 @@ function productListActions() {
   $('.product_items').mouseover(function () {
     $('.product_items').addClass('opacity');
     $(this).removeClass('opacity');
-    // $(this).append($("<div class='product_items cart-items'><button class='\'cartPage'\'>Add to Recs</button></div>"))
     $(this).find('.common').css('display', 'none');
     $(this).find('.common1').css('display', 'none');
     $(this).find('.bordernone').css('border', 'none');
@@ -109,7 +101,7 @@ function UpdateSuggestionList(query) {
                     <h6 class="common1">$${product.price.toFixed(2)}</h6>
                     <button class="cartPage" style="display: none" id="add-to-rec-btn-${
                       product.id
-                    }">Add to Recs</button>
+                    }">Tag this Item</button>
                 </div>
             </div>`;
       });
@@ -136,11 +128,11 @@ function checkProductInRecs(externalId) {
     .then(({ data }) => {
       console.log('In rec status:', data);
       if (data && data.productInRecs) {
-        $('#in-recs-status').text('In Recs');
+        $('#in-recs-status').text('Tagged');
         $('#add-to-my-recs-btn').prop('disabled', true);
         $('#add-to-my-recs-btn').hide();
       } else {
-        $('#in-recs-status').text('Not in Recs');
+        $('#in-recs-status').text('Not Tagged');
         $('#add-to-my-recs-btn').prop('disabled', false);
         $('#add-to-my-recs-btn').show();
       }
