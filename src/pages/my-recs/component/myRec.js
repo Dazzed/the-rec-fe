@@ -12,13 +12,42 @@ const MyRecProductSectionStyle = styled.div`
   margin: 0;
   padding-bottom: 27px;
   border: 1px solid #f1f3f4;
-  // margin-bottom: 17px;
+  position: relative;
   height: 100%;
   .productsimgs {
     width: 100%;
     height: 200px;
     object-fit: contain;
     margin-bottom: 24px;
+  }
+  .overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      width: 100%;
+      display: none;
+      transition: .5s ease;
+      background: #F5BF42;
+      mix-blend-mode: normal;
+      border: 1px solid #F1F3F4;
+
+    .icon-close {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: #fff;
+        font-size: 18px;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+        &img:hover {
+          cursor: pointer;
+        }
+    }
   }
   p,
   h5,
@@ -38,6 +67,10 @@ const MyRecProductSectionStyle = styled.div`
     -webkit-box-orient: vertical;
     padding: 0 15px;
   }
+  &:hover .overlay {
+    display: block;
+    background-color: rgba(245, 191, 66, .72);
+  }
 `;
 
 function MyRec(props) {
@@ -51,6 +84,9 @@ function MyRec(props) {
           alt="Products Image"
           className="productsimgs"
         />
+        <div className="overlay">
+          <div className="icon-close"><img src="../../../imgs/svgs/close-icon-red.svg" /></div>
+        </div>
         <p>{rec.title}</p>
         <h5>
           <b>{rec.brand.name}</b>
