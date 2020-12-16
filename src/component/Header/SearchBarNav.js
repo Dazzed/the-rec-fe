@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Dropdown } from 'react-bootstrap';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 import { withRouter } from 'next/router';
@@ -32,7 +32,7 @@ const SearchBox = styled.div`
       color: #c7c7c7;
     }
     &:focus {
-      outline: $CommoneNone;
+      outline: none;
       + {
         .search {
           transform: perspective(400px) rotateY(89deg);
@@ -100,7 +100,38 @@ li {
 	}
 }
 `;
-
+const LogInDropdown = styled(Dropdown)`
+  button {
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+      &:active, &:focus, &:hover {
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+    }
+    .dropdown-menu {
+      border: 1px solid #ccc;
+      border-color: rgba(0,0,0,.2);
+      border-radius: 8px;
+      color: #000;
+      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.2);
+      box-shadow: 0 2px 10px rgba(0,0,0,.2);
+      transform : translate(-124px, 54.667px) !important;
+    ul {
+      font-family: Roboto-Regular;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 21px;
+      color: #000;
+    }
+  }
+`;
 class SearchBarNav extends React.Component {
   constructor(props) {
     super(props);
@@ -177,12 +208,25 @@ class SearchBarNav extends React.Component {
                 <Link href="/contacts">My Contacts</Link>
               </li>
               <li>
-                <a href="#">
+                {/* <a href="#">
                   <img
                     src={profilePicUrl || '/imgs/default_profile_pic.jpg'}
                     alt="userImg"
                   />
-                </a>
+                </a> */}
+                <LogInDropdown>
+                  <Dropdown.Toggle id="dropdown-basic">
+                    <img
+                      src={profilePicUrl || '/imgs/default_profile_pic.jpg'}
+                      alt="userImg"
+                    />
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item>Logout</Dropdown.Item>
+                  </Dropdown.Menu>
+                </LogInDropdown>
+
               </li>
             </ul>
           </NavItem>
