@@ -159,8 +159,6 @@ class SearchBarNav extends React.Component {
       suggestions: [],
       isLoading: false,
     };
-
-    this.handleQueryChange = debounce(this.handleInput, 300);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -178,7 +176,13 @@ class SearchBarNav extends React.Component {
     return toReturn;
   }
 
-  handleInput = (value) => {
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.state.value && prevState.value) {
+      this.handleQueryChange('');
+    }
+  }
+
+  handleQueryChange = (value) => {
     if (
       this.props.handleQuery &&
       typeof this.props.handleQuery === 'function'
@@ -211,7 +215,6 @@ class SearchBarNav extends React.Component {
     this.setState({
       value: newValue,
     });
-    // this.handleQueryChange(newValue);
   };
 
   onSuggestionsFetchRequested = ({ value }) => {
@@ -239,8 +242,6 @@ class SearchBarNav extends React.Component {
     };
 
     const profilePicUrl = profile && profile.profilePicUrl;
-
-    console.log(this.state);
 
     return (
       <Row className="align-items-center">
