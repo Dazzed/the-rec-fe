@@ -471,7 +471,6 @@ function getProductDefaults() {
   _object = {
     'url': _default_url(),
     'price': _clean_price(_default_price()),
-    // fall back to no-image image if we don't have any scraped images
     'image_urls': _default_image_urls().length ? _clean_image_urls(_default_image_urls().slice(0, 10)) : ['https://web.global-ved.com/assets/images/default_image.png'],
     'title': _default_title(),
     'category': _default_category_string() || 'General',
@@ -515,8 +514,8 @@ function getProductDefaults() {
 
 
 (function () {
-  var BL_URL = 'https://web.global-ved.com/popup.html';
-  // var BL_URL = 'http://localhost:4000/popup.html';
+  var REC_URL = 'https://web.global-ved.com/popup.html';
+  // var REC_URL = 'http://localhost:4000/popup.html';
 
   // Gives us common iframe setup shared by this and add.js.erb
   /**
@@ -590,7 +589,6 @@ function getProductDefaults() {
     var url = encodeURIComponent(defaults.url);
     var title = encodeURIComponent(defaults.title);
     var price = encodeURIComponent(defaults.price);
-    // var upc = encodeURIComponent(defaults.upc);
     var brand = encodeURIComponent(defaults.brand);
     var search = encodeURIComponent(defaults.search);
     var description = encodeURIComponent(defaults.description);
@@ -614,7 +612,7 @@ function getProductDefaults() {
 
 
   function redirect() {
-    window.location.href = BL_URL + '?u=' + encodeURIComponent(window.location) + '&t=' + encodeURIComponent(window.document.title);
+    window.location.href = REC_URL + '?u=' + encodeURIComponent(window.location) + '&t=' + encodeURIComponent(window.document.title);
   }
 
   window.bookmarklet = function (opts) { fullFunc(opts) };

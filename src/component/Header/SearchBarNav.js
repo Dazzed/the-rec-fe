@@ -284,7 +284,7 @@ class SearchBarNav extends React.Component {
           <NavItem>
             <ul>
               <li>
-                <Link href="/my-recs">My Recs</Link>
+                <Link href="/my-recs">My Tags</Link>
               </li>
               <li>
                 <Link href="/contacts">My Contacts</Link>
