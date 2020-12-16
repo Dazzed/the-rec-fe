@@ -40,8 +40,33 @@ const ProductSection = styled.div`
     line-height: 16px;
     text-align: center;
     color: #000;
-    margin-bottom: 17px;
+    margin: 0;
     padding: 0 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  h6 {
+    font-family: Roboto-Regular;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: #000;
+    margin: 0;
+  }
+  h4 {
+    font-family: Roboto-Regular;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: #000;
+    margin-bottom: 17px;
   }
 `;
 
@@ -71,12 +96,13 @@ function DashboardProducts(props) {
       <a href={product.externalLink} target="_blank">
         <h5>
           {product.title}
-          <br />
-          <b>
-            {product.brand.name}
-            <br />${product.price.toFixed(2)}
-          </b>
         </h5>
+        <h6>
+          {product.brand.name}
+        </h6>
+        <h4>
+          ${product.price.toFixed(2)}
+        </h4>
       </a>
     </ProductSection>
   );
