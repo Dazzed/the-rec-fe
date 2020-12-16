@@ -21,6 +21,11 @@ const DealerProductSectionStyle = styled.div`
   }
   p {
     padding: 0 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
   p,
   h5,

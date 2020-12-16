@@ -127,15 +127,17 @@ $padding-responsive: 600px;
 .react-autosuggest__suggestions-container--open {
   display: block;
   position: absolute;
-  top: 51px;
+  top: 69px;
   width: 100%;
-  border: 1px solid #aaa;
   background-color: #fff;
   font-family: Roboto-Bold;
   font-weight: bold;
   font-size: 18px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  font-style: normal;
+  // border-bottom-left-radius: 4px;
+  // border-bottom-right-radius: 4px;
+  box-shadow: 0px 10px 26px rgba(0, 0, 0, 0.26);
+  border-radius: 10px;
   z-index: 2;
 }
 .react-autosuggest__suggestions-list {
