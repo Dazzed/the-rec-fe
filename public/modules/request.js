@@ -1,7 +1,7 @@
 const API_TOKEN =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwODAzNDU2MywiZXhwIjoxNjM5NTcwNTYzfQ.0iSrnJYVaY84jR4ZHitfUg1YEgUeG9DOQAyB4JmO-Io";
 
-const API_URL = "https://api.global-ved.com/api";
+const API_URL = "https://api.get-tag.com/api";
 // const API_URL = "http://localhost:3000/api";
 
 function get(url, params = {}) {
