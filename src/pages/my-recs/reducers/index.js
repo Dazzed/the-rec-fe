@@ -5,6 +5,7 @@ const myRecsState = {
   success: false,
   loading: false,
   myRecsListData: null,
+  deleteRecSuccess: true,
 };
 
 const myRecsReducer = (state = myRecsState, action) => {
@@ -23,7 +24,17 @@ const myRecsReducer = (state = myRecsState, action) => {
       return Object.assign({}, state, {
         error: action.error,
       });
-      I;
+
+    case types.DELETE_MY_REC_SUCCESS:
+      return Object.assign({}, state, {
+        success: action.message,
+        deleteRecSuccess: action.message,
+      });
+
+    case types.DELETE_MY_REC_ERROR:
+      return Object.assign({}, state, {
+        error: action.error,
+      });
 
     default:
       return state;

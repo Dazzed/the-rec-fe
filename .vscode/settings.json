@@ -3,7 +3,7 @@
   "editor.tabCompletion": "on",
   "editor.tabSize": 2,
   "editor.trimAutoWhitespace": true,
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
 
   "files.exclude": {
     "**/.DS_Store": true,

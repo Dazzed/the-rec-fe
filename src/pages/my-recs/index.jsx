@@ -52,6 +52,20 @@ class MyRecs extends React.Component {
     if (this.props.error && this.props.error !== prevProps.error) {
       // toastError(this.props.error);
     }
+
+    if (
+      this.props.deleteRecSuccess &&
+      this.props.deleteRecSuccess !== prevProps.deleteRecSuccess
+    ) {
+      this.setState(
+        {
+          hasMoreRecords: false,
+          currentPageIndex: 0,
+          searchQuery: this.props.router.query.q || '',
+        },
+        () => this.listMyRecs()
+      );
+    }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -157,7 +171,7 @@ class MyRecs extends React.Component {
         <Row className="mt-lg-5 mb-lg-5 mb-4 mt-4">
           {myRecsList.map((rec) => (
             <Col key={rec.id} lg={2} md={4} sm={6} xs={12} className="mb-3">
-              <MyRec rec={rec} />
+              <MyRec rec={rec} deleteMyRec={this.props.deleteMyRec} />
             </Col>
           ))}
         </Row>
@@ -187,6 +201,7 @@ const mapStateToProps = (state) => {
     error: state.myRecs.error,
     success: state.myRecs.success,
     myRecsListData: state.myRecs.myRecsListData,
+    deleteRecSuccess: state.myRecs.deleteRecSuccess,
   };
 };
 

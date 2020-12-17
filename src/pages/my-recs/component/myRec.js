@@ -21,32 +21,33 @@ const MyRecProductSectionStyle = styled.div`
     margin-bottom: 24px;
   }
   .overlay {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 200px;
-      width: 100%;
-      display: none;
-      transition: .5s ease;
-      background: #F5BF42;
-      mix-blend-mode: normal;
-      border: 1px solid #F1F3F4;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    width: 100%;
+    display: none;
+    transition: 0.5s ease;
+    background: #f5bf42;
+    mix-blend-mode: normal;
+    border: 1px solid #f1f3f4;
 
     .icon-close {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        color: #fff;
-        font-size: 18px;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        text-align: center;
-        &img:hover {
-          cursor: pointer;
-        }
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: #fff;
+      font-size: 18px;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      text-align: center;
+      cursor: pointer;
+      &img:hover {
+        cursor: pointer;
+      }
     }
   }
   p,
@@ -69,7 +70,7 @@ const MyRecProductSectionStyle = styled.div`
   }
   &:hover .overlay {
     display: block;
-    background-color: rgba(245, 191, 66, .72);
+    background-color: rgba(245, 191, 66, 0.72);
   }
 `;
 
@@ -84,9 +85,13 @@ function MyRec(props) {
           alt="Products Image"
           className="productsimgs"
         />
-        <div className="overlay">
-          <div className="icon-close"><img src="../../../imgs/svgs/close-icon-red.svg" /></div>
+      </a>
+      <div className="overlay">
+        <div className="icon-close" onClick={() => props.deleteMyRec(rec.id)}>
+          <img src="../../../imgs/svgs/close-icon-red.svg" />
         </div>
+      </div>
+      <a href={rec.externalLink} target="_blank">
         <p>{rec.title}</p>
         <h5>
           <b>{rec.brand.name}</b>
