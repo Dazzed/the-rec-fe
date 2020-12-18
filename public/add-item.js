@@ -6292,7 +6292,18 @@ function getProductDefaults() {
 }
 
 (function () {
-  var REC_URL = 'https://' + window.location.hostname + '/popup.html';
+  var this_js_script = jq('script[src*=add-item]'); // or better regexp to get the file name..
+  var data_script_env = this_js_script.attr('data_script_env');
+  const URL =
+    data_script_env === 'production'
+      ? 'https://www.get-tag.com'
+      : data_script_env === 'staging'
+      ? 'https://web.global-ved.com'
+      : 'http://localhost:4000';
+
+  var REC_URL = URL + '/popup.html';
+  console.log('REC_URL', REC_URL);
+
   // var REC_URL = 'http://localhost:4000/popup.html';
 
   // Gives us common iframe setup shared by this and add.js.erb
@@ -6787,7 +6798,8 @@ function getProductDefaults() {
     })();
 
   var _presentRecFrame = function (queryString) {
-    var _hostname = 'https://' + window.location.hostname;
+    var _hostname = URL;
+    console.log('_hostname', _hostname);
     // var _hostname = 'http://localhost:4000';
     var iframe = document.createElement('iframe');
     iframe.setAttribute('allowtransparency', 'true');
@@ -6855,7 +6867,9 @@ function getProductDefaults() {
       '&brand=' +
       brand +
       '&search=' +
-      search;
+      search +
+      '&script_env=' +
+      data_script_env;
     for (i = 0; i < defaults.image_urls.length; i++) {
       query_string += '&imgs=' + encodeURIComponent(defaults.image_urls[i]);
     }
@@ -6876,7 +6890,9 @@ function getProductDefaults() {
       '?u=' +
       encodeURIComponent(window.location) +
       '&t=' +
-      encodeURIComponent(window.document.title);
+      encodeURIComponent(window.document.title) +
+      '&script_env=' +
+      data_script_env;
   }
 
   window.bookmarklet = function (opts) {

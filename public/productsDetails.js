@@ -9,6 +9,7 @@ const images = urlParams.getAll('imgs');
 const search = urlParams.get('search');
 const externalId = urlParams.get('externalId');
 const externalLink = urlParams.get('externalLink');
+const script_env = urlParams.get('script_env');
 let hostname = 'Amazon.com';
 
 function getLocation(href) {
@@ -158,7 +159,7 @@ $('#createRecForm').submit(function () {
 
   console.log('form values', values);
 
-  createAndAddToRec(values)
+  createAndAddToRec(values, script_env)
     .then(() => {
       console.log('rec created successfully');
       $('#modal3').hide();

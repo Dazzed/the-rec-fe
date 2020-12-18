@@ -1,3 +1,4 @@
+let script_env = null;
 $('.addToRecRedBtn').click(function () {
   $('#Modal1').hide();
   // chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
@@ -21,6 +22,7 @@ $(function () {
   const images = urlParams.getAll('imgs');
   const search = urlParams.get('search');
   const externalId = urlParams.get('externalId');
+  script_env = urlParams.get('script_env');
 
   console.log(urlParams.getAll('imgs'));
   $('#productName').html(title);
@@ -47,7 +49,7 @@ function productListActions() {
     let eleIdChunk = eleId.split('-');
     const productId = Number.parseInt(eleIdChunk[eleIdChunk.length - 1]);
     console.log('Adding product to rec', productId);
-    addToRec(productId)
+    addToRec(productId,script_env)
       .catch((error) => console.error(error))
       .finally(() => {
         $('#Modal1').hide();
@@ -79,7 +81,7 @@ function productListActions() {
 }
 
 function UpdateSuggestionList(query) {
-  fetchProducts(query)
+  fetchProducts(query, script_env)
     .then((result) => {
       let html = '';
       const results = result.data ? result.data.slice(0, 4) : [];
@@ -124,7 +126,7 @@ function UpdateSuggestionList(query) {
 }
 
 function checkProductInRecs(externalId) {
-  checkRecExist(externalId)
+  checkRecExist(externalId, script_env)
     .then(({ data }) => {
       console.log('In rec status:', data);
       if (data && data.productInRecs) {

@@ -3,7 +3,9 @@ import { Container, Row, Col, Modal, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import Navbar from 'component/Header/Navbar';
+import { getPersistedUserToken } from 'lib/utils';
 
 const CommonContainer = styled(Container)`
   padding: 37px 55px !important;
@@ -68,6 +70,15 @@ function MarketingLandingPage() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = getPersistedUserToken();
+    if (token) {
+      router.push('/dashboard');
+    }
+  }, []);
 
   return (
     <>
