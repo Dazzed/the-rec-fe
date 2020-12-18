@@ -84,7 +84,8 @@ function UpdateSuggestionList(query) {
   fetchProducts(query, script_env)
     .then((result) => {
       let html = '';
-      const results = result.data ? result.data.slice(0, 4) : [];
+      // const results = result.data ? result.data.slice(0, 4) : [];
+      const results = result.data;
       results.forEach((ele) => {
         let { product, user } = ele;
 

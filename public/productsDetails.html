@@ -395,6 +395,9 @@
     -ms-word-break: normal;
     word-break: normal;
   }
+  .category select {
+    width: 100%;
+  }
 </style>
 
 <body>
@@ -450,20 +453,22 @@
                 </div>
               </div>
               <div class="col-6 pl-8">
-                <div class="form-select">
-                  <select placeholder="Category" id="productCategory" name="productCategory" required>
-                    <option value=""></option>
-                    <option value="Home">Home</option>
-                    <option value="Kids">Kids</option>
-                    <option value="Apparel - Women">Apparel - Women</option>
-                    <option value="Apparel - Men">Apparel - Men</option>
-                    <option value="Beauty">Beauty</option>
-                    <option value="Shoes">Shoes</option>
-                    <option value="Accessories">Accessories</option>
-                    <option value="Personal Care">Personal Care</option>
-                    <option value="Electronics">Tech</option>
-                    <option value="Other">Other</option>
-                  </select>
+                <div class="form selectdiv category">
+                  <div class="form-select">
+                    <select placeholder="Category" id="productCategory" name="productCategory" required >
+                      <option value=""></option>
+                      <option value="Home">Home</option>
+                      <option value="Kids">Kids</option>
+                      <option value="Apparel - Women">Apparel - Women</option>
+                      <option value="Apparel - Men">Apparel - Men</option>
+                      <option value="Beauty">Beauty</option>
+                      <option value="Shoes">Shoes</option>
+                      <option value="Accessories">Accessories</option>
+                      <option value="Personal Care">Personal Care</option>
+                      <option value="Electronics">Tech</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
                 </div>
               </div>
               <div class="col-12">
