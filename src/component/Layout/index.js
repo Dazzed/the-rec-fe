@@ -35,9 +35,9 @@ function Layout({ children }) {
   return (
     <>
       <Head>
-        <title>The Rec</title>
+        <title>Get Tag</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta property="og:title" content="The Rec" key="title" />
+        <meta property="og:title" content="Get Tag" key="title" />
       </Head>
       {children}
     </>
