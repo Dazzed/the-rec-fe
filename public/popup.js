@@ -49,7 +49,7 @@ function productListActions() {
     let eleIdChunk = eleId.split('-');
     const productId = Number.parseInt(eleIdChunk[eleIdChunk.length - 1]);
     console.log('Adding product to rec', productId);
-    addToRec(productId,script_env)
+    addToRec(productId, script_env)
       .catch((error) => console.error(error))
       .finally(() => {
         $('#Modal1').hide();
@@ -101,22 +101,23 @@ function UpdateSuggestionList(query) {
                         ${product.title}
                     </h3>
                     <h6 class="common1">$${product.price.toFixed(2)}</h6>
-                    <button class="cartPage" style="display: none" id="add-to-rec-btn-${
-                      product.id
-                    }">Tag this Item</button>
+                    <button class="cartPage" style="display: none" id="add-to-rec-btn-${product.id
+          }">Tag this Item</button>
                 </div>
             </div>`;
       });
 
-      // if (html === "") {
-      //   html = `<div style="margin: auto;">No results found</div>`;
-      // }
-
-      // $("#product-search-results").html(html);
-
-      if (html != '') {
-        $('#product-search-results').html(html);
+      if (html === "") {
+        html = `<div class="no-suggestion-content">
+        <img src="../assets/images/no-result-icon.svg"  />
+        <h6>No Suggestions available.</h6></div>`;
       }
+
+      $("#product-search-results").html(html);
+
+      // if (html != '') {
+      //   $('#product-search-results').html(html);
+      // }
 
       productListActions();
     })
