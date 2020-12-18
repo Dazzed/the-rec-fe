@@ -152,13 +152,12 @@ class SearchBarNav extends React.Component {
     super(props);
 
     this.state = {
-      value:
-        this.props.router.query && this.props.router.query.q
-          ? this.props.router.query.q
-          : '',
+      value: '',
       suggestions: [],
       isLoading: false,
     };
+
+    this.loadSuggestions = debounce(this.loadSuggestions, 300);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -179,6 +178,19 @@ class SearchBarNav extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (!this.state.value && prevState.value) {
       this.handleQueryChange('');
+    }
+
+    if (
+      this.props.router.query &&
+      !isEqual(this.props.router.query, prevProps.router.query) &&
+      this.props.router.query.q
+    ) {
+      this.setState(
+        {
+          value: this.props.router.query.q,
+        },
+        this.handleQueryChange(this.props.router.query.q)
+      );
     }
   }
 
@@ -254,16 +266,6 @@ class SearchBarNav extends React.Component {
         </Col>
         <Col lg={6}>
           <SearchBox>
-            {/* <input
-              type="text"
-              placeholder="Search brands, categories or contacts"
-              onChange={(e) => this.handleQueryChange(e.target.value)}
-              defaultValue={
-                this.props.router.query && this.props.router.query.q
-                  ? this.props.router.query.q
-                  : ''
-              }
-            /> */}
             <Autosuggest
               suggestions={suggestions}
               onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
