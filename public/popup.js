@@ -101,9 +101,8 @@ function UpdateSuggestionList(query) {
                         ${product.title}
                     </h3>
                     <h6 class="common1">$${product.price.toFixed(2)}</h6>
-                    <button class="cartPage" style="display: none" id="add-to-rec-btn-${
-                      product.id
-                    }">Tag this Item</button>
+                    <button class="cartPage" style="display: none" id="add-to-rec-btn-${product.id
+          }">Tag this Item</button>
                 </div>
             </div>`;
       });

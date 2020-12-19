@@ -1,481 +1,489 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tag</title>
-    <script type="text/javascript" src="./jquery.3.5.1.js"></script>
-  </head>
-  <style>
-    @font-face {
-      font-family: Nunito-Regular;
-      src: url(/assets/fonts/Nunito-Regular.ttf);
-    }
 
-    @font-face {
-      font-family: Roboto-Regular;
-      src: url(/assets/fonts/Roboto-Regular.ttf);
-    }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tag</title>
+  <script type="text/javascript" src="./jquery.3.5.1.js"></script>
+</head>
+<style>
+  @font-face {
+    font-family: Nunito-Regular;
+    src: url(/assets/fonts/Nunito-Regular.ttf);
+  }
 
-    html,
-    body {
-      padding: 0;
-      margin: 0;
-      font-size: 14px;
-      background: transparent;
-    }
+  @font-face {
+    font-family: Roboto-Regular;
+    src: url(/assets/fonts/Roboto-Regular.ttf);
+  }
 
-    button:hover {
-      cursor: pointer;
-    }
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    background: transparent;
+  }
 
-    button:focus,
-    input:focus,
-    textarea:focus,
-    select:focus {
-      outline: none;
-      border: none;
-    }
+  button:hover {
+    cursor: pointer;
+  }
 
-    .modal {
-      padding: 15px;
-    }
+  button:focus,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border: none;
+  }
 
-    .modal-header {
-      font-size: 16px;
-      line-height: 18px;
-      font-weight: 400;
-      margin-bottom: 20px;
-      padding-right: 20px;
-    }
+  .modal {
+    padding: 15px;
+  }
 
-    .opacity {
-      opacity: 0.5;
-    }
+  .modal-header {
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    padding-right: 20px;
+  }
 
-    .modal-header input {
-      width: 100%;
-      height: 40px;
-      background: #f1f3f4;
-      border-radius: 10px;
-      font-family: Roboto-Regular;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 21px;
-      letter-spacing: 1px;
-      text-transform: lowercase;
-      color: #000;
-      border: none;
-      padding-left: 17px;
-    }
+  .opacity {
+    opacity: 0.5;
+  }
 
-    .modal-header input::placeholder {
-      color: #000;
-    }
+  .modal-header input {
+    width: 100%;
+    height: 40px;
+    background: #f1f3f4;
+    border-radius: 10px;
+    font-family: Roboto-Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+    color: #000;
+    border: none;
+    padding-left: 17px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+  }
 
-    button:hover {
-      cursor: pointer;
-    }
+  .modal-header input::placeholder {
+    color: #000;
+  }
 
-    .modal-content {
-      display: flex;
-      flex-direction: row;
-      margin-top: 34px;
-      overflow-x: auto;
-      overflow-y: hidden;
-    }
+  button:hover {
+    cursor: pointer;
+  }
 
-    .product_items {
-      padding: 0 9.5px;
-      position: relative;
-      z-index: 1000;
-      height: 225px !important;
-      transition: all 0.5s ease;
-      margin-bottom: 10px;
-      text-align: center;
-    }
+  .modal-content {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 38vh;
+  }
 
-    .product_items.opacity {
-      opacity: 0.5;
-    }
+  .product_items {
+    padding: 0 9.5px;
+    position: relative;
+    z-index: 1000;
+    height: 225px !important;
+    transition: all 0.5s ease;
+    margin-bottom: 10px;
+    text-align: center;
+  }
 
-    .product_items:first-child {
-      padding-left: 0;
-    }
+  .product_items.opacity {
+    opacity: 0.5;
+  }
 
-    .product_items:last-child {
-      padding-right: 0;
-    }
+  .product_items:first-child {
+    padding-left: 0;
+  }
 
-    .product_items img {
-      width: 123px;
-      height: 123px;
-      object-fit: contain;
-      text-align: center;
-    }
+  .product_items:last-child {
+    padding-right: 0;
+  }
 
-    .product_content {
-      background: #ffffff;
-      border: 1px solid #f1f3f4;
-      box-sizing: border-box;
-      text-align: center;
-      padding: 0 10px;
-      width: 123px;
-      min-height: auto;
-      position: relative;
-      top: -5px;
-    }
+  .product_items img {
+    width: 123px;
+    height: 123px;
+    object-fit: contain;
+    text-align: center;
+  }
 
-    .product_content img {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      margin-top: -25px;
-      margin-bottom: 5px;
-    }
+  .product_content {
+    background: #ffffff;
+    border: 1px solid #f1f3f4;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0 10px;
+    width: 123px;
+    min-height: auto;
+    position: relative;
+    top: -5px;
+  }
 
-    .product_content h2 {
-      font-family: Roboto-Regular;
-      font-style: normal;
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 16px;
-      color: #000;
-      margin: 0;
-    }
+  .product_content img {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    margin-top: -25px;
+    margin-bottom: 5px;
+  }
 
-    .product_content p {
-      font-family: Roboto-Regular;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 12px;
-      line-height: 14px;
-      text-align: center;
-      color: #000;
-      margin: 0;
-    }
+  .product_content h2 {
+    font-family: Roboto-Regular;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000;
+    margin: 0;
+  }
 
-    .product_content h3 {
-      font-family: Roboto-Regular;
-      font-style: normal;
-      font-weight: 700;
-      font-size: 12px;
-      line-height: 14px;
-      text-align: center;
-      color: #000;
-      margin: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      display: -webkit-box;
-    }
+  .product_content p {
+    font-family: Roboto-Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    color: #000;
+    margin: 0;
+  }
 
-    .product_content h6 {
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: Bold;
-      font-size: 12px;
-      line-height: 14px;
-      text-align: center;
-      color: #000;
-      margin: 0;
-      margin-bottom: 10px;
-    }
+  .product_content h3 {
+    font-family: Roboto-Regular;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    color: #000;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+  }
 
-    .bordernone {
-      border: 1px solid #f1f3f4;
-    }
+  .product_content h6 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: Bold;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    color: #000;
+    margin: 0;
+    margin-bottom: 10px;
+  }
 
-    .cartPage {
-      background: #bdf4bc;
-      border-radius: 10px;
-      width: 100px;
-      height: 40px;
-      font-family: Roboto-Regular;
-      font-style: normal;
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 16px;
-      border: none;
-      text-transform: capitalize;
-      color: #000008;
-      position: relative;
-      right: 0;
-      top: 10px;
-      margin-top: 5px;
-    }
+  .bordernone {
+    border: 1px solid #f1f3f4;
+  }
 
-    .add-btn-items {
-      padding: 0;
-      border: none;
-    }
+  .cartPage {
+    background: #bdf4bc;
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    font-family: Roboto-Regular;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    border: none;
+    text-transform: capitalize;
+    color: #000008;
+    position: relative;
+    right: 0;
+    top: 10px;
+    margin-top: 5px;
+  }
 
-    .add-btn-items h2 {
-      margin: 0;
-      margin-bottom: 28px;
-    }
+  .add-btn-items {
+    padding: 0;
+    border: none;
+  }
 
-    .ml-0 {
-      margin-left: 0;
-    }
+  .add-btn-items h2 {
+    margin: 0;
+    margin-bottom: 28px;
+  }
 
-    .commen {
-      display: none;
-    }
+  .ml-0 {
+    margin-left: 0;
+  }
 
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      margin-left: -15px;
-      margin-right: -15px;
-    }
+  .commen {
+    display: none;
+  }
 
-    .col-12 {
-      max-width: 100%;
-      flex: 0 0 100%;
-      position: relative;
-      padding: 0 15px;
-    }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
 
-    .col-6 {
-      max-width: 50%;
-      flex: 0 0 50%;
-      position: relative;
-      padding: 0 15px;
-    }
+  .col-12 {
+    max-width: 100%;
+    flex: 0 0 100%;
+    position: relative;
+    padding: 0 15px;
+  }
 
-    .col-7 {
-      max-width: 40%;
-      flex: 0 0 40%;
-      position: relative;
-      padding: 0 15px;
-      padding-left: 0;
-    }
+  .col-6 {
+    max-width: 50%;
+    flex: 0 0 50%;
+    position: relative;
+    padding: 0 15px;
+  }
 
-    .col-4 {
-      max-width: 33.33333%;
-      flex: 0 0 33.33333%;
-      position: relative;
-      padding: 0 15px;
-    }
+  .col-7 {
+    max-width: 40%;
+    flex: 0 0 40%;
+    position: relative;
+    padding: 0 15px;
+    padding-left: 0;
+  }
 
-    .col-3 {
-      max-width: 25%;
-      flex: 0 0 25%;
-      position: relative;
-      padding: 0 15px;
-    }
+  .col-4 {
+    max-width: 33.33333%;
+    flex: 0 0 33.33333%;
+    position: relative;
+    padding: 0 15px;
+  }
 
-    .text-right {
-      text-align: right;
-    }
+  .col-3 {
+    max-width: 25%;
+    flex: 0 0 25%;
+    position: relative;
+    padding: 0 15px;
+  }
 
-    .col-2 {
-      max-width: 19.7%;
-      flex: 0 0 19.7%;
-      position: relative;
-      padding: 0 15px;
-    }
+  .text-right {
+    text-align: right;
+  }
 
-    .br-row {
-      border-bottom: 1px solid #e0e0e0;
-      padding-bottom: 16px;
-      padding-top: 0;
-    }
+  .col-2 {
+    max-width: 19.7%;
+    flex: 0 0 19.7%;
+    position: relative;
+    padding: 0 15px;
+  }
 
-    .titleh3 {
-      width: 50%;
-      padding-left: 15px;
-      position: relative;
-      top: 2px;
-    }
+  .br-row {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 16px;
+    padding-top: 0;
+  }
 
-    .titleh3 h3 {
-      margin: 0;
-      text-align: left;
-      padding-left: 15px;
-      font-size: 16px;
-      line-height: 0;
-      font-family: Nunito-Regular;
-      font-weight: 700;
-      font-style: normal;
-      color: #000;
-    }
+  .titleh3 {
+    width: 50%;
+    padding-left: 15px;
+    position: relative;
+    top: 2px;
+  }
 
-    .titleh3 img {
-      width: 30px;
-      margin-right: 6px;
-      vertical-align: middle;
-      position: relative;
-      top: -2px;
-    }
+  .titleh3 h3 {
+    margin: 0;
+    text-align: left;
+    padding-left: 15px;
+    font-size: 16px;
+    line-height: 0;
+    font-family: Nunito-Regular;
+    font-weight: 700;
+    font-style: normal;
+    color: #000;
+  }
 
-    .close {
-      width: 47%;
-      text-align: right;
-    }
+  .titleh3 img {
+    width: 30px;
+    margin-right: 6px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+  }
 
-    .close img {
-      vertical-align: middle;
-      padding-right: 15px;
-    }
+  .close {
+    width: 47%;
+    text-align: right;
+  }
 
-    .close img:hover {
-      cursor: pointer;
-    }
+  .close img {
+    vertical-align: middle;
+    padding-right: 15px;
+  }
 
-    .mt-3 {
-      margin-top: 30px;
-    }
+  .close img:hover {
+    cursor: pointer;
+  }
 
-    .products-img img {
-      width: 100%;
-      height: 138px;
-      object-fit: cover;
-    }
+  .mt-3 {
+    margin-top: 30px;
+  }
 
-    .products-content h3 {
-      margin: 0;
-      margin-bottom: 6px;
-      font-family: Nunito-Regular;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 22px;
-      color: #333;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      overflow: hidden;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-    }
+  .products-img img {
+    width: 100%;
+    height: 138px;
+    object-fit: cover;
+  }
 
-    .products-content p {
-      margin: 0;
-      margin-bottom: 8px;
-      font-family: Nunito-Regular;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 22px;
-      color: #828282;
-    }
+  .products-content h3 {
+    margin: 0;
+    margin-bottom: 6px;
+    font-family: Nunito-Regular;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    color: #333;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
 
-    .products-content h6 {
-      margin: 0;
-      font-family: Nunito-Regular;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 22px;
-      margin-bottom: 16px;
-      color: #333333;
-    }
+  .products-content p {
+    margin: 0;
+    margin-bottom: 8px;
+    font-family: Nunito-Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #828282;
+  }
 
-    .products-content button {
-      margin-bottom: 22px;
-    }
+  .products-content h6 {
+    margin: 0;
+    font-family: Nunito-Regular;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 16px;
+    color: #333333;
+  }
 
-    .addI-btn {
-      background: #eb5468;
-      border-radius: 10px;
-      font-family: Nunito-Regular;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 16px;
-      width: 195px;
-      color: #fff;
-      height: 40px;
-      line-height: 17px;
-      letter-spacing: 1px;
-      text-transform: capitalize;
-      border: none;
-    }
+  .products-content button {
+    margin-bottom: 22px;
+  }
 
-    .addToRecRedBtn img {
-      margin-right: 10px;
-      vertical-align: bottom;
-      height: 17px;
-    }
+  .addI-btn {
+    background: #eb5468;
+    border-radius: 10px;
+    font-family: Nunito-Regular;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    width: 195px;
+    color: #fff;
+    height: 40px;
+    line-height: 17px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    border: none;
+  }
 
-    .btnslide-remove button {
-      background: rgba(235, 87, 87, 0.1);
-      border-radius: 10px;
-      font-family: Nunito-Regular;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 13px;
-      line-height: 18px;
-      color: #eb5757;
-      border: none;
-      width: 89px;
-      height: 28px;
-      margin-top: 8px;
-      margin-bottom: 16px;
-    }
-    .no-suggestion-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin: 0 auto;
-      margin-top: 20px;
-    }
-    .no-suggestion-content img {
-      margin-bottom: 16px;
-    }
-    .no-suggestion-content h6 {
-      margin: 0;
-      font-family: Nunito-Regular;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 22px;
-      color: #4f4f4f;
-    }
-  </style>
+  .addToRecRedBtn img {
+    margin-right: 10px;
+    vertical-align: bottom;
+    height: 17px;
+  }
 
-  <body>
-    <div class="modal" id="Modal1">
-      <div class="row br-row">
-        <div class="titleh3">
-          <h3><img src="/assets/images/logo-150x150.png" />Get Tag</h3>
-        </div>
-        <div class="close">
-          <img src="./assets/images/close-btn.png" />
-        </div>
+  .btnslide-remove button {
+    background: rgba(235, 87, 87, 0.1);
+    border-radius: 10px;
+    font-family: Nunito-Regular;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 18px;
+    color: #eb5757;
+    border: none;
+    width: 89px;
+    height: 28px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+  }
+
+  .no-suggestion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .no-suggestion-content img {
+    margin-bottom: 16px;
+  }
+
+  .no-suggestion-content h6 {
+    margin: 0;
+    font-family: Nunito-Regular;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #4f4f4f;
+  }
+</style>
+
+<body>
+  <div class="modal" id="Modal1">
+    <div class="row br-row">
+      <div class="titleh3">
+        <h3><img src="/assets/images/logo-150x150.png" />Get Tag</h3>
       </div>
-      <div class="row mt-3">
-        <div class="col-3">
-          <div class="products-img">
-            <img id="productImage" src="./assets/images/default_image.png" />
-          </div>
-        </div>
-        <div class="col-7">
-          <div class="products-content">
-            <h3 id="productName"></h3>
-            <p id="brandName"></p>
-            <h6 id="productPrice"></h6>
-            <button class="addI-btn addToRecRedBtn" id="add-to-my-recs-btn">
-              <img src="./assets/images/white-addbtn.png" />Tag this Item
-            </button>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="btnslide-remove text-right">
-            <button id="in-recs-status">Not Tagged</button>
-          </div>
-        </div>
+      <div class="close">
+        <img src="./assets/images/close-btn.png" />
       </div>
-      <div class="modal-header">
-        <input type="text" disabled id="searchedText" />
-      </div>
-      <div class="modal-content" id="product-search-results"></div>
     </div>
-    <script src="modules/checkAuth.js"></script>
-    <script src="modules/utils.js"></script>
-    <script src="modules/request.js"></script>
-    <script src="popup.js"></script>
-  </body>
+    <div class="row mt-3">
+      <div class="col-3">
+        <div class="products-img">
+          <img id="productImage" src="./assets/images/default_image.png" />
+        </div>
+      </div>
+      <div class="col-7">
+        <div class="products-content">
+          <h3 id="productName"></h3>
+          <p id="brandName"></p>
+          <h6 id="productPrice"></h6>
+          <button class="addI-btn addToRecRedBtn" id="add-to-my-recs-btn">
+            <img src="./assets/images/white-addbtn.png" />Tag this Item
+          </button>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="btnslide-remove text-right">
+          <button id="in-recs-status">Not Tagged</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-header">
+      <input type="text" disabled id="searchedText" />
+    </div>
+    <div class="modal-content" id="product-search-results"></div>
+  </div>
+  <script src="modules/checkAuth.js"></script>
+  <script src="modules/utils.js"></script>
+  <script src="modules/request.js"></script>
+  <script src="popup.js"></script>
+</body>
+
 </html>
