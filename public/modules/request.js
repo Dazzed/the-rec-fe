@@ -10,13 +10,15 @@ function getURL(script_env) {
 }
 
 function getToken(script_env) {
-  const API_TOKEN =
-    script_env === 'production'
-      ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTYwODI3MzQ4NiwiZXhwIjoxNjM5ODA5NDg2fQ.6gNPFhb3T47cnIEO9aa-KRhhUUFw4fozHnEUblUzJG8'
-      : script_env === 'staging'
-      ? 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwODAzNDU2MywiZXhwIjoxNjM5NTcwNTYzfQ.0iSrnJYVaY84jR4ZHitfUg1YEgUeG9DOQAyB4JmO-Io'
-      : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwODAzNDU2MywiZXhwIjoxNjM5NTcwNTYzfQ.0iSrnJYVaY84jR4ZHitfUg1YEgUeG9DOQAyB4JmO-Io';
-  return API_TOKEN;
+  const data = window.localStorage.getItem('token');
+
+  if (!data) {
+    return null;
+  }
+
+  const parsed = JSON.parse(data);
+
+  return parsed.value || null;
 }
 
 function get(script_env, url, params = {}) {

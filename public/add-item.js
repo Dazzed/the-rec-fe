@@ -6100,7 +6100,6 @@ function getProductDefaults() {
     }
 
     let breadcrumb_list = jq('.breadcrumb-list').find('span');
-    console.log('breadcrumb_list', breadcrumb_list.first().text());
     if (breadcrumb_list.first().text()) {
       return breadcrumb_list.first().text();
     }
@@ -6186,10 +6185,6 @@ function getProductDefaults() {
   let pSearch = '';
   let brand = document.getElementById('bylineInfo');
   if (brand !== null) {
-    console.log(
-      'Product Brand: ',
-      brand.innerText.replaceAll('Brand:', '').replaceAll('Visit the', '')
-    );
     pBrand = brand.innerText
       .replaceAll('Brand:', '')
       .replaceAll('Visit the', '');
@@ -6287,7 +6282,6 @@ function getProductDefaults() {
   _safety_check('description');
   _safety_check('externalId');
   _safety_check('externalLink');
-  console.log({ _object });
   return JSON.stringify(_object);
 }
 
@@ -6302,7 +6296,6 @@ function getProductDefaults() {
       : 'http://localhost:4000';
 
   var REC_URL = URL + '/popup.html';
-  console.log('REC_URL', REC_URL);
 
   // var REC_URL = 'http://localhost:4000/popup.html';
 
@@ -6799,8 +6792,7 @@ function getProductDefaults() {
 
   var _presentRecFrame = function (queryString) {
     var _hostname = URL;
-    console.log('_hostname', _hostname);
-    // var _hostname = 'http://localhost:4000';
+
     var iframe = document.createElement('iframe');
     iframe.setAttribute('allowtransparency', 'true');
     iframe.setAttribute('src', _hostname + '/popup.html?' + queryString);

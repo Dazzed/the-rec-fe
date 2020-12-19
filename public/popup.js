@@ -24,7 +24,6 @@ $(function () {
   const externalId = urlParams.get('externalId');
   script_env = urlParams.get('script_env');
 
-  console.log(urlParams.getAll('imgs'));
   $('#productName').html(title);
   $('#brandName').html(brand);
   price && $('#productPrice').html(`$${Number.parseFloat(price).toFixed(2)}`);
@@ -102,19 +101,20 @@ function UpdateSuggestionList(query) {
                         ${product.title}
                     </h3>
                     <h6 class="common1">$${product.price.toFixed(2)}</h6>
-                    <button class="cartPage" style="display: none" id="add-to-rec-btn-${product.id
-          }">Tag this Item</button>
+                    <button class="cartPage" style="display: none" id="add-to-rec-btn-${
+                      product.id
+                    }">Tag this Item</button>
                 </div>
             </div>`;
       });
 
-      if (html === "") {
+      if (html === '') {
         html = `<div class="no-suggestion-content">
         <img src="../assets/images/no-result-icon.svg"  />
         <h6>No Suggestions available.</h6></div>`;
       }
 
-      $("#product-search-results").html(html);
+      $('#product-search-results').html(html);
 
       // if (html != '') {
       //   $('#product-search-results').html(html);

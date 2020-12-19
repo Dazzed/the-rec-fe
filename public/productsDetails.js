@@ -38,10 +38,10 @@ for (let i = 0; i < images.length; i++) {
   // alert(response.farewell.images[i]);
   $('#productImages').append(
     '<div class="mySlides fade"><img src="' +
-    images[i] +
-    '"><input type="hidden" name="productImages" value="' +
-    images[i] +
-    '"></input></div>'
+      images[i] +
+      '"><input type="hidden" name="productImages" value="' +
+      images[i] +
+      '"></input></div>'
   );
   $('#productImageDots').append(
     '<span class="dot" onclick="currentSlide(' + (i + 1) + ')"></span>'
@@ -136,8 +136,6 @@ $('#createRecForm').submit(function () {
     category: '',
   };
 
-  console.log('product form values', fields);
-
   fields.forEach((val) => {
     const key = keys[val.name];
 
@@ -157,8 +155,6 @@ $('#createRecForm').submit(function () {
     }
   });
 
-  console.log('form values', values);
-
   createAndAddToRec(values, script_env)
     .then(() => {
       console.log('rec created successfully');
@@ -172,6 +168,6 @@ $('#createRecForm').submit(function () {
 
 function removeItem() {
   $('.mySlides[style*="display: block;"]').remove();
-  $(".dot.active").remove();
+  $('.dot.active').remove();
   plusSlides(1);
-};
+}
