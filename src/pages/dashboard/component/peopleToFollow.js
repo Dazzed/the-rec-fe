@@ -1,4 +1,4 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
 
 import People from 'pages/dashboard/component/people';
@@ -12,12 +12,13 @@ const FollowTitle = styled.h4`
   color: #000;
 `;
 const LoaderSection = styled.div`
-.loader-section {
-  position: fixed;
-  top: 50%;
-  left: 0;
-  right: 0;
-}`;
+  .loader-section {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+  }
+`;
 function PeopleFollowSection(props) {
   const { suggestions } = props;
 
