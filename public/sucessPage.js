@@ -1,4 +1,4 @@
-$(".close").click(function () {
+$(".close img").click(function () {
   parent.window.postMessage("removetheiframe", "*");
 });
 
