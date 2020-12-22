@@ -33,7 +33,7 @@ const ProfileImageSection = styled.div`
 const ButtonPinkFollow = styled.div`
   text-align: right;
   button {
-    background: #f6d0e8;
+    background: #d9f7ff;
     border-radius: 5px;
     padding: 9px;
     font-family: Roboto-Regular;
@@ -43,7 +43,7 @@ const ButtonPinkFollow = styled.div`
     line-height: 19px;
     height: 36px;
     text-align: center;
-    color: #000008;
+    color: #29C0EA;
     border: none;
     width: 90px;
   }

@@ -70,7 +70,11 @@ const SearchBox = styled.div`
     }
   }
 `;
-
+const LogoSection = styled.div`
+  img {
+    width: 75px;
+  }
+`;
 const NavItem = styled.div`
 	ul { display: flex;
 	flex-direction: row;
@@ -259,9 +263,9 @@ class SearchBarNav extends React.Component {
       <Row className="align-items-center">
         <Col lg={2}>
           <Link href="/dashboard">
-            <div className="logo-section">
-              <img src="/imgs/svgs/rec-logo.svg" alt="logo-rec" />
-            </div>
+            <LogoSection>
+              <img src="/imgs/svgs/rec-logo-blue.png" alt="logo-rec" />
+            </LogoSection>
           </Link>
         </Col>
         <Col lg={6}>
