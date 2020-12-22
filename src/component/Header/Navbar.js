@@ -5,14 +5,18 @@ import styled from 'styled-components';
 
 const Header = styled.header``;
 
-const LogoSection = styled.div``;
+const LogoSection = styled.div`
+  img {
+    width: 75px;
+  }
+`;
 
 function Navbar() {
   return (
     <Col xl={12}>
       <Header className="header">
-        <LogoSection className="logo-section">
-          <img src="/imgs/svgs/rec-logo.svg" alt="logo-rec" />
+        <LogoSection>
+          <img src="/imgs/svgs/rec-logo-blue.png" alt="logo-rec" />
         </LogoSection>
       </Header>
     </Col>

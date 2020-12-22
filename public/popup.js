@@ -8,7 +8,7 @@ $('.addToRecRedBtn').click(function () {
   window.location.replace('productsDetails.html?' + window.location.search);
 });
 
-$('.close').click(function () {
+$('.close img').click(function () {
   parent.window.postMessage('removetheiframe', '*');
 });
 

@@ -38,10 +38,10 @@ for (let i = 0; i < images.length; i++) {
   // alert(response.farewell.images[i]);
   $('#productImages').append(
     '<div class="mySlides fade"><img src="' +
-      images[i] +
-      '"><input type="hidden" name="productImages" value="' +
-      images[i] +
-      '"></input></div>'
+    images[i] +
+    '"><input type="hidden" name="productImages" value="' +
+    images[i] +
+    '"></input></div>'
   );
   $('#productImageDots').append(
     '<span class="dot" onclick="currentSlide(' + (i + 1) + ')"></span>'
@@ -109,7 +109,7 @@ function showSlides(n) {
   slides[slideIndex - 1].style.display = 'block';
   dots[slideIndex - 1].className += ' active';
 }
-$('.close').click(function () {
+$('.close img').click(function () {
   parent.window.postMessage('removetheiframe', '*');
 });
 

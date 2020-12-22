@@ -21,7 +21,7 @@ const DealerSection = styled.div`
     margin-bottom: 16px;
   }
   button {
-    background: #f6d0e8;
+    background: #29c0ea;
     border-radius: 5px;
     font-family: Roboto-Regular;
     font-style: normal;
@@ -29,7 +29,7 @@ const DealerSection = styled.div`
     font-size: 16px;
     line-height: 19px;
     text-align: center;
-    color: #000008;
+    color: #fff;
     margin: 0;
     height: 36px;
     width: 90px;
