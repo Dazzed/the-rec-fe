@@ -3,11 +3,10 @@ function getURL(script_env) {
     script_env === 'production'
       ? 'https://api.get-tag.com/api'
       : script_env === 'staging'
-        ? 'https://api.global-ved.com/api'
-        : 'http://localhost:3000/api';
+      ? 'https://api.global-ved.com/api'
+      : 'http://localhost:3000/api';
 
-  // return API_URL;
-  return 'https://api.global-ved.com/api';
+  return API_URL;
 }
 
 function getToken(script_env) {
