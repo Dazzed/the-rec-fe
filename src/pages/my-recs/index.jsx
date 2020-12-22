@@ -183,8 +183,8 @@ class MyRecs extends React.Component {
     return (
       <>
         <Head>
-          <title>My Tags The Rec</title>
-          <meta property="og:title" content="My Tags | The Rec" key="title" />
+          <title>My Tags | Get Tag</title>
+          <meta property="og:title" content="My Tags | Get Tag" key="title" />
         </Head>
         <CommonContainer className="container-fluid">
           <SearchBarNav handleQuery={this.handleQuery} />

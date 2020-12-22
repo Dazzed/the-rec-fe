@@ -203,11 +203,11 @@ class UserProfile extends React.Component {
         <Head>
           <title>
             {(userProfileData && userProfileData.name) || 'Dealer Profile'} |
-            The Rec
+            Get Tag
           </title>
           <meta
             property="og:title"
-            content="Dealer Profile | The Rec"
+            content="Dealer Profile | Get Tag"
             key="title"
           />
         </Head>

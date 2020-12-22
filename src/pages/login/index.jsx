@@ -127,8 +127,8 @@ class LoginComponent extends Component {
     return (
       <>
         <Head>
-          <title>Login | The Rec</title>
-          <meta property="og:title" content="Login | The Rec" key="title" />
+          <title>Login | Get Tag</title>
+          <meta property="og:title" content="Login | Get Tag" key="title" />
         </Head>
         <CommonContainer className="container-fluid">
           <Row>
@@ -145,21 +145,21 @@ class LoginComponent extends Component {
                 {!loginError && (loading || loginSuccess) ? (
                   this.renderLoading()
                 ) : (
-                  <>
-                    <h6 className="mt-5 mb-5">Sign in</h6>
-                    <a href={this.state.facebookLoginUrl}>
-                      <button>
-                        <>
-                          <img
-                            src="/imgs/svgs/facebookicon.svg"
-                            alt="Facebook Icon"
-                          />
+                    <>
+                      <h6 className="mt-5 mb-5">Sign in</h6>
+                      <a href={this.state.facebookLoginUrl}>
+                        <button>
+                          <>
+                            <img
+                              src="/imgs/svgs/facebookicon.svg"
+                              alt="Facebook Icon"
+                            />
                           Sign in with Facebook
                         </>
-                      </button>
-                    </a>
-                  </>
-                )}
+                        </button>
+                      </a>
+                    </>
+                  )}
               </LoginPageStyle>
             </Col>
           </Row>

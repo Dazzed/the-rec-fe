@@ -182,8 +182,8 @@ class MyContact extends React.Component {
     return (
       <>
         <Head>
-          <title>Contacts | The Rec</title>
-          <meta property="og:title" content="Contacts | The Rec" key="title" />
+          <title>Contacts | Get Tag</title>
+          <meta property="og:title" content="Contacts | Get Tag" key="title" />
         </Head>
         <CommonContainer className="container-fluid">
           <SearchBarNav handleQuery={this.handleQuery} />

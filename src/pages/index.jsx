@@ -83,7 +83,7 @@ function MarketingLandingPage() {
   return (
     <>
       <Head>
-        <title>The Rec</title>
+        <title>Get Tag</title>
         <meta property="og:title" content="My page title" key="title" />
       </Head>
       <CommonContainer className="container-fluid">
@@ -118,7 +118,7 @@ function MarketingLandingPage() {
                   alt="logo"
                   className="logo"
                 />{' '}
-                Add “The Rec”?
+                Add “Get Tag”?
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>

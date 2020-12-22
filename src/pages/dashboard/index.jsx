@@ -110,8 +110,8 @@ class Dashboard extends React.Component {
             prevState.currentPageIndex === 0
               ? nextProps.recsSuggestionListData.data
               : prevState.recSuggestions.concat(
-                  nextProps.recsSuggestionListData.data
-                ),
+                nextProps.recsSuggestionListData.data
+              ),
         });
       }
     }
@@ -221,8 +221,8 @@ class Dashboard extends React.Component {
     return (
       <>
         <Head>
-          <title>Dashboard | The Rec</title>
-          <meta property="og:title" content="Dashboard | The Rec" key="title" />
+          <title>Dashboard | Get Tag</title>
+          <meta property="og:title" content="Dashboard | Get Tag" key="title" />
         </Head>
         <CommonContainer className="container-fluid">
           <SearchBarNav handleQuery={this.handleQuery} />

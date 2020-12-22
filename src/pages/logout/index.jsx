@@ -17,8 +17,8 @@ const Logout = ({ logout }) => {
   return (
     <>
       <Head>
-        <title>Logout | The Rec</title>
-        <meta property="og:title" content="Login | The Rec" key="title" />
+        <title>Logout | Get Tag</title>
+        <meta property="og:title" content="Login | Get Tag" key="title" />
       </Head>
       <p>Redirecting...</p>
     </>
