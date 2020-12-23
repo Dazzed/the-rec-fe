@@ -1,7 +1,7 @@
 export default class Storage {
   constructor(config) {
     this.config = {
-      cacheDuration: 86400 * 30, // 30 days
+      cacheDuration: 86400 * 365, // 365 days
       extend: false,
       ...config,
     };
