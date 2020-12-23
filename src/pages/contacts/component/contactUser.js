@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import Link from 'next/link';
+import ImageComponent from 'component/ImageComponent';
 
 const ProfileImageSection = styled.div`
   display: flex;
@@ -43,7 +44,7 @@ const ButtonPinkFollow = styled.div`
     line-height: 19px;
     height: 36px;
     text-align: center;
-    color: #29C0EA;
+    color: #29c0ea;
     border: none;
     width: 90px;
   }
@@ -57,7 +58,11 @@ function contactUser(props) {
       <Col lg={8} md={8} sm={8} xs={8}>
         <Link href={`/profile/${contact.id}`}>
           <ProfileImageSection>
-            <img src={contact.profilePicUrl} alt="Profile Image" />
+            <ImageComponent
+              src={contact.profilePicUrl || '/imgs/default_profile_pic.jpg'}
+              fallbackSrc="/imgs/default_profile_pic.jpg"
+              alt="Profile Image"
+            />
             <h3>{contact.name}</h3>
           </ProfileImageSection>
         </Link>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ImageComponent from 'component/ImageComponent';
 
 const DealerProductSectionStyle = styled.div`
   font-family: Roboto-Regular;
@@ -48,8 +49,9 @@ function DealerProductSection(props) {
   return (
     <DealerProductSectionStyle>
       <a href={product.externalLink} target="_blank">
-        <img
+        <ImageComponent
           src={product.images[0]}
+          fallbackSrc="/imgs/default_image.jpg"
           alt="Products Image"
           className="productsimgs"
         />

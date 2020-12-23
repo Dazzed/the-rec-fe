@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Link from 'next/link';
+import ImageComponent from 'component/ImageComponent';
 
 import * as dashboardActions from 'pages/dashboard/actions';
 
@@ -44,7 +45,7 @@ const ProfileImageSection = styled.div`
 const ButtonGreenFollow = styled.div`
   text-align: right;
   button {
-    background: #29C0EA;
+    background: #29c0ea;
     border-radius: 5px;
     padding: 9px;
     font-family: Roboto-Regular;
@@ -68,7 +69,11 @@ function People(props) {
       <Col lg={8} md={8} sm={8} xs={8}>
         <Link href={`/profile/${user.id}`}>
           <ProfileImageSection>
-            <img src={user.profilePicUrl} alt="Profile Image" />
+            <ImageComponent
+              src={user.profilePicUrl}
+              fallbackSrc="/imgs/default_profile_pic.jpg"
+              alt="Profile Image"
+            />
             <h3>{user.name}</h3>
           </ProfileImageSection>
         </Link>

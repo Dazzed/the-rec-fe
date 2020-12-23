@@ -9,6 +9,7 @@ import debounce from 'lodash/debounce';
 import isEqual from 'lodash/isEqual';
 import queryString from 'query-string';
 import Autosuggest from 'react-autosuggest';
+import ImageComponent from 'component/ImageComponent';
 import * as dashboardActions from 'pages/dashboard/actions';
 
 const SearchBox = styled.div`
@@ -73,6 +74,7 @@ const SearchBox = styled.div`
 const LogoSection = styled.div`
   img {
     width: 75px;
+    cursor: pointer;
   }
 `;
 const NavItem = styled.div`
@@ -298,8 +300,9 @@ class SearchBarNav extends React.Component {
               <li>
                 <LogInDropdown>
                   <Dropdown.Toggle id="dropdown-basic">
-                    <img
+                    <ImageComponent
                       src={profilePicUrl || '/imgs/default_profile_pic.jpg'}
+                      fallbackSrc="/imgs/default_profile_pic.jpg"
                       alt="userImg"
                     />
                   </Dropdown.Toggle>

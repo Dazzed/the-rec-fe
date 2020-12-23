@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ImageComponent from 'component/ImageComponent';
 
 const MyRecProductSectionStyle = styled.div`
   font-family: Roboto-Regular;
@@ -80,8 +81,9 @@ function MyRec(props) {
   return (
     <MyRecProductSectionStyle>
       <a href={rec.externalLink} target="_blank">
-        <img
+        <ImageComponent
           src={rec.images[0]}
+          fallbackSrc="/imgs/default_image.jpg"
           alt="Products Image"
           className="productsimgs"
         />

@@ -1,5 +1,6 @@
 import { Row, Col, Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
+import ImageComponent from 'component/ImageComponent';
 
 const DealerSection = styled.div`
   text-align: center;
@@ -37,12 +38,13 @@ const DealerSection = styled.div`
   }
 `;
 const LoaderSection = styled.div`
-.loader-section {
-  position: fixed;
-  top: 50%;
-  left: 0;
-  right: 0;
-}`;
+  .loader-section {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    right: 0;
+  }
+`;
 
 function ProfileSection(props) {
   const { profile } = props;
@@ -63,8 +65,9 @@ function ProfileSection(props) {
     <Row>
       <Col className="mt-4">
         <DealerSection>
-          <img
+          <ImageComponent
             src={profile.profilePicUrl}
+            fallbackSrc="/imgs/default_profile_pic.jpg"
             alt="Follwer Image"
             className="followerimgs"
           />
@@ -72,8 +75,8 @@ function ProfileSection(props) {
           {profile.following ? (
             <button onClick={() => props.unfollow(profile.id)}>Unfollow</button>
           ) : (
-              <button onClick={() => props.follow(profile.id)}>Follow</button>
-            )}
+            <button onClick={() => props.follow(profile.id)}>Follow</button>
+          )}
         </DealerSection>
       </Col>
     </Row>

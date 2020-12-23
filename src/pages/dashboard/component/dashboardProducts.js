@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import ImageComponent from 'component/ImageComponent';
 
 const ProductSection = styled.div`
   text-align: center;
@@ -77,16 +78,18 @@ function DashboardProducts(props) {
   return (
     <ProductSection>
       <a href={product.externalLink} target="_blank">
-        <img
+        <ImageComponent
           src={product.images[0]}
+          fallbackSrc="/imgs/default_image.jpg"
           alt="Products Image"
           className="productsimgs"
         />
       </a>
       <Link href={`/profile/${user.id}`}>
         <a>
-          <img
+          <ImageComponent
             src={user.profilePicUrl}
+            fallbackSrc="/imgs/default_profile_pic.jpg"
             alt="Follwer Image"
             className="followerimgs"
           />
@@ -94,15 +97,9 @@ function DashboardProducts(props) {
         </a>
       </Link>
       <a href={product.externalLink} target="_blank">
-        <h5>
-          {product.title}
-        </h5>
-        <h6>
-          {product.brand.name}
-        </h6>
-        <h4>
-          ${product.price.toFixed(2)}
-        </h4>
+        <h5>{product.title}</h5>
+        <h6>{product.brand.name}</h6>
+        <h4>${product.price.toFixed(2)}</h4>
       </a>
     </ProductSection>
   );
