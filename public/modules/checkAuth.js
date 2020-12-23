@@ -7,7 +7,12 @@ $(function () {
 
     script_env = urlParams.get('script_env');
 
-    window.open(getWebURL(script_env) + '/login');
+    // window.open(
+    //   getWebURL(script_env) + '/login',
+    //   'Login',
+    //   'width=200,height=100'
+    // );
+    parent.window.postMessage('openLoginPage', '*');
     parent.window.postMessage('removetheiframe', '*');
   }
 });

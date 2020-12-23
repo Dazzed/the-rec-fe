@@ -6917,5 +6917,19 @@ function receiveMessage(event) {
   if (event.data == 'resizetheiframe') {
     element.style.height = '120px';
   }
+  if (event.data == 'openLoginPage') {
+    var this_js_script = jq('script[src*=add-item]'); // or better regexp to get the file name..
+    var data_script_env = this_js_script.attr('data_script_env');
+    const URL =
+      data_script_env === 'production'
+        ? 'https://www.get-tag.com'
+        : data_script_env === 'staging'
+        ? 'https://web.global-ved.com'
+        : 'http://localhost:4000';
+
+    var LOGIN_URL = URL + '/login';
+
+    window.open(LOGIN_URL);
+  }
 }
 window.addEventListener('message', receiveMessage, false);
