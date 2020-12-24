@@ -17,12 +17,6 @@ const CommonContainer = styled(Container)`
   padding: 37px 55px !important;
   max-width: 100% !important;
 `;
-const LoaderSection = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 0;
-  right: 0;
-`;
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -163,9 +157,9 @@ class UserProfile extends React.Component {
       return (
         <Row>
           <Col>
-            <LoaderSection className="text-center">
-              No Recs found for this user.
-            </LoaderSection>
+            <div className="loader text-center loader-section" key={0}>
+              No Tags found for this user.
+            </div>
           </Col>
         </Row>
       );
