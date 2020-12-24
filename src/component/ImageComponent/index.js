@@ -1,31 +1,21 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class ImageComponent extends Component {
-  constructor(props) {
-    super(props);
+function ImageComponent(props) {
+  const { src, fallbackSrc, alt, className, onClick, width, height } = props;
 
-    this.state = {
-      src: props.src || '/imgs/default_image.jpg',
-      errored: false,
-    };
-  }
+  // when error loading image source
+  const [errored, onError] = useState(false);
 
-  onError = () => {
-    if (!this.state.errored) {
-      this.setState({
-        src: this.props.fallbackSrc || '/imgs/default_image.jpg',
-        errored: true,
-      });
-    }
+  const attributes = {
+    src: !errored ? src : fallbackSrc || '/imgs/default_image.png',
+    alt,
+    className,
+    onClick,
+    width,
+    height,
   };
 
-  render() {
-    const { src } = this.state;
-    const { alt, className, onClick, width, height } = this.props;
-    const attributes = { alt, className, onClick, width, height };
-
-    return <img src={src} onError={this.onError} {...attributes} />;
-  }
+  return <img {...attributes} onError={() => onError(true)} />;
 }
 
 export default ImageComponent;

@@ -83,7 +83,7 @@ function MyRec(props) {
       <a href={rec.externalLink} target="_blank">
         <ImageComponent
           src={rec.images[0]}
-          fallbackSrc="/imgs/default_image.jpg"
+          fallbackSrc="/imgs/default_image.png"
           alt="Products Image"
           className="productsimgs"
         />

@@ -80,7 +80,7 @@ function DashboardProducts(props) {
       <a href={product.externalLink} target="_blank">
         <ImageComponent
           src={product.images[0]}
-          fallbackSrc="/imgs/default_image.jpg"
+          fallbackSrc="/imgs/default_image.png"
           alt="Products Image"
           className="productsimgs"
         />
