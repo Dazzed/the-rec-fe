@@ -5,12 +5,12 @@ function PrivacyPolicy() {
     <>
       <Navbar />
       <div className="container mt-5">
-        <h4 class="text-bold">Get Tag</h4>
+        <h4 className="text-bold">Get Tag</h4>
         <br />
         <p>Effective Date: December 28, 2020</p>
         <p>Last Updated: December 28, 2020</p>
         <br />
-        <h4 class="text-bold">PRIVACY POLICY</h4>
+        <h4 className="text-bold">PRIVACY POLICY</h4>
         <p>
           Get Tag. (“<u>Get Tag</u>”, “<u>we</u>”, “<u>us</u>”, “<u>our</u>
           ”) understands and respects your need and right for privacy. This
@@ -29,7 +29,7 @@ function PrivacyPolicy() {
         </p>
 
         <br />
-        <h4 class="text-bold">INFORMATION WE COLLECT</h4>
+        <h4 className="text-bold">INFORMATION WE COLLECT</h4>
         <p>
           Get Tag collects the following information when you use our Services,
           and otherwise with your consent. In some cases, we receive information
@@ -150,7 +150,7 @@ function PrivacyPolicy() {
         </ul>
         <br />
 
-        <h4 class="text-bold">HOW WE USE INFORMATION</h4>
+        <h4 className="text-bold">HOW WE USE INFORMATION</h4>
         <p>We use collected information to:</p>
         <ul>
           <li>
@@ -202,7 +202,7 @@ function PrivacyPolicy() {
         </ul>
         <br />
 
-        <h4 class="text-bold">HOW WE SHARE YOUR INFORMATION</h4>
+        <h4 className="text-bold">HOW WE SHARE YOUR INFORMATION</h4>
         <p>
           We share your information with third parties only as needed to deliver
           our Services (for example, to fulfill orders placed through the Get
@@ -263,7 +263,7 @@ function PrivacyPolicy() {
         </ul>
         <br />
 
-        <h4 class="text-bold">YOUR CHOICES</h4>
+        <h4 className="text-bold">YOUR CHOICES</h4>
         <p>
           Where appropriate or legally required, you may have choices about how
           Get Tag uses your information. When we ask you to provide your
@@ -331,7 +331,7 @@ function PrivacyPolicy() {
         </ul>
         <br />
 
-        <h4 class="text-bold">HOW WE PROTECT YOUR INFORMATION</h4>
+        <h4 className="text-bold">HOW WE PROTECT YOUR INFORMATION</h4>
         <p>
           We use reasonable and appropriate physical, technical, and
           administrative safeguards to protect information from unauthorized
@@ -352,11 +352,11 @@ function PrivacyPolicy() {
         <br />
 
         <br />
-        <h4 class="text-bold">DO NOT TRACK</h4>
+        <h4 className="text-bold">DO NOT TRACK</h4>
         <p>We do not track or respond to web browser "Do Not Track" signals.</p>
         <br />
 
-        <h4 class="text-bold">INTERNATIONAL TRANSFERS</h4>
+        <h4 className="text-bold">INTERNATIONAL TRANSFERS</h4>
         <p>
           Get Tag is based in the U.S. When you use our Services, we may
           transfer, store, and process information about you to servers and
@@ -368,7 +368,7 @@ function PrivacyPolicy() {
         </p>
         <br />
 
-        <h4 class="text-bold">
+        <h4 className="text-bold">
           INFORMATION FOR EUROPEAN ECONOMIC AREA (“EEA”) INDIVIDUALS
         </h4>
         <br />
@@ -440,7 +440,7 @@ function PrivacyPolicy() {
           <li>Withdraw your consent for future processing.</li>
         </ul>
         <br />
-        <h4 class="text-bold">CALIFORNIA PRIVACY RIGHTS</h4>
+        <h4 className="text-bold">CALIFORNIA PRIVACY RIGHTS</h4>
         <p>
           Get Tag complies with the CCPA, which may provide you with additional
           rights and information about how we collect and use your personal
@@ -448,7 +448,7 @@ function PrivacyPolicy() {
           please see our separate <a href="/ccpa">CCPA Notice</a>.
         </p>
         <br />
-        <h4 class="text-bold">CHILDREN'S PRIVACY</h4>
+        <h4 className="text-bold">CHILDREN'S PRIVACY</h4>
         <p>
           Get Tag does not knowingly target children and makes reasonable
           efforts to ensure that the targeting of children does not occur.
@@ -462,7 +462,7 @@ function PrivacyPolicy() {
           so we can remove the information.
         </p>
         <br />
-        <h4 class="text-bold">DATA STORAGE AND RETENTION</h4>
+        <h4 className="text-bold">DATA STORAGE AND RETENTION</h4>
         <p>
           We store your information for as long as necessary to provide our
           Services and to fulfill our legal and contractual obligations. We will
@@ -472,7 +472,9 @@ function PrivacyPolicy() {
           is sooner.
         </p>
         <br />
-        <h4 class="text-bold">THIRD-PARTY SERVICES, APPLICATIONS, WEBSITES</h4>
+        <h4 className="text-bold">
+          THIRD-PARTY SERVICES, APPLICATIONS, WEBSITES
+        </h4>
         <p>
           Certain third-party services, websites, or applications you use, or
           navigate to from our Services may have separate privacy policies that
@@ -483,7 +485,7 @@ function PrivacyPolicy() {
           each third-party service, website, and/or application prior to use.
         </p>
         <br />
-        <h4 class="text-bold">SOCIAL MEDIA FEATURES AND WIDGETS</h4>
+        <h4 className="text-bold">SOCIAL MEDIA FEATURES AND WIDGETS</h4>
         <p>
           We use social media features, including the Facebook Like button and
           widgets, such as the Share button or similar interactive mini-programs
@@ -513,7 +515,7 @@ function PrivacyPolicy() {
         </p>
         <br />
 
-        <h4 class="text-bold">UPDATES TO OUR PRIVACY NOTICE</h4>
+        <h4 className="text-bold">UPDATES TO OUR PRIVACY NOTICE</h4>
         <p>
           We periodically update this Notice to describe new features, products,
           or services, and how those changes affect our use of your information.
@@ -523,7 +525,7 @@ function PrivacyPolicy() {
         </p>
         <br />
 
-        <h4 class="text-bold">CONTACT US</h4>
+        <h4 className="text-bold">CONTACT US</h4>
         <p>
           If you have any questions or concerns about Get Tag privacy practices,
           please contact us at
