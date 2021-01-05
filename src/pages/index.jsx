@@ -69,7 +69,6 @@ const LogoModalImg = styled.img`
 function MarketingLandingPage() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const router = useRouter();
 
@@ -96,13 +95,18 @@ function MarketingLandingPage() {
                   Whatever you need. <br />
                   Off the rack. On the record.
                 </h1>
-                <button onClick={handleShow} className="btn_add">
-                  <img
-                    src="/imgs/svgs/downarrowicon.svg"
-                    alt="downarrow icon"
-                  />
-                  Install Browser Extension
-                </button>
+                <a
+                  href="https://chrome.google.com/webstore/detail/get-tag/kfhjndlenffgohklkeaiaepenjipfpke?hl=en"
+                  target="_blank"
+                >
+                  <button className="btn_add">
+                    <img
+                      src="/imgs/svgs/downarrowicon.svg"
+                      alt="downarrow icon"
+                    />
+                    Install Browser Extension
+                  </button>
+                </a>
               </div>
             </BgMarketingstyle>
           </Col>
@@ -121,7 +125,7 @@ function MarketingLandingPage() {
                 Add “Get Tag”?
               </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            {/* <Modal.Body>
               <b>It can:</b>
               <br />
               Read and change all your data on the websites you visit.
@@ -139,7 +143,7 @@ function MarketingLandingPage() {
                   Add extension
                 </Link>
               </Button>
-            </Modal.Footer>
+            </Modal.Footer> */}
           </Modal>
         </Row>
       </CommonContainer>
