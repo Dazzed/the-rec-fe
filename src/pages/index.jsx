@@ -14,7 +14,6 @@ const CommonContainer = styled(Container)`
 `;
 
 const BgMarketingstyle = styled.div`
-  background: url('/imgs/bg-landing-page-1.png');
   height: 495px;
   background-position: 70% 50%;
   background-repeat: no-repeat;
@@ -108,8 +107,7 @@ function MarketingLandingPage() {
             <BgMarketingstyle>
               <div className="hero-text-section">
                 <h1>
-                  Whatever you need. <br />
-                  Off the rack. On the record.
+                  Your It's & Hits
                 </h1>
                 <a
                   href="https://chrome.google.com/webstore/detail/get-tag/kfhjndlenffgohklkeaiaepenjipfpke?hl=en"
