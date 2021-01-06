@@ -6,6 +6,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Navbar from 'component/Header/Navbar';
 import { getPersistedUserToken } from 'lib/utils';
+import { EXTENSION_ID } from 'config/constants';
 
 const CommonContainer = styled(Container)`
   padding: 37px 55px !important;
@@ -76,6 +77,21 @@ function MarketingLandingPage() {
     const token = getPersistedUserToken();
     if (token) {
       router.push('/dashboard');
+    } else {
+      try {
+        // Check if extension is installed or not
+        chrome.runtime.sendMessage(
+          EXTENSION_ID,
+          { message: 'IS_INSTALLED' },
+          (response) => {
+            if (response && response.isInstalled) {
+              router.push('/login');
+            }
+          }
+        );
+      } catch (err) {
+        console.log('Failed to check extension installation status.');
+      }
     }
   }, []);
 

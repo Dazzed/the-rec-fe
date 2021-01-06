@@ -11,3 +11,8 @@ export const WEB_URL = web[API_ENV];
 
 export const FACEBOOK_CLIENT_ID =
   API_ENV === 'production' ? '389307335726485' : '856447731850566';
+
+export const EXTENSION_ID =
+  API_ENV === 'production'
+    ? 'kfhjndlenffgohklkeaiaepenjipfpke'
+    : 'bafhdbofpbpahpakekhmeooemjhjbgfb';
