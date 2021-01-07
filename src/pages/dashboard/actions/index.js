@@ -25,7 +25,12 @@ const listRecsAutoSuggestionsMethods = actionsFactory({
   data: types.LIST_RECS_AUTO_SUGGESTIONS_DATA,
 });
 
-export const listRecsSuggestions = ({ pageIndex, pageSize, query }) => {
+export const listRecsSuggestions = ({
+  pageIndex,
+  pageSize,
+  query,
+  category,
+}) => {
   return async (dispatch) => {
     try {
       dispatch(listRecsSuggestionsMethods.setError(null));
@@ -37,6 +42,7 @@ export const listRecsSuggestions = ({ pageIndex, pageSize, query }) => {
           pageIndex,
           pageSize,
           q: query,
+          category,
         },
       });
 

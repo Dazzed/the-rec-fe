@@ -16,3 +16,16 @@ export const EXTENSION_ID =
   API_ENV === 'production'
     ? 'kfhjndlenffgohklkeaiaepenjipfpke'
     : 'bafhdbofpbpahpakekhmeooemjhjbgfb';
+
+export const DEFAULT_CATEGORIES = [
+  'Beauty',
+  'Kids',
+  'Home',
+  'Shoes',
+  'Tech',
+  'Women’s Apparel',
+  'Men’s Apparel',
+  'Personal Care',
+  'Pets',
+  'Accessories',
+];

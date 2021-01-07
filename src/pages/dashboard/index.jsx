@@ -12,6 +12,7 @@ import * as dashboardActions from 'pages/dashboard/actions';
 import SearchBarNav from 'component/Header/SearchBarNav';
 import PeopleToFollow from 'pages/dashboard/component/peopleToFollow';
 import DashboardProducts from 'pages/dashboard/component/dashboardProducts';
+import { DEFAULT_CATEGORIES } from 'config/constants';
 
 const CommonContainer = styled(Container)`
   padding: 37px 55px !important;
@@ -26,7 +27,7 @@ const LatestTitle = styled.h5`
   color: #000;
 `;
 const ButtonExplore = styled.button`
-  background: #F6D0E8;
+  background: #f6d0e8;
   border-radius: 5px;
   width: 102px;
   height: 62px;
@@ -64,6 +65,7 @@ class Dashboard extends React.Component {
       currentPageIndex: 0,
       pageSize: 20,
       searchQuery: '',
+      categoryQuery: '',
     };
   }
 
@@ -73,6 +75,7 @@ class Dashboard extends React.Component {
         hasMoreRecSuggestions: false,
         currentPageIndex: 0,
         searchQuery: this.props.router.query.q || '',
+        categoryQuery: this.props.router.query.category || '',
       },
       () => this.listRecsSuggestions()
     );
@@ -130,8 +133,8 @@ class Dashboard extends React.Component {
             prevState.currentPageIndex === 0
               ? nextProps.recsSuggestionListData.data
               : prevState.recSuggestions.concat(
-                nextProps.recsSuggestionListData.data
-              ),
+                  nextProps.recsSuggestionListData.data
+                ),
         });
       }
     }
@@ -158,6 +161,7 @@ class Dashboard extends React.Component {
           pageIndex: this.state.currentPageIndex + 1,
           pageSize: this.state.pageSize,
           query: this.state.searchQuery,
+          category: this.state.categoryQuery,
         })
     );
   }
@@ -166,6 +170,16 @@ class Dashboard extends React.Component {
     this.setState(
       {
         searchQuery: query,
+        currentPageIndex: 0,
+      },
+      () => this.listRecsSuggestions()
+    );
+  };
+
+  selectCategoryFilter = (val) => {
+    this.setState(
+      {
+        categoryQuery: val,
         currentPageIndex: 0,
       },
       () => this.listRecsSuggestions()
@@ -236,7 +250,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { friendsSuggestionList } = this.state;
+    const { friendsSuggestionList, categoryQuery } = this.state;
 
     return (
       <>
@@ -252,18 +266,17 @@ class Dashboard extends React.Component {
               <Row>
                 <Col lg={9} className="mb-4 mt-4">
                   <LatestTitle>Explore</LatestTitle>
-                  <div>
-                    <ButtonExplore>Beauty</ButtonExplore>
-                    <ButtonExplore>Kids</ButtonExplore>
-                    <ButtonExplore>Home</ButtonExplore>
-                    <ButtonExplore>Shoes</ButtonExplore>
-                    <ButtonExplore>Tech</ButtonExplore>
-                    <ButtonExplore>Women’s Apparel</ButtonExplore>
-                    <ButtonExplore>Men’s Apparel</ButtonExplore>
-                    <ButtonExplore>Personal Care</ButtonExplore>
-                    <ButtonExplore>Pets</ButtonExplore>
-                    <ButtonExplore>Accessories</ButtonExplore>
-                  </div>
+                  <ButtonExplore onClick={() => this.selectCategoryFilter('')}>
+                    {categoryQuery === '' ? <u>All</u> : 'All'}
+                  </ButtonExplore>
+                  {DEFAULT_CATEGORIES.map((item, i) => (
+                    <ButtonExplore
+                      onClick={() => this.selectCategoryFilter(item)}
+                      key={i}
+                    >
+                      {categoryQuery === item ? <u>{item}</u> : item}
+                    </ButtonExplore>
+                  ))}
                 </Col>
               </Row>
               <Row>
