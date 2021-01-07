@@ -25,6 +25,26 @@ const LatestTitle = styled.h5`
   line-height: 30px;
   color: #000;
 `;
+const ButtonExplore = styled.button`
+  background: #F6D0E8;
+  border-radius: 5px;
+  width: 102px;
+  height: 62px;
+  padding: 15px 8px;
+  margin-right: 23px;
+  font-family: Roboto-Regular;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #000008;
+  border: none;
+  margin-top: 14px;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+`;
 const LoaderSection = styled.div`
   position: fixed;
   top: 50%;
@@ -229,6 +249,23 @@ class Dashboard extends React.Component {
 
           <Row>
             <Col lg={9}>
+              <Row>
+                <Col lg={9} className="mb-4 mt-4">
+                  <LatestTitle>Explore</LatestTitle>
+                  <div>
+                    <ButtonExplore>Beauty</ButtonExplore>
+                    <ButtonExplore>Kids</ButtonExplore>
+                    <ButtonExplore>Home</ButtonExplore>
+                    <ButtonExplore>Shoes</ButtonExplore>
+                    <ButtonExplore>Tech</ButtonExplore>
+                    <ButtonExplore>Women’s Apparel</ButtonExplore>
+                    <ButtonExplore>Men’s Apparel</ButtonExplore>
+                    <ButtonExplore>Personal Care</ButtonExplore>
+                    <ButtonExplore>Pets</ButtonExplore>
+                    <ButtonExplore>Accessories</ButtonExplore>
+                  </div>
+                </Col>
+              </Row>
               <Row>
                 <Col className="mb-4 mt-4">
                   <LatestTitle>Latest</LatestTitle>
