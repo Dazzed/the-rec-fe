@@ -8,9 +8,9 @@ import { withRouter } from 'next/router';
 import InfiniteScroll from 'react-infinite-scroller';
 import isEqual from 'lodash/isEqual';
 
-import * as myRecsPagePageActions from 'pages/my-recs/actions';
+import * as myTagsPagePageActions from 'pages/my-tags/actions';
 import SearchBarNav from 'component/Header/SearchBarNav';
-import MyRec from 'pages/my-recs/component/myRec';
+import MyTag from 'pages/my-tags/component/myTag';
 
 const CommonContainer = styled(Container)`
   padding: 37px 55px !important;
@@ -23,13 +23,13 @@ const LoaderSection = styled.div`
   right: 0;
 `;
 
-class MyRecs extends React.Component {
+class MyTags extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      myRecsList: null,
-      myRecsListData: null,
+      myTagsList: null,
+      myTagsListData: null,
       hasMoreRecords: false,
       currentPageIndex: 0,
       pageSize: 20,
@@ -44,7 +44,7 @@ class MyRecs extends React.Component {
         currentPageIndex: 0,
         searchQuery: this.props.router.query.q || '',
       },
-      () => this.listMyRecs()
+      () => this.listMyTags()
     );
   }
 
@@ -63,7 +63,7 @@ class MyRecs extends React.Component {
           currentPageIndex: 0,
           searchQuery: this.props.router.query.q || '',
         },
-        () => this.listMyRecs()
+        () => this.listMyTags()
       );
     }
   }
@@ -72,12 +72,12 @@ class MyRecs extends React.Component {
     let toReturn = null;
 
     if (
-      nextProps.myRecsListData &&
-      !isEqual(nextProps.myRecsListData, prevState.myRecsListData)
+      nextProps.myTagsListData &&
+      !isEqual(nextProps.myTagsListData, prevState.myTagsListData)
     ) {
       if (
         prevState.currentPageIndex === 0 &&
-        nextProps.myRecsListData.pageIndex !== 1
+        nextProps.myTagsListData.pageIndex !== 1
       ) {
         toReturn = Object.assign(toReturn || {}, {
           currentPageIndex: 0,
@@ -85,13 +85,13 @@ class MyRecs extends React.Component {
         });
       } else {
         toReturn = Object.assign(toReturn || {}, {
-          myRecsListData: nextProps.myRecsListData,
-          currentPageIndex: nextProps.myRecsListData.pageIndex,
-          hasMoreRecords: nextProps.myRecsListData.hasMore,
-          myRecsList:
+          myTagsListData: nextProps.myTagsListData,
+          currentPageIndex: nextProps.myTagsListData.pageIndex,
+          hasMoreRecords: nextProps.myTagsListData.hasMore,
+          myTagsList:
             prevState.currentPageIndex === 0
-              ? nextProps.myRecsListData.data
-              : prevState.myRecsList.concat(nextProps.myRecsListData.data),
+              ? nextProps.myTagsListData.data
+              : prevState.myTagsList.concat(nextProps.myTagsListData.data),
         });
       }
     }
@@ -99,13 +99,13 @@ class MyRecs extends React.Component {
     return toReturn;
   }
 
-  listMyRecs() {
+  listMyTags() {
     this.setState(
       {
         hasMoreRecords: false,
       },
       () =>
-        this.props.listMyRecs({
+        this.props.listMyTags({
           pageIndex: this.state.currentPageIndex + 1,
           pageSize: this.state.pageSize,
           query: this.state.searchQuery,
@@ -119,14 +119,14 @@ class MyRecs extends React.Component {
         searchQuery: query,
         currentPageIndex: 0,
       },
-      () => this.listMyRecs()
+      () => this.listMyTags()
     );
   };
 
-  renderMyRecs() {
-    const { myRecsList, hasMoreRecords } = this.state;
+  renderMyTags() {
+    const { myTagsList, hasMoreRecords } = this.state;
 
-    if (!myRecsList) {
+    if (!myTagsList) {
       return (
         <Row className="mt-5 mb-4 h-100">
           <Col className="mb-3">
@@ -143,7 +143,7 @@ class MyRecs extends React.Component {
       );
     }
 
-    if (myRecsList.length === 0) {
+    if (myTagsList.length === 0) {
       return (
         <Row className="mt-5 mb-4 h-100">
           <Col className="mb-3">
@@ -158,7 +158,7 @@ class MyRecs extends React.Component {
     return (
       <InfiniteScroll
         pageStart={0}
-        loadMore={() => this.listMyRecs()}
+        loadMore={() => this.listMyTags()}
         hasMore={hasMoreRecords}
         loader={
           <div className="loader text-center" key={0}>
@@ -169,9 +169,9 @@ class MyRecs extends React.Component {
         }
       >
         <Row className="mt-lg-5 mb-lg-5 mb-4 mt-4">
-          {myRecsList.map((rec) => (
+          {myTagsList.map((rec) => (
             <Col key={rec.id} lg={2} md={4} sm={6} xs={12} className="mb-3">
-              <MyRec rec={rec} deleteMyRec={this.props.deleteMyRec} />
+              <MyTag rec={rec} deleteMyTag={this.props.deleteMyTag} />
             </Col>
           ))}
         </Row>
@@ -189,7 +189,7 @@ class MyRecs extends React.Component {
         <CommonContainer className="container-fluid">
           <SearchBarNav handleQuery={this.handleQuery} />
 
-          {this.renderMyRecs()}
+          {this.renderMyTags()}
         </CommonContainer>
       </>
     );
@@ -198,17 +198,17 @@ class MyRecs extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.myRecs.error,
-    success: state.myRecs.success,
-    myRecsListData: state.myRecs.myRecsListData,
-    deleteRecSuccess: state.myRecs.deleteRecSuccess,
+    error: state.myTags.error,
+    success: state.myTags.success,
+    myTagsListData: state.myTags.myTagsListData,
+    deleteRecSuccess: state.myTags.deleteRecSuccess,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(myRecsPagePageActions, dispatch);
+  return bindActionCreators(myTagsPagePageActions, dispatch);
 };
 
-const MyRecsContainer = connect(mapStateToProps, mapDispatchToProps)(MyRecs);
+const MyTagsContainer = connect(mapStateToProps, mapDispatchToProps)(MyTags);
 
-export default withRouter(MyRecsContainer);
+export default withRouter(MyTagsContainer);

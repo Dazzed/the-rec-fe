@@ -33,10 +33,10 @@ const ButtonExplore = styled.button`
   height: 62px;
   padding: 15px 8px;
   margin-right: 23px;
-  font-family: Roboto-Regular;
+  font-family: Roboto-Bold;
   font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
+  font-weight: bold;
+  font-size: 14px;
   line-height: 19px;
   text-align: center;
   color: #000008;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ImageComponent from 'component/ImageComponent';
 
-const MyRecProductSectionStyle = styled.div`
+const MyTagProductSectionStyle = styled.div`
   font-family: Roboto-Regular;
   font-style: normal;
   font-weight: normal;
@@ -75,11 +75,11 @@ const MyRecProductSectionStyle = styled.div`
   }
 `;
 
-function MyRec(props) {
+function MyTag(props) {
   const { rec } = props;
 
   return (
-    <MyRecProductSectionStyle>
+    <MyTagProductSectionStyle>
       <a href={rec.externalLink} target="_blank">
         <ImageComponent
           src={rec.images[0]}
@@ -89,7 +89,7 @@ function MyRec(props) {
         />
       </a>
       <div className="overlay">
-        <div className="icon-close" onClick={() => props.deleteMyRec(rec.id)}>
+        <div className="icon-close" onClick={() => props.deleteMyTag(rec.id)}>
           <img src="../../../imgs/svgs/close-icon-red.svg" />
         </div>
       </div>
@@ -102,8 +102,8 @@ function MyRec(props) {
           <b>${rec.price.toFixed(2)}</b>
         </h6>
       </a>
-    </MyRecProductSectionStyle>
+    </MyTagProductSectionStyle>
   );
 }
 
-export default MyRec;
+export default MyTag;

@@ -1,14 +1,14 @@
-import * as types from 'pages/my-recs/actions/actionTypes';
+import * as types from 'pages/my-tags/actions/actionTypes';
 
-const myRecsState = {
+const myTagsState = {
   error: null,
   success: false,
   loading: false,
-  myRecsListData: null,
+  myTagsListData: null,
   deleteRecSuccess: true,
 };
 
-const myRecsReducer = (state = myRecsState, action) => {
+const myTagsReducer = (state = myTagsState, action) => {
   switch (action.type) {
     case types.LIST_MY_RECS_REQUEST:
       return Object.assign({}, state, {
@@ -17,7 +17,7 @@ const myRecsReducer = (state = myRecsState, action) => {
 
     case types.LIST_MY_RECS_DATA:
       return Object.assign({}, state, {
-        myRecsListData: action.data,
+        myTagsListData: action.data,
       });
 
     case types.LIST_MY_RECS_ERROR:
@@ -41,4 +41,4 @@ const myRecsReducer = (state = myRecsState, action) => {
   }
 };
 
-export default myRecsReducer;
+export default myTagsReducer;

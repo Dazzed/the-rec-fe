@@ -3,23 +3,23 @@ import actionsFactory from 'lib/factory/actions';
 import { get, deleteReq } from 'lib/request';
 import { API_URL } from 'config/constants';
 
-const listMyRecsMethods = actionsFactory({
+const listMyTagsMethods = actionsFactory({
   error: types.LIST_MY_RECS_ERROR,
   data: types.LIST_MY_RECS_DATA,
   loading: types.LIST_MY_RECS_REQUEST,
 });
 
-const deleteMyRecMethods = actionsFactory({
+const deleteMyTagMethods = actionsFactory({
   error: types.DELETE_MY_REC_ERROR,
   success: types.DELETE_MY_REC_SUCCESS,
 });
 
-export const listMyRecs = ({ pageIndex, pageSize, query }) => {
+export const listMyTags = ({ pageIndex, pageSize, query }) => {
   return async (dispatch) => {
     try {
-      dispatch(listMyRecsMethods.setError(null));
-      dispatch(listMyRecsMethods.setLoading(true));
-      dispatch(listMyRecsMethods.setData(null));
+      dispatch(listMyTagsMethods.setError(null));
+      dispatch(listMyTagsMethods.setLoading(true));
+      dispatch(listMyTagsMethods.setData(null));
 
       const response = await get(`${API_URL}/recs`, {
         params: {
@@ -29,29 +29,29 @@ export const listMyRecs = ({ pageIndex, pageSize, query }) => {
         },
       });
 
-      dispatch(listMyRecsMethods.setLoading(false));
-      return dispatch(listMyRecsMethods.setData(response));
+      dispatch(listMyTagsMethods.setLoading(false));
+      return dispatch(listMyTagsMethods.setData(response));
     } catch (error) {
       console.error(error);
-      const errMsg = 'Failed get MyRecs list';
-      return dispatch(listMyRecsMethods.setError(errMsg));
+      const errMsg = 'Failed get MyTags list';
+      return dispatch(listMyTagsMethods.setError(errMsg));
     }
   };
 };
 
-export const deleteMyRec = (productId) => {
+export const deleteMyTag = (productId) => {
   return async (dispatch) => {
     try {
-      dispatch(deleteMyRecMethods.setError(null));
-      dispatch(deleteMyRecMethods.setSuccess(false));
+      dispatch(deleteMyTagMethods.setError(null));
+      dispatch(deleteMyTagMethods.setSuccess(false));
 
       await deleteReq(`${API_URL}/recs/${productId}`);
 
-      return dispatch(deleteMyRecMethods.setSuccess(true));
+      return dispatch(deleteMyTagMethods.setSuccess(true));
     } catch (error) {
       console.error(error);
       const errMsg = 'Failed to delete Rec from list';
-      return dispatch(deleteMyRecMethods.setError(errMsg));
+      return dispatch(deleteMyTagMethods.setError(errMsg));
     }
   };
 };

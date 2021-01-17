@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, fireEvent, screen } from '../../lib/utils/test-util';
-import MyRecs from '../../pages/my-recs';
+import MyTags from '../../pages/my-tags';
 
-describe('myRecs', () => {
-  it('myRecs page renders without crashing', () => {
-    const { getAllByRole } = render(<MyRecs />, { initialState: {} });
+describe('MyTags', () => {
+  it('MyTags page renders without crashing', () => {
+    const { getAllByRole } = render(<MyTags />, { initialState: {} });
     expect(screen.getAllByRole("heading", { name: "Vitamer" })
     ).toBeTruthy();
   });

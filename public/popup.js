@@ -43,7 +43,7 @@ $(function () {
 
 function productListActions() {
   $('.cartPage').click(function () {
-    // Add product to myrecs
+    // Add product to mytags
     let eleId = $(this).attr('id');
     let eleIdChunk = eleId.split('-');
     const productId = Number.parseInt(eleIdChunk[eleIdChunk.length - 1]);
