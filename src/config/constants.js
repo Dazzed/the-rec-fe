@@ -28,4 +28,5 @@ export const DEFAULT_CATEGORIES = [
   'Personal Care',
   'Pets',
   'Accessories',
+  'Food & Beverage'
 ];
