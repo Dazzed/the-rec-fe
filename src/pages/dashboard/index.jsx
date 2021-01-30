@@ -47,10 +47,14 @@ const ButtonExplore = styled.button`
   justify-content: center;
 `;
 const LoaderSection = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 0;
-  right: 0;
+  font-family: Roboto-Regular;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: normal;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 class Dashboard extends React.Component {
@@ -133,8 +137,8 @@ class Dashboard extends React.Component {
             prevState.currentPageIndex === 0
               ? nextProps.recsSuggestionListData.data
               : prevState.recSuggestions.concat(
-                  nextProps.recsSuggestionListData.data
-                ),
+                nextProps.recsSuggestionListData.data
+              ),
         });
       }
     }
@@ -208,7 +212,7 @@ class Dashboard extends React.Component {
 
     if (recSuggestions.length === 0) {
       return (
-        <Row className="mt-5 mb-4">
+        <Row className="mt-5 mb-4 position-relative">
           <Col className="mb-3">
             <LoaderSection className="text-center">
               No suggestions found.
