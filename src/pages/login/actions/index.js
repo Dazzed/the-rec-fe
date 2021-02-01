@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 import actionsFactory from 'lib/factory/actions';
 import { post } from 'lib/request';
-import { API_URL } from 'config/constants';
+import { API_URL, EXTENSION_ID } from 'config/constants';
 import { saveUserToken, saveUser } from 'reducers/user/actions';
 
 const loginMethods = actionsFactory({
@@ -41,6 +41,14 @@ export const login = ({ code, redirectUri }) => {
       );
 
       dispatch(loginMethods.setLoading(false));
+      try {
+        chrome.runtime.sendMessage(
+          EXTENSION_ID,
+          { api_token: token}
+        );
+      } catch (err) {
+        console.log(err)
+      }
       return dispatch(loginMethods.setSuccess(true));
     } catch (error) {
       console.error(error);

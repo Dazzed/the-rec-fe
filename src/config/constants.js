@@ -15,7 +15,7 @@ export const FACEBOOK_CLIENT_ID =
 export const EXTENSION_ID =
   API_ENV === 'production'
     ? 'kfhjndlenffgohklkeaiaepenjipfpke'
-    : 'bafhdbofpbpahpakekhmeooemjhjbgfb';
+    : 'klljbbpibnchkcjdgpjipaffmeedmjll'; //bafhdbofpbpahpakekhmeooemjhjbgfb
 
 export const DEFAULT_CATEGORIES = [
   'Beauty',
