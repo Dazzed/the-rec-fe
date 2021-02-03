@@ -11,6 +11,7 @@ import isEqual from 'lodash/isEqual';
 import * as myTagsPagePageActions from 'pages/my-tags/actions';
 import SearchBarNav from 'component/Header/SearchBarNav';
 import MyTag from 'pages/my-tags/component/myTag';
+import { DEFAULT_CATEGORIES } from 'config/constants';
 
 const CommonContainer = styled(Container)`
   padding: 37px 55px !important;
@@ -21,6 +22,34 @@ const LoaderSection = styled.div`
   top: 50%;
   left: 0;
   right: 0;
+`;
+const LatestTitle = styled.h5`
+  font-family: Roboto-Regular;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 30px;
+  color: #000;
+`;
+const ButtonExplore = styled.button`
+  background: #f6d0e8;
+  border-radius: 5px;
+  width: 102px;
+  height: 62px;
+  padding: 15px 8px;
+  margin-right: 23px;
+  font-family: Roboto-Bold;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+  color: #000008;
+  border: none;
+  margin-top: 14px;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 class MyTags extends React.Component {
@@ -34,6 +63,7 @@ class MyTags extends React.Component {
       currentPageIndex: 0,
       pageSize: 20,
       searchQuery: '',
+      categoryQuery: '',
     };
   }
 
@@ -43,6 +73,7 @@ class MyTags extends React.Component {
         hasMoreRecords: false,
         currentPageIndex: 0,
         searchQuery: this.props.router.query.q || '',
+        categoryQuery: this.props.router.query.category || '',
       },
       () => this.listMyTags()
     );
@@ -112,7 +143,29 @@ class MyTags extends React.Component {
         })
     );
   }
-
+  selectCategoryFilter = (val) => {
+    this.setState(
+      {
+        categoryQuery: val,
+        currentPageIndex: 0,
+      },
+      () => this.listRecsSuggestions()
+    );
+  };
+  listRecsSuggestions() {
+    this.setState(
+      {
+        hasMoreRecSuggestions: false,
+      },
+      () =>
+        this.props.listRecsSuggestions({
+          pageIndex: this.state.currentPageIndex + 1,
+          pageSize: this.state.pageSize,
+          query: this.state.searchQuery,
+          category: this.state.categoryQuery,
+        })
+    );
+  }
   handleQuery = (query) => {
     this.setState(
       {
@@ -180,6 +233,7 @@ class MyTags extends React.Component {
   }
 
   render() {
+    const { categoryQuery } = this.state;
     return (
       <>
         <Head>
@@ -188,7 +242,26 @@ class MyTags extends React.Component {
         </Head>
         <CommonContainer className="container-fluid">
           <SearchBarNav handleQuery={this.handleQuery} />
-
+          <Row>
+            <Col lg={9}>
+              <Row>
+                <Col lg={9} className="mb-4 mt-4">
+                  <LatestTitle>Explore</LatestTitle>
+                  <ButtonExplore onClick={() => this.selectCategoryFilter('')}>
+                    {categoryQuery === '' ? <u>All</u> : 'All'}
+                  </ButtonExplore>
+                  {DEFAULT_CATEGORIES.map((item, i) => (
+                    <ButtonExplore
+                      onClick={() => this.selectCategoryFilter(item)}
+                      key={i}
+                    >
+                      {categoryQuery === item ? <u>{item}</u> : item}
+                    </ButtonExplore>
+                  ))}
+                </Col>
+              </Row>
+            </Col>
+          </Row>
           {this.renderMyTags()}
         </CommonContainer>
       </>
