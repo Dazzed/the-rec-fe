@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
