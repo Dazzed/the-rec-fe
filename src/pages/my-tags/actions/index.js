@@ -14,7 +14,7 @@ const deleteMyTagMethods = actionsFactory({
   success: types.DELETE_MY_REC_SUCCESS,
 });
 
-export const listMyTags = ({ pageIndex, pageSize, query }) => {
+export const listMyTags = ({ pageIndex, pageSize, query, category }) => {
   return async (dispatch) => {
     try {
       dispatch(listMyTagsMethods.setError(null));
@@ -26,6 +26,7 @@ export const listMyTags = ({ pageIndex, pageSize, query }) => {
           pageIndex,
           pageSize,
           q: query,
+          category,
         },
       });
 

@@ -21,7 +21,13 @@ const followFriendMethods = actionsFactory({
   success: types.FOLLOW_FRIEND_SUCCESS,
 });
 
-export const listUsersRecs = ({ profileId, pageIndex, pageSize, query }) => {
+export const listUsersRecs = ({
+  profileId,
+  pageIndex,
+  pageSize,
+  query,
+  category,
+}) => {
   return async (dispatch) => {
     try {
       dispatch(listUsersRecsMethods.setError(null));
@@ -33,6 +39,7 @@ export const listUsersRecs = ({ profileId, pageIndex, pageSize, query }) => {
           pageIndex,
           pageSize,
           q: query,
+          category,
         },
       });
 
