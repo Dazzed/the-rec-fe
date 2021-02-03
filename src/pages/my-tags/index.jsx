@@ -18,7 +18,7 @@ const CommonContainer = styled(Container)`
   max-width: 100% !important;
 `;
 const LoaderSection = styled.div`
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 0;
   right: 0;
