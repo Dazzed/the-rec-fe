@@ -40,7 +40,15 @@ const BgMarketingstyle = styled.div`
       font-size: 36px;
       line-height: 42px;
       color: #000008;
-      margin-bottom: 34px;
+      margin-bottom: 8px;
+    }
+    p {
+      font-family: Roboto-Regular;
+      font-style: normal;
+      font-weight: normal;
+      line-height: 23px;
+      font-size: 16px;
+      color: #000;
     }
     button {
       font-family: Roboto-Regular;
@@ -107,8 +115,13 @@ function MarketingLandingPage() {
             <BgMarketingstyle>
               <div className="hero-text-section">
                 <h1>
-                  Your It's & Hits
+                  Tag
                 </h1>
+                <h1>
+                  {/* Your Its & Hits */}
+                  Your its
+                </h1>
+                <p>Tag is a free Chrome extension that lets you bookmark <br />items as you browser online.you can also discover new products <br />by checking out your friends' Tags at Get-tag.com</p>
                 <a
                   href="https://chrome.google.com/webstore/detail/get-tag/kfhjndlenffgohklkeaiaepenjipfpke?hl=en"
                   target="_blank"
