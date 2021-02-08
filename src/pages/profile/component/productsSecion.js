@@ -59,9 +59,7 @@ function DealerProductSection(props) {
         <h5>
           <b>{product.brand.name}</b>
         </h5>
-        <h6>
-          <b>${product.price.toFixed(2)}</b>
-        </h6>
+        <h6>{product.price && <b>${product.price.toFixed(2)}</b>}</h6>
       </a>
     </DealerProductSectionStyle>
   );

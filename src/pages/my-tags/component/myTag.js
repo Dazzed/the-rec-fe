@@ -98,9 +98,7 @@ function MyTag(props) {
         <h5>
           <b>{rec.brand.name}</b>
         </h5>
-        <h6>
-          <b>${rec.price.toFixed(2)}</b>
-        </h6>
+        <h6>{rec.price && <b>${rec.price.toFixed(2)}</b>}</h6>
       </a>
     </MyTagProductSectionStyle>
   );

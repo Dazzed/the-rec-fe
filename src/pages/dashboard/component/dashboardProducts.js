@@ -99,7 +99,7 @@ function DashboardProducts(props) {
       <a href={product.externalLink} target="_blank">
         <h5>{product.title}</h5>
         <h6>{product.brand.name}</h6>
-        <h4>${product.price.toFixed(2)}</h4>
+        {product.price && <h4>${product.price.toFixed(2)}</h4>}
       </a>
     </ProductSection>
   );
