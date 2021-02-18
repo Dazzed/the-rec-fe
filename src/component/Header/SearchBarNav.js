@@ -73,7 +73,7 @@ const SearchBox = styled.div`
 `;
 const LogoSection = styled.div`
   img {
-    width: 75px;
+    width: 129px;
     cursor: pointer;
   }
 `;
@@ -86,11 +86,12 @@ const NavItem = styled.div`
 	margin: 0 7px;
 }
 a {
-	font-family: Roboto-Regular;
+	font-family: "PragatiNarrow-Regular";
 	font-style: normal;
 	font-weight: normal;
-	font-size: 18px;
-	line-height: 21px;
+  text-transform: uppercase;
+	font-size: 24px;
+	line-height: 41px;
 	color: #000;
 }
 	img {
@@ -104,6 +105,7 @@ a {
 	}
 }
 li {
+  padding-bottom: 0 !important;
 	&:last-child {
 		margin: 0;
 	}
@@ -266,7 +268,7 @@ class SearchBarNav extends React.Component {
         <Col lg={2}>
           <Link href="/dashboard">
             <LogoSection>
-              <img src="/imgs/svgs/rec-logo-blue.png" alt="logo-rec" />
+              <img src="/imgs/svgs/rec-logo-blue.svg" alt="logo-rec" />
             </LogoSection>
           </Link>
         </Col>

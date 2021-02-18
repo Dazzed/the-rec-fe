@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import People from 'pages/dashboard/component/people';
 
 const FollowTitle = styled.h4`
-  font-family: Roboto-Regular;
+  font-family: "PragatiNarrow-Regular";
   font-style: normal;
   font-weight: 300;
-  font-size: 26px;
-  line-height: 30px;
+  font-size: 24px;
+  line-height: 28px;
   color: #000;
 `;
 const LoaderSection = styled.div`
@@ -28,7 +28,7 @@ function PeopleFollowSection(props) {
         <Row>
           <Col>
             <div className="mt-4 mb-4">
-              <FollowTitle>People to follow</FollowTitle>
+              <FollowTitle>WHO TO FOLLOW</FollowTitle>
             </div>
           </Col>
         </Row>
@@ -49,7 +49,7 @@ function PeopleFollowSection(props) {
         <Row>
           <Col>
             <div className="mt-4 mb-4">
-              <FollowTitle>People to follow</FollowTitle>
+              <FollowTitle>WHO TO FOLLOW</FollowTitle>
             </div>
           </Col>
         </Row>
@@ -63,7 +63,7 @@ function PeopleFollowSection(props) {
       <Row>
         <Col>
           <div className="mt-4 mb-4">
-            <FollowTitle>People to follow</FollowTitle>
+            <FollowTitle>WHO TO FOLLOW</FollowTitle>
           </div>
         </Col>
       </Row>

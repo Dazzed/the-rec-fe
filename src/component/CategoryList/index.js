@@ -7,9 +7,39 @@ const LatestTitle = styled.h5`
   font-family: Roboto-Regular;
   font-style: normal;
   font-weight: 300;
-  font-size: 26px;
-  line-height: 30px;
+  font-size: 24px;
+  line-height: 28px;
   color: #000;
+`;
+const TabContent = styled.div`
+  height: 66px;
+  background: #E6F6FD;
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: auto;
+`;
+const UnOrderList = styled.ul`
+  padding: 0;
+  margin: 0;
+  display: block;
+  text-align: center;
+  line-height: 69px;
+`;
+const ListItemTab = styled.li`
+  padding: 0 13px;
+  font-family: "PragatiNarrow-Regular";
+  font-style: normal;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 24px;
+  color: #000;
+  display: inline-block;
+  line-height: 41px;
+  margin: 0;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const ButtonExplore = styled.button`
   background: #f6d0e8;
@@ -37,7 +67,7 @@ function CategoryList(props) {
 
   return (
     <>
-      <LatestTitle>Explore</LatestTitle>
+      {/* <LatestTitle>Explore</LatestTitle>
       <ButtonExplore onClick={() => onSelect('')}>
         {categoryQuery === '' ? <u>All</u> : 'All'}
       </ButtonExplore>
@@ -45,7 +75,20 @@ function CategoryList(props) {
         <ButtonExplore onClick={() => onSelect(item)} key={i}>
           {categoryQuery === item ? <u>{item}</u> : item}
         </ButtonExplore>
-      ))}
+      ))} */}
+      {/* <LatestTitle>Explore</LatestTitle> */}
+      {/* <ButtonExplore onClick={() => onSelect('')}>
+        {categoryQuery === '' ? <u>All</u> : 'All'}
+      </ButtonExplore> */}
+      <TabContent>
+        <UnOrderList>
+          {DEFAULT_CATEGORIES.map((item, i) => (
+            <ListItemTab onClick={() => onSelect(item)} key={i}>
+              {categoryQuery === item ? <a>{item}</a> : item}
+            </ListItemTab>
+          ))}
+        </UnOrderList>
+      </TabContent>
     </>
   );
 }

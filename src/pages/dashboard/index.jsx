@@ -15,15 +15,20 @@ import DashboardProducts from 'pages/dashboard/component/dashboardProducts';
 import CategoryList from 'component/CategoryList';
 
 const CommonContainer = styled(Container)`
-  padding: 37px 55px !important;
+  padding: 11px 55px 0 !important;
   max-width: 100% !important;
+`;
+const ContainerFluid = styled.div`
+  padding: 0 15px;
+  max-width: 100%;
+  background-color: #E6F6FD;
 `;
 const LatestTitle = styled.h5`
   font-family: Roboto-Regular;
   font-style: normal;
   font-weight: 300;
-  font-size: 26px;
-  line-height: 30px;
+  font-size: 24px;
+  line-height: 28px;
   color: #000;
 `;
 const LoaderSection = styled.div`
@@ -117,8 +122,8 @@ class Dashboard extends React.Component {
             prevState.currentPageIndex === 0
               ? nextProps.recsSuggestionListData.data
               : prevState.recSuggestions.concat(
-                  nextProps.recsSuggestionListData.data
-                ),
+                nextProps.recsSuggestionListData.data
+              ),
         });
       }
     }
@@ -215,7 +220,7 @@ class Dashboard extends React.Component {
           </div>
         }
       >
-        <Row className="mt-5 mb-4">
+        <Row className="mt-0 mb-4">
           {recSuggestions.map((suggestion, i) => (
             <Col
               key={`${suggestion.user.id}_${suggestion.product.id}_${i}`}
@@ -242,22 +247,33 @@ class Dashboard extends React.Component {
           <title>Dashboard | Get Tag</title>
           <meta property="og:title" content="Dashboard | Get Tag" key="title" />
         </Head>
-        <CommonContainer className="container-fluid">
+        <CommonContainer>
           <SearchBarNav handleQuery={this.handleQuery} />
-
+        </CommonContainer>
+        <ContainerFluid className="mb-0 mt-2">
+          <Row>
+            <Col lg={12}>
+              <CategoryList
+                categoryQuery={categoryQuery}
+                onSelect={this.selectCategoryFilter}
+              />
+            </Col>
+          </Row>
+        </ContainerFluid>
+        <CommonContainer className="container-fluid">
           <Row>
             <Col lg={9}>
-              <Row>
+              {/* <Row>
                 <Col lg={9} className="mb-4 mt-4">
                   <CategoryList
                     categoryQuery={categoryQuery}
                     onSelect={this.selectCategoryFilter}
                   />
                 </Col>
-              </Row>
+              </Row> */}
               <Row>
                 <Col className="mb-4 mt-4">
-                  <LatestTitle>Latest</LatestTitle>
+                  <LatestTitle>LATEST TAGS</LatestTitle>
                 </Col>
               </Row>
               {this.renderRecSuggestions()}

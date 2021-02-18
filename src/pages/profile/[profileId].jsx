@@ -15,8 +15,13 @@ import ProductSection from 'pages/profile/component/productsSecion';
 import CategoryList from 'component/CategoryList';
 
 const CommonContainer = styled(Container)`
-  padding: 37px 55px !important;
+  padding: 11px 55px 0 !important;
   max-width: 100% !important;
+`;
+const ContainerFluid = styled.div`
+  padding: 0 15px;
+  max-width: 100%;
+  background-color: #E6F6FD;
 `;
 
 class UserProfile extends React.Component {
@@ -218,12 +223,12 @@ class UserProfile extends React.Component {
             key="title"
           />
         </Head>
-        <CommonContainer className="container-fluid">
+        {/* <CommonContainer className="container-fluid">
           <SearchBarNav handleQuery={this.handleQuery} />
           <Row>
-            <Col lg={9}>
+            <Col lg={12}>
               <Row>
-                <Col lg={9} className="mb-4 mt-4">
+                <Col lg={12} className="mb-4 mt-4">
                   <CategoryList
                     categoryQuery={categoryQuery}
                     onSelect={this.selectCategoryFilter}
@@ -231,13 +236,26 @@ class UserProfile extends React.Component {
                 </Col>
               </Row>
             </Col>
+          </Row> */}
+        <CommonContainer>
+          <SearchBarNav handleQuery={this.handleQuery} />
+        </CommonContainer>
+        <ContainerFluid className="mb-0 mt-2">
+          <Row>
+            <Col lg={12}>
+              <CategoryList
+                categoryQuery={categoryQuery}
+                onSelect={this.selectCategoryFilter}
+              />
+            </Col>
           </Row>
+        </ContainerFluid>
+        <CommonContainer>
           <ProfileSection
             profile={userProfileData}
             follow={this.props.followFriend}
             unfollow={this.props.unfollowFriend}
           />
-
           {this.renderUserRecs()}
         </CommonContainer>
       </>

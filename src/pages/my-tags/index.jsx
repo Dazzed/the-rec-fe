@@ -14,8 +14,13 @@ import MyTag from 'pages/my-tags/component/myTag';
 import CategoryList from 'component/CategoryList';
 
 const CommonContainer = styled(Container)`
-  padding: 37px 55px !important;
+  padding: 11px 55px 0 !important;
   max-width: 100% !important;
+`;
+const ContainerFluid = styled.div`
+  padding: 0 15px;
+  max-width: 100%;
+  background-color: #E6F6FD;
 `;
 const LoaderSection = styled.div`
   position: absolute;
@@ -201,12 +206,12 @@ class MyTags extends React.Component {
           <title>My Tags | Get Tag</title>
           <meta property="og:title" content="My Tags | Get Tag" key="title" />
         </Head>
-        <CommonContainer className="container-fluid">
+        {/* <CommonContainer className="container-fluid">
           <SearchBarNav handleQuery={this.handleQuery} />
           <Row>
-            <Col lg={9}>
+            <Col lg={12}>
               <Row>
-                <Col lg={9} className="mb-4 mt-4">
+                <Col lg={12} className="mb-4 mt-4">
                   <CategoryList
                     categoryQuery={categoryQuery}
                     onSelect={this.selectCategoryFilter}
@@ -215,6 +220,22 @@ class MyTags extends React.Component {
               </Row>
             </Col>
           </Row>
+          {this.renderMyTags()}
+        </CommonContainer> */}
+        <CommonContainer>
+          <SearchBarNav handleQuery={this.handleQuery} />
+        </CommonContainer>
+        <ContainerFluid className="mb-0 mt-2">
+          <Row>
+            <Col lg={12}>
+              <CategoryList
+                categoryQuery={categoryQuery}
+                onSelect={this.selectCategoryFilter}
+              />
+            </Col>
+          </Row>
+        </ContainerFluid>
+        <CommonContainer className="container-fluid">
           {this.renderMyTags()}
         </CommonContainer>
       </>

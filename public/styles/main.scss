@@ -1,4 +1,4 @@
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 html,
 body {
   padding: 0;
@@ -39,12 +39,16 @@ button:hover {
 $border50: 50%;
 // font
 @font-face {
-  font-family: 'Roboto-Regular';
-  src: url('../fonts/Roboto-Regular.ttf');
+  font-family: "Roboto-Regular";
+  src: url("../fonts/Roboto-Regular.ttf");
 }
 @font-face {
-  font-family: 'Roboto-Bold';
-  src: url('../fonts/Roboto-Bold.ttf');
+  font-family: "Roboto-Bold";
+  src: url("../fonts/Roboto-Bold.ttf");
+}
+@font-face {
+  font-family: "PragatiNarrow-Regular";
+  src: url("../fonts/PragatiNarrow-Regular.ttf");
 }
 // breankpoint mobile and desktop
 
