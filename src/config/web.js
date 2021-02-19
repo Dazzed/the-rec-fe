@@ -1,5 +1,5 @@
 export default {
   development: 'http://localhost:4000',
-  staging: 'https://web.global-ved.com',
+  staging: 'https://the-rec-fe-staging.herokuapp.com',
   production: 'https://www.get-tag.com',
 };
