@@ -13,7 +13,7 @@ const LatestTitle = styled.h5`
 `;
 const TabContent = styled.div`
   height: 66px;
-  background: #E6F6FD;
+  background: #e6f6fd;
   white-space: nowrap;
   overflow-y: hidden;
   overflow-x: auto;
@@ -27,7 +27,7 @@ const UnOrderList = styled.ul`
 `;
 const ListItemTab = styled.li`
   padding: 0 13px;
-  font-family: "PragatiNarrow-Regular";
+  font-family: 'PragatiNarrow-Regular';
   font-style: normal;
   font-weight: normal;
   text-transform: uppercase;
@@ -84,7 +84,7 @@ function CategoryList(props) {
         <UnOrderList>
           {DEFAULT_CATEGORIES.map((item, i) => (
             <ListItemTab onClick={() => onSelect(item)} key={i}>
-              {categoryQuery === item ? <a>{item}</a> : item}
+              {categoryQuery === item ? <u>{item}</u> : item}
             </ListItemTab>
           ))}
         </UnOrderList>
