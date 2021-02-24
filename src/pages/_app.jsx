@@ -1,6 +1,8 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import '../../public/styles/main.scss';
 import { useStore } from 'store';
 import Layout from 'component/Layout';
@@ -26,6 +28,7 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <Layout>
           <Component {...pageProps} />
+          <ToastContainer />
         </Layout>
       </ThemeProvider>
     </Provider>

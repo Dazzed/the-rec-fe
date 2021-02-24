@@ -13,6 +13,7 @@ import SearchBarNav from 'component/Header/SearchBarNav';
 import PeopleToFollow from 'pages/dashboard/component/peopleToFollow';
 import DashboardProducts from 'pages/dashboard/component/dashboardProducts';
 import CategoryList from 'component/CategoryList';
+import { toast } from 'react-toastify';
 
 const CommonContainer = styled(Container)`
   padding: 11px 55px 0 !important;
@@ -21,7 +22,7 @@ const CommonContainer = styled(Container)`
 const ContainerFluid = styled.div`
   padding: 0 15px;
   max-width: 100%;
-  background-color: #E6F6FD;
+  background-color: #e6f6fd;
 `;
 const LatestTitle = styled.h5`
   font-family: Roboto-Regular;
@@ -81,8 +82,10 @@ class Dashboard extends React.Component {
     }
 
     if (
-      this.props.followFriendSuccess &&
-      this.props.followFriendSuccess !== prevProps.followFriendSuccess
+      (this.props.followFriendSuccess &&
+        this.props.followFriendSuccess !== prevProps.followFriendSuccess) ||
+      (this.props.addToRecSuccess &&
+        this.props.addToRecSuccess !== prevProps.addToRecSuccess)
     ) {
       this.setState(
         {
@@ -92,6 +95,8 @@ class Dashboard extends React.Component {
         },
         () => this.listRecsSuggestions()
       );
+
+      toast.success('Successfully added to you Tags');
     }
   }
 
@@ -122,8 +127,8 @@ class Dashboard extends React.Component {
             prevState.currentPageIndex === 0
               ? nextProps.recsSuggestionListData.data
               : prevState.recSuggestions.concat(
-                nextProps.recsSuggestionListData.data
-              ),
+                  nextProps.recsSuggestionListData.data
+                ),
         });
       }
     }
@@ -230,7 +235,10 @@ class Dashboard extends React.Component {
               xs={12}
               className="mb-3"
             >
-              <DashboardProducts suggestion={suggestion} />
+              <DashboardProducts
+                suggestion={suggestion}
+                addToMyRec={() => this.props.addToMyRec(suggestion.product.id)}
+              />
             </Col>
           ))}
         </Row>
@@ -296,6 +304,7 @@ const mapStateToProps = (state) => {
     recsSuggestionListData: state.dashboard.recsSuggestionListData,
     friendsSuggestionList: state.dashboard.friendsSuggestionList,
     followFriendSuccess: state.dashboard.followFriendSuccess,
+    addToRecSuccess: state.dashboard.addToRecSuccess,
   };
 };
 

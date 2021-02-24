@@ -25,6 +25,11 @@ const listRecsAutoSuggestionsMethods = actionsFactory({
   data: types.LIST_RECS_AUTO_SUGGESTIONS_DATA,
 });
 
+const addToRecMethods = actionsFactory({
+  error: types.ADD_TO_MY_REC_ERROR,
+  success: types.ADD_TO_MY_REC_SUCCESS,
+});
+
 export const listRecsSuggestions = ({
   pageIndex,
   pageSize,
@@ -110,6 +115,23 @@ export const listRecsAutoSuggestions = ({ pageSize, query }) => {
       console.error(error);
       const errMsg = 'Failed get recs auto suggestion list';
       return dispatch(listRecsAutoSuggestionsMethods.setError(errMsg));
+    }
+  };
+};
+
+export const addToMyRec = (productId) => {
+  return async (dispatch) => {
+    try {
+      dispatch(addToRecMethods.setError(null));
+      dispatch(addToRecMethods.setSuccess(false));
+
+      await post(`${API_URL}/recs/add/${productId}`);
+
+      return dispatch(addToRecMethods.setSuccess(true));
+    } catch (error) {
+      console.error(error);
+      const errMsg = 'Failed to add product';
+      return dispatch(addToRecMethods.setError(errMsg));
     }
   };
 };

@@ -75,7 +75,8 @@ const ProductSection = styled.div`
     height: 30px;
     opacity: 0;
     left: 20px;
-    transition: .5s ease;
+    transition: 0.5s ease;
+    cursor: pointer;
   }
   &:hover .logoWatermark {
     opacity: 1;
@@ -112,8 +113,14 @@ function DashboardProducts(props) {
         <h6>{product.brand.name}</h6>
         {product.price && <h4>${product.price.toFixed(2)}</h4>}
       </a>
-      <img src="/imgs/svgs/rec-logo-blue.png" alt="Logo" className="logoWatermark" />
+      <ImageComponent
+        src="/imgs/svgs/rec-logo-blue.png"
+        alt="Logo"
+        className="logoWatermark"
+        onClick={props.addToMyRec}
+      />
     </ProductSection>
   );
 }
+
 export default DashboardProducts;
