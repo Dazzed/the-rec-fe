@@ -18,6 +18,7 @@ export const EXTENSION_ID =
     : 'klljbbpibnchkcjdgpjipaffmeedmjll'; //bafhdbofpbpahpakekhmeooemjhjbgfb
 
 export const DEFAULT_CATEGORIES = [
+  'All',
   'Beauty',
   'Kids',
   'Home',

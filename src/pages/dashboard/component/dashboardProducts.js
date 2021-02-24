@@ -71,10 +71,10 @@ const ProductSection = styled.div`
   }
   .logoWatermark {
     position: absolute;
-    top: 5px;
-    height: 30px;
+    top: 3px;
+    height: 50px;
     opacity: 0;
-    left: 20px;
+    right: 20px;
     transition: 0.5s ease;
     cursor: pointer;
   }

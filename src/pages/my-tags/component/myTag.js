@@ -37,17 +37,22 @@ const MyTagProductSectionStyle = styled.div`
 
     .icon-close {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: -13px;
+      left: -13px;
       color: #fff;
       font-size: 18px;
-      -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
+      // -webkit-transform: translate(-50%, -50%);
+      // -ms-transform: translate(-50%, -50%);
+      // transform: translate(-50%, -50%);
       text-align: center;
       cursor: pointer;
-      &img:hover {
-        cursor: pointer;
+      img {
+        width: 20px;
+        border-radius: 50%;
+        background: #ddd;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -71,7 +76,7 @@ const MyTagProductSectionStyle = styled.div`
   }
   &:hover .overlay {
     display: block;
-    background-color: rgba(245, 191, 66, 0.72);
+    background-color: transparent;
   }
 `;
 
@@ -90,7 +95,7 @@ function MyTag(props) {
       </a>
       <div className="overlay">
         <div className="icon-close" onClick={() => props.deleteMyTag(rec.id)}>
-          <img src="../../../imgs/svgs/close-icon-red.svg" />
+          <img src="../../../imgs/svgs/close-icon.svg" />
         </div>
       </div>
       <a href={rec.externalLink} target="_blank">
