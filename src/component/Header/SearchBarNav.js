@@ -1,5 +1,6 @@
-import React from 'react';
-import { Row, Col, Dropdown } from 'react-bootstrap';
+import React, { useState } from 'react';
+// import { Row, Col, Dropdown } from 'react-bootstrap';
+import { Container, Row, Col, Modal, Button, Dropdown } from 'react-bootstrap';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,6 +11,7 @@ import isEqual from 'lodash/isEqual';
 import queryString from 'query-string';
 import Autosuggest from 'react-autosuggest';
 import ImageComponent from 'component/ImageComponent';
+import InviteModal from 'component/InviteModal';
 import * as dashboardActions from 'pages/dashboard/actions';
 
 const SearchBox = styled.div`
@@ -154,7 +156,6 @@ function getSuggestionValue(suggestion) {
 function renderSuggestion(suggestion) {
   return <span>{suggestion.name}</span>;
 }
-
 class SearchBarNav extends React.Component {
   constructor(props) {
     super(props);
@@ -163,6 +164,7 @@ class SearchBarNav extends React.Component {
       value: '',
       suggestions: [],
       isLoading: false,
+      showModalInvite: false,
     };
 
     this.loadSuggestions = debounce(this.loadSuggestions, 300);
@@ -251,72 +253,83 @@ class SearchBarNav extends React.Component {
     this.handleQueryChange(suggestionValue);
   };
 
+  toggleModalInvite = () => {
+    this.setState((state) => ({
+      showModalInvite: !state.showModalInvite,
+    }));
+  }
   render() {
-    const { profile } = this.props;
-    const { value, suggestions, isLoading } = this.state;
+    const { profile, handleClose } = this.props;
+    const { value, suggestions, isLoading, showModalInvite } = this.state;
     const inputProps = {
       type: 'text',
       placeholder: 'Search brands, categories or contacts',
       value,
       onChange: this.onChange,
     };
-
     const profilePicUrl = profile && profile.profilePicUrl;
 
+
     return (
-      <Row className="align-items-center">
-        <Col lg={2}>
-          <Link href="/dashboard">
-            <LogoSection>
-              <img src="/imgs/svgs/rec-logo-blue.svg" alt="logo-rec" />
-            </LogoSection>
-          </Link>
-        </Col>
-        <Col lg={6}>
-          <SearchBox>
-            <Autosuggest
-              suggestions={suggestions}
-              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-              onSuggestionSelected={this.onSuggestionSelected}
-              getSuggestionValue={getSuggestionValue}
-              renderSuggestion={renderSuggestion}
-              inputProps={inputProps}
-            />
-            <img
-              src="/imgs/svgs/search_icon.svg"
-              id="icon"
-              className="search searchicon-support"
-            />
-          </SearchBox>
-        </Col>
-        <Col lg={4} className="resposive-992">
-          <NavItem>
-            <ul>
-              <li>
-                <Link href="/my-tags">My Tags</Link>
-              </li>
-              <li>
-                <Link href="/contacts">My Contacts</Link>
-              </li>
-              <li>
-                <LogInDropdown>
-                  <Dropdown.Toggle id="dropdown-basic">
-                    <ImageComponent
-                      src={profilePicUrl || '/imgs/default_profile_pic.jpg'}
-                      fallbackSrc="/imgs/default_profile_pic.jpg"
-                      alt="userImg"
-                    />
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="/logout">Logout</Dropdown.Item>
-                  </Dropdown.Menu>
-                </LogInDropdown>
-              </li>
-            </ul>
-          </NavItem>
-        </Col>
-      </Row>
+      <div>
+        <Row className="align-items-center">
+          <Col lg={2}>
+            <Link href="/dashboard">
+              <LogoSection>
+                <img src="/imgs/svgs/rec-logo-blue.svg" alt="logo-rec" />
+              </LogoSection>
+            </Link>
+          </Col>
+          <Col lg={6}>
+            <SearchBox>
+              <Autosuggest
+                suggestions={suggestions}
+                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                onSuggestionSelected={this.onSuggestionSelected}
+                getSuggestionValue={getSuggestionValue}
+                renderSuggestion={renderSuggestion}
+                inputProps={inputProps}
+              />
+              <img
+                src="/imgs/svgs/search_icon.svg"
+                id="icon"
+                className="search searchicon-support"
+              />
+            </SearchBox>
+          </Col>
+          <Col lg={4} className="resposive-992">
+            <NavItem>
+              <ul>
+                <li>
+                  <a href="#0" onClick={this.toggleModalInvite}>Invite Friends</a>
+                </li>
+                <li>
+                  <Link href="/my-tags">My Tags</Link>
+                </li>
+                <li>
+                  <Link href="/contacts">My Contacts</Link>
+                </li>
+                <li>
+                  <LogInDropdown>
+                    <Dropdown.Toggle id="dropdown-basic">
+                      <ImageComponent
+                        src={profilePicUrl || '/imgs/default_profile_pic.jpg'}
+                        fallbackSrc="/imgs/default_profile_pic.jpg"
+                        alt="userImg"
+                      />
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item href="/logout">Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </LogInDropdown>
+                </li>
+              </ul>
+            </NavItem>
+          </Col>
+        </Row>
+        <InviteModal show={showModalInvite} onHide={this.toggleModalInvite} />
+      </div >
     );
   }
 }
