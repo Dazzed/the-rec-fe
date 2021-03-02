@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-// import { Row, Col, Dropdown } from 'react-bootstrap';
-import { Container, Row, Col, Modal, Button, Dropdown } from 'react-bootstrap';
+import React from 'react';
+import { Row, Col, Dropdown } from 'react-bootstrap';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -156,6 +155,7 @@ function getSuggestionValue(suggestion) {
 function renderSuggestion(suggestion) {
   return <span>{suggestion.name}</span>;
 }
+
 class SearchBarNav extends React.Component {
   constructor(props) {
     super(props);
@@ -257,10 +257,11 @@ class SearchBarNav extends React.Component {
     this.setState((state) => ({
       showModalInvite: !state.showModalInvite,
     }));
-  }
+  };
+
   render() {
-    const { profile, handleClose } = this.props;
-    const { value, suggestions, isLoading, showModalInvite } = this.state;
+    const { profile } = this.props;
+    const { value, suggestions, showModalInvite, editor } = this.state;
     const inputProps = {
       type: 'text',
       placeholder: 'Search brands, categories or contacts',
@@ -268,7 +269,6 @@ class SearchBarNav extends React.Component {
       onChange: this.onChange,
     };
     const profilePicUrl = profile && profile.profilePicUrl;
-
 
     return (
       <div>
@@ -302,7 +302,9 @@ class SearchBarNav extends React.Component {
             <NavItem>
               <ul>
                 <li>
-                  <a href="#0" onClick={this.toggleModalInvite}>Invite Friends</a>
+                  <a href="#0" onClick={this.toggleModalInvite}>
+                    Invite Friends
+                  </a>
                 </li>
                 <li>
                   <Link href="/my-tags">My Tags</Link>
@@ -329,7 +331,7 @@ class SearchBarNav extends React.Component {
           </Col>
         </Row>
         <InviteModal show={showModalInvite} onHide={this.toggleModalInvite} />
-      </div >
+      </div>
     );
   }
 }

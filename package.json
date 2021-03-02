@@ -16,6 +16,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "formik": "^2.2.5",
+    "immutable": "^4.0.0-rc.12",
     "jquery": "^3.5.1",
     "lodash": "^4.17.20",
     "nanoid": "^3.1.20",
