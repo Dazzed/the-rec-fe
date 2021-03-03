@@ -156,7 +156,9 @@ $padding-responsive: 600px;
 .react-autosuggest__suggestion--highlighted {
   background-color: #ddd;
 }
-
+.react-multi-email.focused {
+  border: 1px solid #d6ece7 !important;
+}
 @media screen and (min-width: $break-large) {
   .bg-marketing {
     height: 745px;

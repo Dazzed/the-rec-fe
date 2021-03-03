@@ -30,8 +30,60 @@ const InputField = styled.input`
   margin-bottom: 16px;
   line-height: 24px;
   padding-right: 16px;
-  color: #616d82;
+  color: #000;
   padding-left: 16px;
+  :focus {
+    border: 1px solid #d6ece7;
+    outline: none;
+  }
+  ::placeholder {
+    color: #616d82;
+  }
+`;
+const ReactInput = styled(ReactMultiEmail)`
+  margin-bottom: 16px;
+  border: 1px solid #d6ece7;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    width: 100% !important;
+    height: 54px;
+    span {
+      color: #616d82 !important;
+    }
+  input {
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    width: 100% !important;
+    line-height: 24px;
+    padding-right: 16px;
+    padding-top:0;
+    padding-bottom:0;
+    color: #000;
+    padding-left: 16px;
+    &:focus {
+      border: none;
+      outline: none;
+    }
+    &::placeholder {
+      color: #000;
+    }
+  }
+  :focus {
+    border: 1px solid #d6ece7 !important;
+    outline: none;
+  }
+  ::placeholder {
+    color: #616d82;
+  }
+  .focused  {
+    border: 1px solid #d6ece7 !important;
+  }
 `;
 const EditorSection = styled.div`
   .wrapperClassName {
@@ -44,6 +96,9 @@ const EditorSection = styled.div`
     border-radius: unset;
     background-color: transparent;
     border-bottom: 1px solid #d6ece7;
+  }
+  .rdw-editor-main {
+    padding-left: 8px;
   }
 `;
 const CloseButton = styled.button`
@@ -113,8 +168,8 @@ function MydModalWithGrid(props) {
         <Container>
           <Row>
             <Col xs={12} md={12}>
-              <ReactMultiEmail
-                placeholder="placeholder"
+              <ReactInput
+                placeholder="Email"
                 emails={emails}
                 onChange={(_emails) => {
                   setEmails(_emails);
