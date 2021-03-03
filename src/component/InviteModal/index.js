@@ -3,9 +3,14 @@ import dynamic from 'next/dynamic';
 import { Container, Row, Col, Modal } from 'react-bootstrap';
 import styled from 'styled-components';
 import { EditorState } from 'draft-js';
+import { stateToHTML } from 'draft-js-export-html';
+import { ReactMultiEmail, isEmail } from 'react-multi-email';
+import { toast } from 'react-toastify';
+
+import { post } from 'lib/request';
+import { API_URL } from 'config/constants';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { ReactMultiEmail, isEmail } from 'react-multi-email';
 import 'react-multi-email/style.css';
 
 const TitleH4 = styled.h4`
@@ -43,16 +48,16 @@ const InputField = styled.input`
 const ReactInput = styled(ReactMultiEmail)`
   margin-bottom: 16px;
   border: 1px solid #d6ece7;
-    box-sizing: border-box;
-    border-radius: 10px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    width: 100% !important;
-    height: 54px;
-    span {
-      color: #616d82 !important;
-    }
+  box-sizing: border-box;
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  width: 100% !important;
+  height: 54px;
+  span {
+    color: #616d82 !important;
+  }
   input {
     box-sizing: border-box;
     border-radius: 10px;
@@ -62,8 +67,8 @@ const ReactInput = styled(ReactMultiEmail)`
     width: 100% !important;
     line-height: 24px;
     padding-right: 16px;
-    padding-top:0;
-    padding-bottom:0;
+    padding-top: 0;
+    padding-bottom: 0;
     color: #000;
     padding-left: 16px;
     &:focus {
@@ -81,7 +86,7 @@ const ReactInput = styled(ReactMultiEmail)`
   ::placeholder {
     color: #616d82;
   }
-  .focused  {
+  .focused {
     border: 1px solid #d6ece7 !important;
   }
 `;
@@ -145,6 +150,9 @@ function MydModalWithGrid(props) {
   const [editorActive, setEditorActive] = React.useState(false);
   const [Editor, setEditorComponent] = React.useState(() => <div />);
   const [emails, setEmails] = React.useState([]);
+  const [subject, setSubject] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
+
   React.useEffect(() => {
     if (!editorActive) {
       const Editor = dynamic(
@@ -157,8 +165,41 @@ function MydModalWithGrid(props) {
     }
   }, [editorActive]);
 
+  const handleSubjectChange = (e) => {
+    setSubject(e.target.value);
+  };
+
+  const sendInvite = async () => {
+    try {
+      setLoading(true);
+      const data = {
+        emails,
+        subject,
+        html: stateToHTML(editorState.getCurrentContent()),
+      };
+
+      console.log('send invite:', data);
+
+      const result = await post(`${API_URL}/contacts/send-invite`, data);
+      console.log(result);
+
+      setLoading(false);
+      toast.success('Invites sent successfully');
+      props.onHide();
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+      toast.error((error && error.data) || 'Failed to send invite');
+    }
+  };
+
   return (
-    <Modal {...props} size="lg" centered aria-labelledby="contained-modal-title-vcenter">
+    <Modal
+      {...props}
+      size="lg"
+      centered
+      aria-labelledby="contained-modal-title-vcenter"
+    >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           <TitleH4>Invite Friends</TitleH4>
@@ -174,14 +215,10 @@ function MydModalWithGrid(props) {
                 onChange={(_emails) => {
                   setEmails(_emails);
                 }}
-                validateEmail={email => {
+                validateEmail={(email) => {
                   return isEmail(email); // return boolean
                 }}
-                getLabel={(
-                  email,
-                  index,
-                  removeEmail,
-                ) => {
+                getLabel={(email, index, removeEmail) => {
                   return (
                     <div data-tag key={index}>
                       {email}
@@ -194,7 +231,12 @@ function MydModalWithGrid(props) {
               />
             </Col>
             <Col xs={12} md={12}>
-              <InputField type="text" placeholder="Subject" />
+              <InputField
+                type="text"
+                placeholder="Subject"
+                value={subject}
+                onChange={handleSubjectChange}
+              />
             </Col>
             <Col xs={12} md={12}>
               <EditorSection>
@@ -214,7 +256,9 @@ function MydModalWithGrid(props) {
       </Modal.Body>
       <Footer>
         <CloseButton onClick={props.onHide}>Close</CloseButton>
-        <SendButton variant="primary">Send</SendButton>
+        <SendButton variant="primary" disabled={loading} onClick={sendInvite}>
+          Send
+        </SendButton>
       </Footer>
     </Modal>
   );
