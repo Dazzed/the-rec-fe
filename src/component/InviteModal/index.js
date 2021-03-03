@@ -4,6 +4,8 @@ import { Container, Row, Col, Modal } from 'react-bootstrap';
 import styled from 'styled-components';
 import { EditorState } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { ReactMultiEmail, isEmail } from 'react-multi-email';
+import 'react-multi-email/style.css';
 
 const TitleH4 = styled.h4`
   font-family: Roboto-Regular;
@@ -69,7 +71,7 @@ function MydModalWithGrid(props) {
   );
   const [editorActive, setEditorActive] = React.useState(false);
   const [Editor, setEditorComponent] = React.useState(() => <div />);
-
+  const [emails, setEmails] = React.useState([]);
   React.useEffect(() => {
     if (!editorActive) {
       const Editor = dynamic(
@@ -93,7 +95,30 @@ function MydModalWithGrid(props) {
         <Container>
           <Row>
             <Col xs={12} md={12}>
-              <InputField type="email" placeholder="Recipient" />
+              <ReactMultiEmail
+                placeholder="placeholder"
+                emails={emails}
+                onChange={(_emails) => {
+                  setEmails(_emails);
+                }}
+                validateEmail={email => {
+                  return isEmail(email); // return boolean
+                }}
+                getLabel={(
+                  email,
+                  index,
+                  removeEmail,
+                ) => {
+                  return (
+                    <div data-tag key={index}>
+                      {email}
+                      <span data-tag-handle onClick={() => removeEmail(index)}>
+                        ×
+                      </span>
+                    </div>
+                  );
+                }}
+              />
             </Col>
             <Col xs={12} md={12}>
               <InputField type="text" placeholder="Subject" />
