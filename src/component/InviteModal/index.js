@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import { Container, Row, Col, Modal } from 'react-bootstrap';
 import styled from 'styled-components';
 import { EditorState } from 'draft-js';
+
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { ReactMultiEmail, isEmail } from 'react-multi-email';
 import 'react-multi-email/style.css';
@@ -31,6 +32,19 @@ const InputField = styled.input`
   padding-right: 16px;
   color: #616d82;
   padding-left: 16px;
+`;
+const EditorSection = styled.div`
+  .wrapperClassName {
+    border: 1px solid #d6ece7;
+    border-radius: 10px;
+    min-height: 250px;
+  }
+  .rdw-editor-toolbar {
+    border: none;
+    border-radius: unset;
+    background-color: transparent;
+    border-bottom: 1px solid #d6ece7;
+  }
 `;
 const CloseButton = styled.button`
   border: 1px solid #29c0ea;
@@ -63,6 +77,10 @@ const SendButton = styled.button`
   width: auto;
   padding: 0 15px;
   border: none;
+  margin-right: 20px;
+`;
+const Footer = styled(Modal.Footer)`
+  border: none;
 `;
 
 function MydModalWithGrid(props) {
@@ -85,7 +103,7 @@ function MydModalWithGrid(props) {
   }, [editorActive]);
 
   return (
-    <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter">
+    <Modal {...props} size="lg" centered aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           <TitleH4>Invite Friends</TitleH4>
@@ -124,23 +142,25 @@ function MydModalWithGrid(props) {
               <InputField type="text" placeholder="Subject" />
             </Col>
             <Col xs={12} md={12}>
-              {editorActive && (
-                <Editor
-                  editorState={editorState}
-                  toolbarClassName="toolbarClassName"
-                  wrapperClassName="wrapperClassName"
-                  editorClassName="editorClassName"
-                  onEditorStateChange={setEditorState}
-                />
-              )}
+              <EditorSection>
+                {editorActive && (
+                  <Editor
+                    editorState={editorState}
+                    toolbarClassName="toolbarClassName"
+                    wrapperClassName="wrapperClassName"
+                    editorClassName="editorClassName"
+                    onEditorStateChange={setEditorState}
+                  />
+                )}
+              </EditorSection>
             </Col>
           </Row>
         </Container>
       </Modal.Body>
-      <Modal.Footer>
+      <Footer>
         <CloseButton onClick={props.onHide}>Close</CloseButton>
         <SendButton variant="primary">Send</SendButton>
-      </Modal.Footer>
+      </Footer>
     </Modal>
   );
 }
