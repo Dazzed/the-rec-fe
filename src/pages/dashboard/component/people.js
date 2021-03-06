@@ -45,7 +45,7 @@ const ProfileImageSection = styled.div`
 const ButtonGreenFollow = styled.div`
   text-align: right;
   button {
-    background: #29c0ea;
+    background: #e6f6fd;
     border-radius: 5px;
     padding: 9px;
     font-family: Roboto-Regular;
@@ -55,7 +55,7 @@ const ButtonGreenFollow = styled.div`
     line-height: 19px;
     height: 36px;
     text-align: center;
-    color: #fff;
+    color: #000;
     border: none;
     width: 90px;
   }

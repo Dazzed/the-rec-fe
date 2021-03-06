@@ -268,7 +268,7 @@ class SearchBarNav extends React.Component {
         <Col lg={2}>
           <Link href="/dashboard">
             <LogoSection>
-              <img src="/imgs/svgs/rec-logo-blue.svg" alt="logo-rec" />
+              <img src="/imgs/svgs/rec-logo-red.png" alt="logo-rec" />
             </LogoSection>
           </Link>
         </Col>
