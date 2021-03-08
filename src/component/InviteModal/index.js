@@ -178,10 +178,7 @@ function MydModalWithGrid(props) {
         html: stateToHTML(editorState.getCurrentContent()),
       };
 
-      console.log('send invite:', data);
-
       const result = await post(`${API_URL}/contacts/send-invite`, data);
-      console.log(result);
 
       setLoading(false);
       toast.success('Invites sent successfully');
@@ -257,7 +254,7 @@ function MydModalWithGrid(props) {
       <Footer>
         <CloseButton onClick={props.onHide}>Close</CloseButton>
         <SendButton variant="primary" disabled={loading} onClick={sendInvite}>
-          Send
+          {loading ? 'Sending' : 'Send'}
         </SendButton>
       </Footer>
     </Modal>
