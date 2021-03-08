@@ -38,10 +38,10 @@ for (let i = 0; i < images.length; i++) {
   // alert(response.farewell.images[i]);
   $('#productImages').append(
     '<div class="mySlides fade"><img src="' +
-    images[i] +
-    '"><input type="hidden" name="productImages" value="' +
-    images[i] +
-    '"></input></div>'
+      images[i] +
+      '"><input type="hidden" name="productImages" value="' +
+      images[i] +
+      '"></input></div>'
   );
   $('#productImageDots').append(
     '<span class="dot" onclick="currentSlide(' + (i + 1) + ')"></span>'
@@ -129,11 +129,13 @@ $('#createRecForm').submit(function () {
     productDescription: 'description',
     productExternalLink: 'externalLink',
     productExternalId: 'externalId',
+    productIsPrivate: 'isPrivate',
   };
   let values = {
     retailer: hostname,
     currency: 'USD',
     category: '',
+    isPrivate: false,
   };
 
   fields.forEach((val) => {
@@ -150,6 +152,8 @@ $('#createRecForm').submit(function () {
       values.price = Number.parseFloat(val.value);
     } else if (key === 'externalId' && !val.value) {
       values.externalId = undefined;
+    } else if (key === 'isPrivate') {
+      values.isPrivate = Boolean(val.value);
     } else {
       values[key] = val.value;
     }

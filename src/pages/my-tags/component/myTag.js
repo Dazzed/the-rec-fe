@@ -50,9 +50,18 @@ const MyTagProductSectionStyle = styled.div`
         width: 20px;
         border-radius: 50%;
         background: #ddd;
+        margin-right: 8px;
         &:hover {
           cursor: pointer;
         }
+      }
+      span {
+        color: #555;
+        font-family: Roboto-Regular;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16px;
       }
     }
   }
@@ -96,6 +105,7 @@ function MyTag(props) {
       <div className="overlay">
         <div className="icon-close" onClick={() => props.deleteMyTag(rec.id)}>
           <img src="../../../imgs/svgs/close-icon.svg" />
+          <span>Remove</span>
         </div>
       </div>
       <a href={rec.externalLink} target="_blank">

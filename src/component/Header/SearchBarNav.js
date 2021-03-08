@@ -271,12 +271,12 @@ class SearchBarNav extends React.Component {
     const profilePicUrl = profile && profile.profilePicUrl;
 
     return (
-      <div>
+      <>
         <Row className="align-items-center">
           <Col lg={2}>
             <Link href="/dashboard">
               <LogoSection>
-                <img src="/imgs/svgs/rec-logo-blue.svg" alt="logo-rec" />
+                <img src="/imgs/svgs/rec-logo-red.png" alt="logo-rec" />
               </LogoSection>
             </Link>
           </Col>
@@ -331,7 +331,7 @@ class SearchBarNav extends React.Component {
           </Col>
         </Row>
         <InviteModal show={showModalInvite} onHide={this.toggleModalInvite} />
-      </div>
+      </>
     );
   }
 }
