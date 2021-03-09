@@ -90,12 +90,18 @@ function UpdateSuggestionList(query) {
 
         html += `
             <div class="product_items">
-                <img src="${product.images && product.images[0]}" />
+                <a href="${product.externalLink}" target="_blank">
+                  <img src="${product.images && product.images[0]}" />
+                </a>
                 <div class="product_content bordernone">
+                  <a href="https://www.get-tag.com/profile/${
+                    user.id
+                  }" target="_blank">
                     <img src="${user.profilePicUrl}" />
                     <h2>
                         ${user.name}
                     </h2>
+                  </a>
                     <p class="common1">${product.category.name}</p>
                     <h3 class="common">
                         ${product.title}
