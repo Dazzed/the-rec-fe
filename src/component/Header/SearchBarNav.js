@@ -83,8 +83,8 @@ const NavItem = styled.div`
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-end;
-	li { padding: 0 15px 13px;
-	margin: 0 7px;
+	li {
+    padding: 0 13px 13px;
 }
 a {
 	font-family: "PragatiNarrow-Regular";
@@ -280,7 +280,7 @@ class SearchBarNav extends React.Component {
               </LogoSection>
             </Link>
           </Col>
-          <Col lg={6}>
+          <Col lg={5}>
             <SearchBox>
               <Autosuggest
                 suggestions={suggestions}
@@ -298,7 +298,7 @@ class SearchBarNav extends React.Component {
               />
             </SearchBox>
           </Col>
-          <Col lg={4} className="resposive-992">
+          <Col lg={5} className="resposive-992">
             <NavItem>
               <ul>
                 <li>
