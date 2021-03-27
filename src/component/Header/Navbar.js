@@ -16,7 +16,7 @@ function Navbar() {
     <Col xl={12}>
       <Header className="header">
         <LogoSection>
-          <img src="/imgs/svgs/rec-logo-red.png" alt="logo-rec" />
+          <img src="/imgs/svgs/rec-logo.png" alt="logo-rec" />
         </LogoSection>
       </Header>
     </Col>

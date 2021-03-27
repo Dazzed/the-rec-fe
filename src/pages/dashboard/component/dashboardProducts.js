@@ -114,7 +114,7 @@ function DashboardProducts(props) {
         {product.price && <h4>${product.price.toFixed(2)}</h4>}
       </a>
       <ImageComponent
-        src="/imgs/svgs/rec-logo-red.png"
+        src="/imgs/svgs/rec-logo.png"
         alt="Logo"
         className="logoWatermark"
         onClick={props.addToMyRec}
