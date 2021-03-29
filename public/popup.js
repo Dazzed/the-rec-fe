@@ -15,6 +15,7 @@ $('.close img').click(function () {
 $(function () {
   let queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
+  const url = urlParams.get('url');
   const title = urlParams.get('title');
   const price = urlParams.get('price');
   const brand = urlParams.get('brand');
@@ -34,8 +35,34 @@ $(function () {
   if (externalId) {
     checkProductInRecs(externalId);
   }
-  if (search || title) {
-    UpdateSuggestionList(search || title);
+
+  let pSearch = null;
+  if (search) {
+    pSearch = search;
+  } else if (url) {
+    let href = new URL(url);
+    pSearch =
+      href.searchParams.get('q') ||
+      href.searchParams.get('query') ||
+      href.searchParams.get('search') ||
+      href.searchParams.get('s') ||
+      href.searchParams.get('searchTerm') ||
+      href.searchParams.get('sk') ||
+      href.searchParams.get('t') ||
+      href.searchParams.get('k');
+  } else if (title) {
+    pSearch = title;
+    pSearch = pSearch.toLowerCase();
+    pSearch = pSearch
+      .replaceAll('walmart.com', '')
+      .replaceAll('amazon.com', '')
+      .replaceAll('target', '')
+      .replaceAll('-', '');
+  }
+
+  if (pSearch) {
+    $('#searchedText').val(pSearch);
+    UpdateSuggestionList(pSearch);
   }
 
   productListActions();
