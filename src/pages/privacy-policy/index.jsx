@@ -289,9 +289,7 @@ function PrivacyPolicy() {
                 account, you may access, manage, and update your account
                 information and communication preferences using your account
                 settings or by contacting us directly at{' '}
-                <a href="mailto:tagbyamplifyher@gmail.com">
-                  tagbyamplifyher@gmail.com
-                </a>
+                <a href="mailto:info@get-tag.com">info@get-tag.com</a>
               </li>
             </ul>
           </li>
@@ -417,11 +415,8 @@ function PrivacyPolicy() {
             Rectify inaccuracies in the information Get Tag collects and holds
             about you. If your account information is incomplete or inaccurate,
             you can update your information directly in your Get Tag account or
-            contact{' '}
-            <a href="mailto:tagbyamplifyher@gmail.com">
-              tagbyamplifyher@gmail.com
-            </a>{' '}
-            for assistance.
+            contact <a href="mailto:info@get-tag.com">info@get-tag.com</a> for
+            assistance.
           </li>
           <li>
             Require your information to be provided to you or to another company
@@ -456,10 +451,8 @@ function PrivacyPolicy() {
           without the participation and supervision of a legal parent or
           guardian. If you believe your child has provided Get Tag with personal
           information, please contact us at{' '}
-          <a href="mailto:tagbyamplifyher@gmail.com">
-            tagbyamplifyher@gmail.com
-          </a>{' '}
-          so we can remove the information.
+          <a href="mailto:info@get-tag.com">info@get-tag.com</a> so we can
+          remove the information.
         </p>
         <br />
         <h4 className="text-bold">DATA STORAGE AND RETENTION</h4>
@@ -529,10 +522,7 @@ function PrivacyPolicy() {
         <p>
           If you have any questions or concerns about Get Tag privacy practices,
           please contact us at
-          <a href="mailto:tagbyamplifyher@gmail.com">
-            tagbyamplifyher@gmail.com
-          </a>{' '}
-          or mail us at:{' '}
+          <a href="mailto:info@get-tag.com">info@get-tag.com</a> or mail us at:{' '}
         </p>
         <br />
         <br />
