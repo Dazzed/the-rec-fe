@@ -435,14 +435,6 @@ function PrivacyPolicy() {
           <li>Withdraw your consent for future processing.</li>
         </ul>
         <br />
-        <h4 className="text-bold">CALIFORNIA PRIVACY RIGHTS</h4>
-        <p>
-          Get Tag complies with the CCPA, which may provide you with additional
-          rights and information about how we collect and use your personal
-          information. For more information about how we comply with the CCPA,
-          please see our separate <a href="/ccpa">CCPA Notice</a>.
-        </p>
-        <br />
         <h4 className="text-bold">CHILDREN'S PRIVACY</h4>
         <p>
           Get Tag does not knowingly target children and makes reasonable
