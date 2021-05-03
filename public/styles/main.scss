@@ -162,6 +162,9 @@ $padding-responsive: 600px;
 .public-DraftEditor-content {
   min-height: 160px;
 }
+.list-style-type {
+  list-style-type: disc !important;
+}
 
 @media screen and (min-width: $break-large) {
   .bg-marketing {
