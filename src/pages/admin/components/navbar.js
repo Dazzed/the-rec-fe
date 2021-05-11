@@ -47,6 +47,9 @@ function NavBar(props) {
         <StyledNavItem>
           <StyledNavLink href="/admin/products">Products</StyledNavLink>
         </StyledNavItem>
+        <StyledNavItem>
+          <StyledNavLink href="/admin/ecommerce-sites">Sites</StyledNavLink>
+        </StyledNavItem>
         {showSearchQuery ? (
           <StyledNavItem>
             <Searchbar
